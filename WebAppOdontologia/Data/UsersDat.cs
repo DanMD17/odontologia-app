@@ -17,7 +17,7 @@ namespace Data
             DataSet objData = new DataSet();
             MySqlCommand objSelectCmd = new MySqlCommand();
             objSelectCmd.Connection = objPer.openConnection();
-            objSelectCmd.CommandText = "spSelectUser";
+            objSelectCmd.CommandText = "spSelectUsers";
             objSelectCmd.CommandType = CommandType.StoredProcedure;
             objAdapter.SelectCommand = objSelectCmd;
             objAdapter.Fill(objData);
@@ -26,7 +26,7 @@ namespace Data
         }
 
         // Método para guardar un nuevo usuario
-        public bool saveUser(string _mail, string _password, string _state, DateTime _date, int _fkemployee, int _fkrol)
+        public bool saveUser(string _mail, string _password, string _state, DateTime _date, int _fkEmployee, int _fkRol)
         {
             bool executed = false;
             int row;
@@ -35,12 +35,12 @@ namespace Data
             objSelectCmd.Connection = objPer.openConnection();
             objSelectCmd.CommandText = "spInsertUser"; // nombre del procedimiento almacenado
             objSelectCmd.CommandType = CommandType.StoredProcedure;
-            objSelectCmd.Parameters.Add("correo", MySqlDbType.VarString).Value = _mail;
-            objSelectCmd.Parameters.Add("contrasena", MySqlDbType.Text).Value = _password;
-            objSelectCmd.Parameters.Add("estado", MySqlDbType.VarString).Value = _state;
-            objSelectCmd.Parameters.Add("fecha_creacion", MySqlDbType.Date).Value = _date;
-            objSelectCmd.Parameters.Add("empleado_emp_id", MySqlDbType.Int32).Value = _fkemployee;
-            objSelectCmd.Parameters.Add("roles_rol_id", MySqlDbType.Int32).Value = _fkrol;
+            objSelectCmd.Parameters.Add("p_usu_correo", MySqlDbType.VarString).Value = _mail;
+            objSelectCmd.Parameters.Add("p_usu_contrasena", MySqlDbType.Text).Value = _password;
+            objSelectCmd.Parameters.Add("p_usu_estado", MySqlDbType.VarString).Value = _state;
+            objSelectCmd.Parameters.Add("p_usu_fecha_creacion", MySqlDbType.Date).Value = _date;
+            objSelectCmd.Parameters.Add("p_usu_empleado_emp_id", MySqlDbType.Int32).Value = _fkEmployee;
+            objSelectCmd.Parameters.Add("p_usu_roles_rol_id", MySqlDbType.Int32).Value = _fkRol;
 
             try
             {
@@ -59,7 +59,7 @@ namespace Data
         }
 
         // Método para actualizar un Usuario
-        public bool updateUser(int _id, string _mail, string _password, string _state, int _fkemployee, int _fkrol)
+        public bool updateUser(int _id, string _mail, string _password, string _state, int _fkEmployee, int _fkRol)
         {
             bool executed = false;
             int row;
@@ -68,12 +68,12 @@ namespace Data
             objSelectCmd.Connection = objPer.openConnection();
             objSelectCmd.CommandText = "spUpdateUser"; // nombre del procedimiento almacenado
             objSelectCmd.CommandType = CommandType.StoredProcedure;
-            objSelectCmd.Parameters.Add("usuario_id", MySqlDbType.Int32).Value = _id;
-            objSelectCmd.Parameters.Add("correo", MySqlDbType.VarString).Value = _mail;
-            objSelectCmd.Parameters.Add("contrasena", MySqlDbType.Text).Value = _password;
-            objSelectCmd.Parameters.Add("estado", MySqlDbType.VarString).Value = _state;
-            objSelectCmd.Parameters.Add("empleado_emp_id", MySqlDbType.Int32).Value = _fkemployee;
-            objSelectCmd.Parameters.Add("roles_rol_id", MySqlDbType.Int32).Value = _fkrol;
+            objSelectCmd.Parameters.Add("p_usu_id", MySqlDbType.Int32).Value = _id;
+            objSelectCmd.Parameters.Add("p_usu_correo", MySqlDbType.VarString).Value = _mail;
+            objSelectCmd.Parameters.Add("p_usu_contrasena", MySqlDbType.Text).Value = _password;
+            objSelectCmd.Parameters.Add("p_usu_estado", MySqlDbType.VarString).Value = _state;
+            objSelectCmd.Parameters.Add("p_usu_empleado_emp_id", MySqlDbType.Int32).Value = _fkEmployee;
+            objSelectCmd.Parameters.Add("p_usu_roles_rol_id", MySqlDbType.Int32).Value = _fkRol;
 
             try
             {
@@ -101,7 +101,7 @@ namespace Data
             objSelectCmd.Connection = objPer.openConnection();
             objSelectCmd.CommandText = "spDeleteUser"; // nombre del procedimiento almacenado
             objSelectCmd.CommandType = CommandType.StoredProcedure;
-            objSelectCmd.Parameters.Add("usuario_id", MySqlDbType.Int32).Value = _id;
+            objSelectCmd.Parameters.Add("p_usu_id", MySqlDbType.Int32).Value = _id;
 
             try
             {

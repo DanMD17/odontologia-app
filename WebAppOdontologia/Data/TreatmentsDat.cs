@@ -15,7 +15,7 @@ namespace Data
             DataSet objData = new DataSet();
             MySqlCommand objSelectCmd = new MySqlCommand();
             objSelectCmd.Connection = objPer.openConnection();
-            objSelectCmd.CommandText = "spSelectTratamientoRealizado";
+            objSelectCmd.CommandText = "spSelectTreatmentsPerformed";
             objSelectCmd.CommandType = CommandType.StoredProcedure;
             objAdapter.SelectCommand = objSelectCmd;
             objAdapter.Fill(objData);
@@ -24,22 +24,22 @@ namespace Data
         }
 
         // Método para insertar un nuevo tratamiento realizado
-        public bool saveTreatment(string nombre, string descripcion, DateTime fecha, string observaciones, int citaId, int histId, int auxId)
+        public bool saveTreatment(string _nombre, string _descripcion, DateTime _fecha, string _observaciones, int _fkCitaId, int _fkHistId, int _fkAuxId)
         {
             bool executed = false;
             int row;
             MySqlCommand objInsertCmd = new MySqlCommand();
             objInsertCmd.Connection = objPer.openConnection();
-            objInsertCmd.CommandText = "spInsertTratamientoRealizado";
+            objInsertCmd.CommandText = "spInserTreatmentPerformed";
             objInsertCmd.CommandType = CommandType.StoredProcedure;
 
-            objInsertCmd.Parameters.Add("p_trata_nombre", MySqlDbType.VarChar).Value = nombre;
-            objInsertCmd.Parameters.Add("p_trata_descripcion", MySqlDbType.VarChar).Value = descripcion;
-            objInsertCmd.Parameters.Add("p_trata_fecha", MySqlDbType.Date).Value = fecha;
-            objInsertCmd.Parameters.Add("p_trata_observaciones", MySqlDbType.Text).Value = observaciones;
-            objInsertCmd.Parameters.Add("p_cita_id", MySqlDbType.Int32).Value = citaId;
-            objInsertCmd.Parameters.Add("p_hist_id", MySqlDbType.Int32).Value = histId;
-            objInsertCmd.Parameters.Add("p_aux_id", MySqlDbType.Int32).Value = auxId;
+            objInsertCmd.Parameters.Add("p_trata_nombre", MySqlDbType.VarChar).Value = _nombre;
+            objInsertCmd.Parameters.Add("p_trata_descripcion", MySqlDbType.VarChar).Value = _descripcion;
+            objInsertCmd.Parameters.Add("p_trata_fecha", MySqlDbType.Date).Value = _fecha;
+            objInsertCmd.Parameters.Add("p_trata_observaciones", MySqlDbType.Text).Value = _observaciones;
+            objInsertCmd.Parameters.Add("p_cita_id", MySqlDbType.Int32).Value = _fkCitaId;
+            objInsertCmd.Parameters.Add("p_hist_id", MySqlDbType.Int32).Value = _fkHistId;
+            objInsertCmd.Parameters.Add("p_aux_id", MySqlDbType.Int32).Value = _fkAuxId;
 
             try
             {
@@ -55,20 +55,25 @@ namespace Data
         }
 
         // Método para actualizar un tratamiento realizado
-        public bool updateTreatment(int trataId, string nombre, string descripcion, DateTime fecha, string observaciones)
+        public bool updateTreatment(int _trataId, string _nombre, string _descripcion, DateTime _fecha, string _observaciones, int _fkCitaId, int _fkHistId, int _fkAuxId)
+
         {
             bool executed = false;
             int row;
             MySqlCommand objUpdateCmd = new MySqlCommand();
             objUpdateCmd.Connection = objPer.openConnection();
-            objUpdateCmd.CommandText = "spUpdateTratamientoRealizado";
+            objUpdateCmd.CommandText = "spUpdateTreatmentPerformed";
             objUpdateCmd.CommandType = CommandType.StoredProcedure;
 
-            objUpdateCmd.Parameters.Add("p_trata_id", MySqlDbType.Int32).Value = trataId;
-            objUpdateCmd.Parameters.Add("p_trata_nombre", MySqlDbType.VarChar).Value = nombre;
-            objUpdateCmd.Parameters.Add("p_trata_descripcion", MySqlDbType.VarChar).Value = descripcion;
-            objUpdateCmd.Parameters.Add("p_trata_fecha", MySqlDbType.Date).Value = fecha;
-            objUpdateCmd.Parameters.Add("p_trata_observaciones", MySqlDbType.Text).Value = observaciones;
+            objUpdateCmd.Parameters.Add("p_trata_id", MySqlDbType.Int32).Value = _trataId;
+            objUpdateCmd.Parameters.Add("p_trata_nombre", MySqlDbType.VarChar).Value = _nombre;
+            objUpdateCmd.Parameters.Add("p_trata_descripcion", MySqlDbType.VarChar).Value = _descripcion;
+            objUpdateCmd.Parameters.Add("p_trata_fecha", MySqlDbType.Date).Value = _fecha;
+            objUpdateCmd.Parameters.Add("p_trata_observaciones", MySqlDbType.Text).Value = _observaciones;
+
+            objUpdateCmd.Parameters.Add("p_trata_cita_id", MySqlDbType.Text).Value = _fkCitaId;
+            objUpdateCmd.Parameters.Add("p_trata_hist_id", MySqlDbType.Text).Value = _fkHistId;
+            objUpdateCmd.Parameters.Add("p_trata_aux_id", MySqlDbType.Text).Value = _fkAuxId;
 
             try
             {
@@ -84,16 +89,16 @@ namespace Data
         }
 
         // Método para eliminar un tratamiento realizado
-        public bool deleteTreatment(int trataId)
+        public bool deleteTreatment(int _trataId)
         {
             bool executed = false;
             int row;
             MySqlCommand objDeleteCmd = new MySqlCommand();
             objDeleteCmd.Connection = objPer.openConnection();
-            objDeleteCmd.CommandText = "spDeleteTratamientoRealizado";
+            objDeleteCmd.CommandText = "spDeleteTreatmentPerformed";
             objDeleteCmd.CommandType = CommandType.StoredProcedure;
 
-            objDeleteCmd.Parameters.Add("p_trata_id", MySqlDbType.Int32).Value = trataId;
+            objDeleteCmd.Parameters.Add("p_trata_id", MySqlDbType.Int32).Value = _trataId;
 
             try
             {

@@ -4,7 +4,7 @@ using MySql.Data.MySqlClient;
 
 namespace Data
 {
-    public class DentistDat
+    public class DentistsDat
     {
         Persistence objPer = new Persistence();
 
@@ -15,7 +15,7 @@ namespace Data
             DataSet objData = new DataSet();
             MySqlCommand objSelectCmd = new MySqlCommand();
             objSelectCmd.Connection = objPer.openConnection();
-            objSelectCmd.CommandText = "spSelectOdontologo";
+            objSelectCmd.CommandText = "spSelectDentists";
             objSelectCmd.CommandType = CommandType.StoredProcedure;
             objAdapter.SelectCommand = objSelectCmd;
             objAdapter.Fill(objData);
@@ -24,17 +24,17 @@ namespace Data
         }
 
         // Método para insertar un nuevo odontólogo
-        public bool saveDentist(string especialidad, int empId)
+        public bool saveDentist(string _especialidad, int _fkempId)
         {
             bool executed = false;
             int row;
             MySqlCommand objInsertCmd = new MySqlCommand();
             objInsertCmd.Connection = objPer.openConnection();
-            objInsertCmd.CommandText = "spInsertOdontologo"; // Nombre del procedimiento almacenado
+            objInsertCmd.CommandText = "spInsertDentist"; // Nombre del procedimiento almacenado
             objInsertCmd.CommandType = CommandType.StoredProcedure;
 
-            objInsertCmd.Parameters.Add("p_odo_especialidad", MySqlDbType.VarChar).Value = especialidad;
-            objInsertCmd.Parameters.Add("p_emp_id", MySqlDbType.Int32).Value = empId;
+            objInsertCmd.Parameters.Add("p_odo_especialidad", MySqlDbType.VarChar).Value = _especialidad;
+            objInsertCmd.Parameters.Add("p_emp_id", MySqlDbType.Int32).Value = _fkempId;
 
             try
             {
@@ -50,18 +50,18 @@ namespace Data
         }
 
         // Método para actualizar un odontólogo
-        public bool updateDentist(int odoId, string especialidad, int empId)
+        public bool updateDentist(int _odoId, string _especialidad, int _fkempId)
         {
             bool executed = false;
             int row;
             MySqlCommand objUpdateCmd = new MySqlCommand();
             objUpdateCmd.Connection = objPer.openConnection();
-            objUpdateCmd.CommandText = "spUpdateOdontologo"; // Nombre del procedimiento almacenado
+            objUpdateCmd.CommandText = "spUpdateDentist"; // Nombre del procedimiento almacenado
             objUpdateCmd.CommandType = CommandType.StoredProcedure;
 
-            objUpdateCmd.Parameters.Add("p_odo_id", MySqlDbType.Int32).Value = odoId;
-            objUpdateCmd.Parameters.Add("p_odo_especialidad", MySqlDbType.VarChar).Value = especialidad;
-            objUpdateCmd.Parameters.Add("p_emp_id", MySqlDbType.Int32).Value = empId;
+            objUpdateCmd.Parameters.Add("p_odo_id", MySqlDbType.Int32).Value = _odoId;
+            objUpdateCmd.Parameters.Add("p_odo_especialidad", MySqlDbType.VarChar).Value = _especialidad;
+            objUpdateCmd.Parameters.Add("p_emp_id", MySqlDbType.Int32).Value = _fkempId;
 
             try
             {
@@ -77,16 +77,16 @@ namespace Data
         }
 
         // Método para eliminar un odontólogo
-        public bool deleteDentist(int odoId)
+        public bool deleteDentist(int _odoId)
         {
             bool executed = false;
             int row;
             MySqlCommand objDeleteCmd = new MySqlCommand();
             objDeleteCmd.Connection = objPer.openConnection();
-            objDeleteCmd.CommandText = "spDeleteOdontologo"; // Nombre del procedimiento almacenado
+            objDeleteCmd.CommandText = "spDeleteDentist"; // Nombre del procedimiento almacenado
             objDeleteCmd.CommandType = CommandType.StoredProcedure;
 
-            objDeleteCmd.Parameters.Add("p_odo_id", MySqlDbType.Int32).Value = odoId;
+            objDeleteCmd.Parameters.Add("p_odo_id", MySqlDbType.Int32).Value = _odoId;
 
             try
             {

@@ -12,6 +12,7 @@ namespace Data
     {
         // Se crea una instancia de la clase Persistence para manejar la conexión a la base de datos.
         PersistenceDat objPer = new PersistenceDat();
+
         public DataSet showAssistants()
         {
             // Se crea un adaptador de datos para MySQL.
@@ -46,7 +47,8 @@ namespace Data
         }
 
         //Metodo para guardar un nuevo auxiliar
-        public bool saveAssistant(string _FK_emp_id, string _aux_funcion, string _aux_nivel_educativo)
+
+        public bool saveAssistant(string _fkEmpId, string _auxFuncion, string _auxNivelEducativo)
         {
             // Se inicializa una variable para indicar si la operación se ejecutó correctamente.
             bool executed = false;
@@ -55,13 +57,13 @@ namespace Data
             // Se crea un comando MySQL para insertar un nuevo producto utilizando un procedimiento almacenado.
             MySqlCommand objSelectCmd = new MySqlCommand();
             objSelectCmd.Connection = objPer.openConnection();
-            objSelectCmd.CommandText = "spInsertAssistant"; //nombre del procedimiento almacenado
+            objSelectCmd.CommandText = "spInsertAssistants"; //nombre del procedimiento almacenado
             objSelectCmd.CommandType = CommandType.StoredProcedure;
 
             // Se agregan parámetros al comando para pasar los valores del producto.
-            objSelectCmd.Parameters.Add("emp_id", MySqlDbType.Int32).Value = _FK_emp_id;
-            objSelectCmd.Parameters.Add("aux_funcion", MySqlDbType.VarString).Value = _aux_funcion;
-            objSelectCmd.Parameters.Add("aux_nivel_educativo", MySqlDbType.VarString).Value = _aux_nivel_educativo;
+            objSelectCmd.Parameters.Add("p_emp_id", MySqlDbType.Int32).Value = _fkEmpId;
+            objSelectCmd.Parameters.Add("p_aux_funcion", MySqlDbType.VarString).Value = _auxFuncion;
+            objSelectCmd.Parameters.Add("p_aux_nivel_educativo", MySqlDbType.VarString).Value = _auxNivelEducativo;
 
             try
             {
@@ -85,7 +87,7 @@ namespace Data
         }
 
         //Metodo para actulizar un producto
-        public bool updateAssistant(int _id, string _FK_emp_id, string _aux_funcion, string _aux_nivel_educativo)
+        public bool updateAssistant(int _id, string _fkEmpId, string _auxFuncion, string _auxNivelEducativo)
         {
             bool executed = false;
             int row;
@@ -96,10 +98,10 @@ namespace Data
             objSelectCmd.CommandType = CommandType.StoredProcedure;
 
             // Se agregan parámetros al comando para pasar los valores del producto.
-            objSelectCmd.Parameters.Add("p_aux_id", MySqlDbType.Int32).Value = _id;
-            objSelectCmd.Parameters.Add("emp_id", MySqlDbType.Int32).Value = _FK_emp_id;
-            objSelectCmd.Parameters.Add("aux_funcion", MySqlDbType.VarString).Value = _aux_funcion;
-            objSelectCmd.Parameters.Add("aux_nivel_educativo", MySqlDbType.VarString).Value = _aux_nivel_educativo;
+            objSelectCmd.Parameters.Add("p_aux_funcion", MySqlDbType.Int32).Value = _id;
+            objSelectCmd.Parameters.Add("p_emp_id", MySqlDbType.Int32).Value = _fkEmpId;
+            objSelectCmd.Parameters.Add("p_aux_funcion", MySqlDbType.VarString).Value = _auxFuncion;
+            objSelectCmd.Parameters.Add("p_aux_nivel_educativo", MySqlDbType.VarString).Value = _auxNivelEducativo;
 
             try
             {
