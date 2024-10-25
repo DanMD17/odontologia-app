@@ -18,7 +18,7 @@ namespace Data
             DataSet objData = new DataSet();
             MySqlCommand objSelectCmd = new MySqlCommand();
             objSelectCmd.Connection = objPer.openConnection();
-            objSelectCmd.CommandText = "spSelectEmployee";
+            objSelectCmd.CommandText = "spSelectEmployees";
             objSelectCmd.CommandType = CommandType.StoredProcedure;
             objAdapter.SelectCommand = objSelectCmd;
             objAdapter.Fill(objData);
@@ -40,12 +40,12 @@ namespace Data
             objSelectCmd.CommandType = CommandType.StoredProcedure;
 
             // Se agregan parámetros al comando para pasar los valores del producto.
-            objSelectCmd.Parameters.Add("emp_identificacion", MySqlDbType.Int64).Value = _identificacion;
-            objSelectCmd.Parameters.Add("emp_nombre", MySqlDbType.VarString).Value = _nombre;
-            objSelectCmd.Parameters.Add("emp_apellidos", MySqlDbType.VarString).Value = _apellidos;
-            objSelectCmd.Parameters.Add("emp_celular", MySqlDbType.String).Value = _celular;
-            objSelectCmd.Parameters.Add("emp_correo", MySqlDbType.VarString).Value = _direccion;
-            objSelectCmd.Parameters.Add("emp_direccion", MySqlDbType.VarString).Value = _correo;
+            objSelectCmd.Parameters.Add("p_emp_identificacion", MySqlDbType.Int64).Value = _identificacion;
+            objSelectCmd.Parameters.Add("p_emp_nombre", MySqlDbType.VarString).Value = _nombre;
+            objSelectCmd.Parameters.Add("p_emp_apellidos", MySqlDbType.VarString).Value = _apellidos;
+            objSelectCmd.Parameters.Add("p_emp_celular", MySqlDbType.String).Value = _celular;
+            objSelectCmd.Parameters.Add("p_emp_correo", MySqlDbType.VarString).Value = _direccion;
+            objSelectCmd.Parameters.Add("p_emp_direccion", MySqlDbType.VarString).Value = _correo;
 
             try
             {

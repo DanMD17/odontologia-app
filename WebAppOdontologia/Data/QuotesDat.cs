@@ -15,7 +15,7 @@ namespace Data
             DataSet objData = new DataSet();
             MySqlCommand objSelectCmd = new MySqlCommand();
             objSelectCmd.Connection = objPer.openConnection();
-            objSelectCmd.CommandText = "spSelectCita";
+            objSelectCmd.CommandText = "spSelectQuotes";
             objSelectCmd.CommandType = CommandType.StoredProcedure;
             objAdapter.SelectCommand = objSelectCmd;
             objAdapter.Fill(objData);
@@ -24,20 +24,20 @@ namespace Data
         }
 
         // Método para insertar una nueva cita
-        public bool saveQuote(DateTime fecha, TimeSpan hora, string estado, int paciId, int odoId)
+        public bool saveQuote(DateTime _fecha, TimeSpan _hora, string _estado, int _fkPaciId, int _fkOdoId)
         {
             bool executed = false;
             int row;
             MySqlCommand objInsertCmd = new MySqlCommand();
             objInsertCmd.Connection = objPer.openConnection();
-            objInsertCmd.CommandText = "spInsertCita"; // Nombre del procedimiento almacenado
+            objInsertCmd.CommandText = "spInsertQuote"; // Nombre del procedimiento almacenado
             objInsertCmd.CommandType = CommandType.StoredProcedure;
 
-            objInsertCmd.Parameters.Add("p_cita_fecha", MySqlDbType.Date).Value = fecha;
-            objInsertCmd.Parameters.Add("p_cita_hora", MySqlDbType.Time).Value = hora;
-            objInsertCmd.Parameters.Add("p_cita_estado", MySqlDbType.VarChar).Value = estado;
-            objInsertCmd.Parameters.Add("p_paci_id", MySqlDbType.Int32).Value = paciId;
-            objInsertCmd.Parameters.Add("p_odo_id", MySqlDbType.Int32).Value = odoId;
+            objInsertCmd.Parameters.Add("p_cita_fecha", MySqlDbType.Date).Value = _fecha;
+            objInsertCmd.Parameters.Add("p_cita_hora", MySqlDbType.Time).Value = _hora;
+            objInsertCmd.Parameters.Add("p_cita_estado", MySqlDbType.VarChar).Value = _estado;
+            objInsertCmd.Parameters.Add("p_paci_id", MySqlDbType.Int32).Value = _fkPaciId;
+            objInsertCmd.Parameters.Add("p_odo_id", MySqlDbType.Int32).Value = _fkOdoId;
 
             try
             {
@@ -53,21 +53,21 @@ namespace Data
         }
 
         // Método para actualizar una cita
-        public bool updateQuote(int citaId, DateTime fecha, TimeSpan hora, string estado, int paciId, int odoId)
+        public bool updateQuote(int _citaId, DateTime _fecha, TimeSpan _hora, string _estado, int _fkPaciId, int _fkOdoId)
         {
             bool executed = false;
             int row;
             MySqlCommand objUpdateCmd = new MySqlCommand();
             objUpdateCmd.Connection = objPer.openConnection();
-            objUpdateCmd.CommandText = "spUpdateCita"; // Nombre del procedimiento almacenado
+            objUpdateCmd.CommandText = "spUpdateQuote"; // Nombre del procedimiento almacenado
             objUpdateCmd.CommandType = CommandType.StoredProcedure;
 
-            objUpdateCmd.Parameters.Add("p_cita_id", MySqlDbType.Int32).Value = citaId;
-            objUpdateCmd.Parameters.Add("p_cita_fecha", MySqlDbType.Date).Value = fecha;
-            objUpdateCmd.Parameters.Add("p_cita_hora", MySqlDbType.Time).Value = hora;
-            objUpdateCmd.Parameters.Add("p_cita_estado", MySqlDbType.VarChar).Value = estado;
-            objUpdateCmd.Parameters.Add("p_paci_id", MySqlDbType.Int32).Value = paciId;
-            objUpdateCmd.Parameters.Add("p_odo_id", MySqlDbType.Int32).Value = odoId;
+            objUpdateCmd.Parameters.Add("p_cita_id", MySqlDbType.Int32).Value = _citaId;
+            objUpdateCmd.Parameters.Add("p_cita_fecha", MySqlDbType.Date).Value = _fecha;
+            objUpdateCmd.Parameters.Add("p_cita_hora", MySqlDbType.Time).Value = _hora;
+            objUpdateCmd.Parameters.Add("p_cita_estado", MySqlDbType.VarChar).Value = _estado;
+            objUpdateCmd.Parameters.Add("p_paci_id", MySqlDbType.Int32).Value = _fkPaciId;
+            objUpdateCmd.Parameters.Add("p_odo_id", MySqlDbType.Int32).Value = _fkOdoId;
 
             try
             {
@@ -83,7 +83,7 @@ namespace Data
         }
 
         // Método para eliminar una cita
-        public bool deleteQuote(int citaId)
+        public bool deleteQuote(int _citaId)
         {
             bool executed = false;
             int row;
@@ -92,7 +92,7 @@ namespace Data
             objDeleteCmd.CommandText = "spDeleteCita"; // Nombre del procedimiento almacenado
             objDeleteCmd.CommandType = CommandType.StoredProcedure;
 
-            objDeleteCmd.Parameters.Add("p_cita_id", MySqlDbType.Int32).Value = citaId;
+            objDeleteCmd.Parameters.Add("p_cita_id", MySqlDbType.Int32).Value = _citaId;
 
             try
             {

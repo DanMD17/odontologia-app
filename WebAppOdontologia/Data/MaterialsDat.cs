@@ -17,7 +17,7 @@ namespace Data
 
             MySqlCommand objSelectCmd = new MySqlCommand();
             objSelectCmd.Connection = objPer.openConnection();
-            objSelectCmd.CommandText = "spSelectMaterial";
+            objSelectCmd.CommandText = "spSelectMaterials";
             objSelectCmd.CommandType = CommandType.StoredProcedure;
             objAdapter.SelectCommand = objSelectCmd;
             objAdapter.Fill(objData);
@@ -26,7 +26,7 @@ namespace Data
         }
 
         // Método para guardar un nuevo Material
-        public bool saveMaterial(string nombre, string descripcion, int cantidad, int trataId)
+        public bool saveMaterial(string _nombre, string _descripcion, int _cantidad, int _fktrataId)
         {
             bool executed = false;
             int row;
@@ -35,10 +35,10 @@ namespace Data
             objSelectCmd.Connection = objPer.openConnection();
             objSelectCmd.CommandText = "spInsertMaterial";
             objSelectCmd.CommandType = CommandType.StoredProcedure;
-            objSelectCmd.Parameters.Add("p_nombre", MySqlDbType.VarString).Value = nombre;
-            objSelectCmd.Parameters.Add("p_descripcion", MySqlDbType.Text).Value = descripcion;
-            objSelectCmd.Parameters.Add("p_cantidad", MySqlDbType.Int32).Value = cantidad;
-            objSelectCmd.Parameters.Add("p_trata_id", MySqlDbType.Int32).Value = trataId;
+            objSelectCmd.Parameters.Add("p_mate_nombre", MySqlDbType.VarString).Value = _nombre;
+            objSelectCmd.Parameters.Add("p_mate_descripcion", MySqlDbType.Text).Value = _descripcion;
+            objSelectCmd.Parameters.Add("p_mate_cantidad", MySqlDbType.Int32).Value = _cantidad;
+            objSelectCmd.Parameters.Add("p_trata_id", MySqlDbType.Int32).Value = _fktrataId;
 
             try
             {
@@ -57,7 +57,7 @@ namespace Data
         }
 
         // Método para actualizar un Material
-        public bool updateMaterial(int materialId, string nombre, string descripcion, int cantidad, int trataId)
+        public bool updateMaterial(int _materialId, string _nombre, string _descripcion, int _cantidad, int _fkTrataId)
         {
             bool executed = false;
             int row;
@@ -66,11 +66,11 @@ namespace Data
             objSelectCmd.Connection = objPer.openConnection();
             objSelectCmd.CommandText = "spUpdateMaterial";
             objSelectCmd.CommandType = CommandType.StoredProcedure;
-            objSelectCmd.Parameters.Add("p_mate_id", MySqlDbType.Int32).Value = materialId;
-            objSelectCmd.Parameters.Add("p_nombre", MySqlDbType.VarString).Value = nombre;
-            objSelectCmd.Parameters.Add("p_descripcion", MySqlDbType.Text).Value = descripcion;
-            objSelectCmd.Parameters.Add("p_cantidad", MySqlDbType.Int32).Value = cantidad;
-            objSelectCmd.Parameters.Add("p_trata_id", MySqlDbType.Int32).Value = trataId;
+            objSelectCmd.Parameters.Add("p_mate_id", MySqlDbType.Int32).Value = _materialId;
+            objSelectCmd.Parameters.Add("p_mate_nombre", MySqlDbType.VarString).Value = _nombre;
+            objSelectCmd.Parameters.Add("p_mate_descripcion", MySqlDbType.Text).Value = _descripcion;
+            objSelectCmd.Parameters.Add("p_mate_cantidad", MySqlDbType.Int32).Value = _cantidad;
+            objSelectCmd.Parameters.Add("p_trata_id", MySqlDbType.Int32).Value = _fkTrataId;
 
             try
             {
@@ -89,7 +89,7 @@ namespace Data
         }
 
         // Método para eliminar un Material
-        public bool deleteMaterial(int materialId)
+        public bool deleteMaterial(int _materialId)
         {
             bool executed = false;
             int row;
@@ -98,7 +98,7 @@ namespace Data
             objSelectCmd.Connection = objPer.openConnection();
             objSelectCmd.CommandText = "spDeleteMaterial";
             objSelectCmd.CommandType = CommandType.StoredProcedure;
-            objSelectCmd.Parameters.Add("p_mate_id", MySqlDbType.Int32).Value = materialId;
+            objSelectCmd.Parameters.Add("p_mate_id", MySqlDbType.Int32).Value = _materialId;
 
             try
             {

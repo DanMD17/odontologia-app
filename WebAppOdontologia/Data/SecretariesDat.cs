@@ -7,18 +7,18 @@ using System.Web;
 
 namespace Data
 {
-    public class SecretariasDat
+    public class SecretariesDat
     {
         PersistenceDat objPer = new PersistenceDat();
 
         // Método para mostrar todas las secretarias
-        public DataSet showSecretarias()
+        public DataSet showSecretaries()
         {
             MySqlDataAdapter objAdapter = new MySqlDataAdapter();
             DataSet objData = new DataSet();
             MySqlCommand objSelectCmd = new MySqlCommand();
             objSelectCmd.Connection = objPer.openConnection();
-            objSelectCmd.CommandText = "spSelectSecretariat";
+            objSelectCmd.CommandText = "spSelectSecretaries";
             objSelectCmd.CommandType = CommandType.StoredProcedure;
             objAdapter.SelectCommand = objSelectCmd;
             objAdapter.Fill(objData);
@@ -27,18 +27,18 @@ namespace Data
         }
 
         // Método para insertar una nueva secretaria
-        public bool saveSecretaria(int _FK_empId, string _funcion, string _aniosExperiencia)
+        public bool saveSecretary(int _fkEmpId, string _funcion, string _aniosExperiencia)
         {
             bool executed = false;
             int row;
             MySqlCommand objInsertCmd = new MySqlCommand();
             objInsertCmd.Connection = objPer.openConnection();
-            objInsertCmd.CommandText = "spInsertSecretariat"; // Nombre del procedimiento almacenado
+            objInsertCmd.CommandText = "spInsertSecretary"; // Nombre del procedimiento almacenado
             objInsertCmd.CommandType = CommandType.StoredProcedure;
 
-            objInsertCmd.Parameters.Add("emp_id", MySqlDbType.Int32).Value = _FK_empId;
-            objInsertCmd.Parameters.Add("sec_funcion", MySqlDbType.VarChar).Value = _funcion;
-            objInsertCmd.Parameters.Add("sec_anios_experiencia", MySqlDbType.VarChar).Value = _aniosExperiencia;
+            objInsertCmd.Parameters.Add("p_emp_id", MySqlDbType.Int32).Value = _fkEmpId;
+            objInsertCmd.Parameters.Add("p_sec_funcion", MySqlDbType.VarChar).Value = _funcion;
+            objInsertCmd.Parameters.Add("p_sec_anios_experiencia", MySqlDbType.VarChar).Value = _aniosExperiencia;
 
             try
             {
@@ -53,20 +53,21 @@ namespace Data
             return executed;
         }
 
+
         // Método para actualizar una secretaria
-        public bool updateSecretaria(int _secId, int _FK_empId, string _funcion, string _aniosExperiencia)
+        public bool updateSecretaria(int _secId, int _fkEmpId, string _funcion, string _aniosExperiencia)
         {
             bool executed = false;
             int row;
             MySqlCommand objUpdateCmd = new MySqlCommand();
             objUpdateCmd.Connection = objPer.openConnection();
-            objUpdateCmd.CommandText = "spUpdateSecretariat"; // Nombre del procedimiento almacenado
+            objUpdateCmd.CommandText = "spUpdateSecretary"; // Nombre del procedimiento almacenado
             objUpdateCmd.CommandType = CommandType.StoredProcedure;
 
             objUpdateCmd.Parameters.Add("p_sec_id", MySqlDbType.Int32).Value = _secId;
-            objUpdateCmd.Parameters.Add("emp_id", MySqlDbType.Int32).Value = _FK_empId;
-            objUpdateCmd.Parameters.Add("sec_funcion", MySqlDbType.VarChar).Value = _funcion;
-            objUpdateCmd.Parameters.Add("sec_anios_experiencia", MySqlDbType.VarChar).Value = _aniosExperiencia;
+            objUpdateCmd.Parameters.Add("p_emp_id", MySqlDbType.Int32).Value = _fkEmpId;
+            objUpdateCmd.Parameters.Add("p_sec_funcion", MySqlDbType.VarChar).Value = _funcion;
+            objUpdateCmd.Parameters.Add("p_sec_anios_experiencia", MySqlDbType.VarChar).Value = _aniosExperiencia;
 
             try
             {
@@ -88,10 +89,10 @@ namespace Data
             int row;
             MySqlCommand objDeleteCmd = new MySqlCommand();
             objDeleteCmd.Connection = objPer.openConnection();
-            objDeleteCmd.CommandText = "spDeleteSecretariat"; // Nombre del procedimiento almacenado
+            objDeleteCmd.CommandText = "spDeleteSecretary"; // Nombre del procedimiento almacenado
             objDeleteCmd.CommandType = CommandType.StoredProcedure;
 
-            objDeleteCmd.Parameters.Add("sec_id", MySqlDbType.Int32).Value = _secId;
+            objDeleteCmd.Parameters.Add("p_sec_id", MySqlDbType.Int32).Value = _secId;
 
             try
             {

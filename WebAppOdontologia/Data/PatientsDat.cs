@@ -17,7 +17,7 @@ namespace Data
             DataSet objData = new DataSet();
             MySqlCommand objSelectCmd = new MySqlCommand();
             objSelectCmd.Connection = objPer.openConnection();
-            objSelectCmd.CommandText = "spSelectPatient"; // Procedimiento almacenado para seleccionar pacientes
+            objSelectCmd.CommandText = "spSelectPatients"; // Procedimiento almacenado para seleccionar pacientes
             objSelectCmd.CommandType = CommandType.StoredProcedure;
             objAdapter.SelectCommand = objSelectCmd;
             objAdapter.Fill(objData);
@@ -26,7 +26,7 @@ namespace Data
         }
 
         // Método para guardar un nuevo paciente
-        public bool savePatient(string p_nombre, string p_apellido, DateTime p_fecha_nacimiento, string p_direccion, string p_celular, string p_correo)
+        public bool savePatient(string _pNombre, string _pApellido, DateTime _pFechaNacimiento, string _pDireccion, string _pCelular, string _pCorreo)
         {
             bool executed = false;
             int row;
@@ -37,12 +37,12 @@ namespace Data
             objSelectCmd.CommandType = CommandType.StoredProcedure;
 
             // Agregar parámetros al comando
-            objSelectCmd.Parameters.Add("p_nombre", MySqlDbType.VarChar).Value = p_nombre;
-            objSelectCmd.Parameters.Add("p_apellido", MySqlDbType.VarChar).Value = p_apellido;
-            objSelectCmd.Parameters.Add("p_fecha_nacimiento", MySqlDbType.Date).Value = p_fecha_nacimiento;
-            objSelectCmd.Parameters.Add("p_direccion", MySqlDbType.VarChar).Value = p_direccion;
-            objSelectCmd.Parameters.Add("p_celular", MySqlDbType.VarChar).Value = p_celular;
-            objSelectCmd.Parameters.Add("p_correo", MySqlDbType.VarChar).Value = p_correo;
+            objSelectCmd.Parameters.Add("p_paci_nombre", MySqlDbType.VarChar).Value = _pNombre;
+            objSelectCmd.Parameters.Add("p_paci_apellido", MySqlDbType.VarChar).Value = _pApellido;
+            objSelectCmd.Parameters.Add("p_paci_fecha_nacimiento", MySqlDbType.Date).Value = _pFechaNacimiento;
+            objSelectCmd.Parameters.Add("p_paci_direccion", MySqlDbType.VarChar).Value = _pDireccion;
+            objSelectCmd.Parameters.Add("p_paci_celular", MySqlDbType.VarChar).Value = _pCelular;
+            objSelectCmd.Parameters.Add("p_paci_correo", MySqlDbType.VarChar).Value = _pCorreo;
 
             try
             {
@@ -61,7 +61,7 @@ namespace Data
         }
 
         // Método para actualizar un paciente
-        public bool updatePatient(int p_paciente_id, string p_nombre, string p_apellido, DateTime p_fecha_nacimiento, string p_direccion, string p_celular, string p_correo)
+        public bool updatePatient(int _pPacienteId, string _pNombre, string _pApellido, DateTime _pFechaNacimiento, string _pDireccion, string _pCelular, string _pCorreo)
         {
             bool executed = false;
             int row;
@@ -72,13 +72,13 @@ namespace Data
             objSelectCmd.CommandType = CommandType.StoredProcedure;
 
             // Agregar parámetros al comando
-            objSelectCmd.Parameters.Add("p_paciente_id", MySqlDbType.Int32).Value = p_paciente_id;
-            objSelectCmd.Parameters.Add("p_nombre", MySqlDbType.VarChar).Value = p_nombre;
-            objSelectCmd.Parameters.Add("p_apellido", MySqlDbType.VarChar).Value = p_apellido;
-            objSelectCmd.Parameters.Add("p_fecha_nacimiento", MySqlDbType.Date).Value = p_fecha_nacimiento;
-            objSelectCmd.Parameters.Add("p_direccion", MySqlDbType.VarChar).Value = p_direccion;
-            objSelectCmd.Parameters.Add("p_celular", MySqlDbType.VarChar).Value = p_celular;
-            objSelectCmd.Parameters.Add("p_correo", MySqlDbType.VarChar).Value = p_correo;
+            objSelectCmd.Parameters.Add("p_paciente_id", MySqlDbType.Int32).Value = _pPacienteId;
+            objSelectCmd.Parameters.Add("p_paci_nombre", MySqlDbType.VarChar).Value = _pNombre;
+            objSelectCmd.Parameters.Add("p_paci_apellido", MySqlDbType.VarChar).Value = _pApellido;
+            objSelectCmd.Parameters.Add("p_paci_fecha_nacimiento", MySqlDbType.Date).Value = _pFechaNacimiento;
+            objSelectCmd.Parameters.Add("p_paci_direccion", MySqlDbType.VarChar).Value = _pDireccion;
+            objSelectCmd.Parameters.Add("p_paci_celular", MySqlDbType.VarChar).Value = _pCelular;
+            objSelectCmd.Parameters.Add("p_paci_correo", MySqlDbType.VarChar).Value = _pCorreo;
 
             try
             {
@@ -97,7 +97,7 @@ namespace Data
         }
 
         // Método para borrar un paciente
-        public bool deletePatient(int p_paciente_id)
+        public bool deletePatient(int _pPacienteId)
         {
             bool executed = false;
             int row;
@@ -107,7 +107,7 @@ namespace Data
             objSelectCmd.CommandText = "spDeletePatient"; // Nombre del procedimiento almacenado
             objSelectCmd.CommandType = CommandType.StoredProcedure;
 
-            objSelectCmd.Parameters.Add("p_paciente_id", MySqlDbType.Int32).Value = p_paciente_id;
+            objSelectCmd.Parameters.Add("p_paciente_id", MySqlDbType.Int32).Value = _pPacienteId;
 
             try
             {

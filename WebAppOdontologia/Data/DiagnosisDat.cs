@@ -25,7 +25,7 @@ namespace Data
         }
 
         // Método para guardar un nuevo diagnóstico
-        public bool saveDiagnosis(int p_cita_id, string p_diag_descripcion, DateTime p_diag_fecha, string p_diag_observaciones, int p_historial_id)
+        public bool saveDiagnosis(int _fkCitaId, string _pDiagDescripcion, DateTime _pDiagFecha, string _pDiagObservaciones, int _fkHistorialId)
         {
             bool executed = false;
             int row;
@@ -36,11 +36,11 @@ namespace Data
             objSelectCmd.CommandType = CommandType.StoredProcedure;
 
             // Agregar parámetros al comando
-            objSelectCmd.Parameters.Add("p_cita_id", MySqlDbType.Int32).Value = p_cita_id;
-            objSelectCmd.Parameters.Add("p_diag_descripcion", MySqlDbType.Text).Value = p_diag_descripcion;
-            objSelectCmd.Parameters.Add("p_diag_fecha", MySqlDbType.Date).Value = p_diag_fecha;
-            objSelectCmd.Parameters.Add("p_diag_observaciones", MySqlDbType.Text).Value = p_diag_observaciones;
-            objSelectCmd.Parameters.Add("p_historial_id", MySqlDbType.Int32).Value = p_historial_id;
+            objSelectCmd.Parameters.Add("p_cita_id", MySqlDbType.Int32).Value = _fkCitaId;
+            objSelectCmd.Parameters.Add("p_diag_descripcion", MySqlDbType.Text).Value = _pDiagDescripcion;
+            objSelectCmd.Parameters.Add("p_diag_fecha", MySqlDbType.Date).Value = _pDiagFecha;
+            objSelectCmd.Parameters.Add("p_diag_observaciones", MySqlDbType.Text).Value = _pDiagObservaciones;
+            objSelectCmd.Parameters.Add("p_historial_id", MySqlDbType.Int32).Value = _fkHistorialId;
 
             try
             {
@@ -59,7 +59,7 @@ namespace Data
         }
 
         // Método para actualizar un diagnóstico
-        public bool updateDiagnosis(int p_diag_id, int p_cita_id, string p_diag_descripcion, DateTime p_diag_fecha, string p_diag_observaciones, int p_historial_id)
+        public bool updateDiagnosis(int _pDiagId, int _fkCitaId, string _pDiagDescripcion, DateTime _pDiagFecha, string _pDiagObservaciones, int _fkHistorialId)
         {
             bool executed = false;
             int row;
@@ -70,12 +70,12 @@ namespace Data
             objSelectCmd.CommandType = CommandType.StoredProcedure;
 
             // Agregar parámetros al comando
-            objSelectCmd.Parameters.Add("p_diag_id", MySqlDbType.Int32).Value = p_diag_id;
-            objSelectCmd.Parameters.Add("p_cita_id", MySqlDbType.Int32).Value = p_cita_id;
-            objSelectCmd.Parameters.Add("p_diag_descripcion", MySqlDbType.Text).Value = p_diag_descripcion;
-            objSelectCmd.Parameters.Add("p_diag_fecha", MySqlDbType.Date).Value = p_diag_fecha;
-            objSelectCmd.Parameters.Add("p_diag_observaciones", MySqlDbType.Text).Value = p_diag_observaciones;
-            objSelectCmd.Parameters.Add("p_historial_id", MySqlDbType.Int32).Value = p_historial_id;
+            objSelectCmd.Parameters.Add("p_diag_id", MySqlDbType.Int32).Value = _pDiagId;
+            objSelectCmd.Parameters.Add("p_cita_id", MySqlDbType.Int32).Value = _fkCitaId;
+            objSelectCmd.Parameters.Add("p_diag_descripcion", MySqlDbType.Text).Value = _pDiagDescripcion;
+            objSelectCmd.Parameters.Add("p_diag_fecha", MySqlDbType.Date).Value = _pDiagFecha;
+            objSelectCmd.Parameters.Add("p_diag_observaciones", MySqlDbType.Text).Value = _pDiagObservaciones;
+            objSelectCmd.Parameters.Add("p_historial_id", MySqlDbType.Int32).Value = _fkHistorialId;
 
             try
             {
@@ -94,7 +94,7 @@ namespace Data
         }
 
         // Método para borrar un diagnóstico
-        public bool deleteDiagnosis(int p_diag_id)
+        public bool deleteDiagnosis(int _pDiagId)
         {
             bool executed = false;
             int row;
@@ -104,7 +104,7 @@ namespace Data
             objSelectCmd.CommandText = "spDeleteDiagnosis"; // Nombre del procedimiento almacenado
             objSelectCmd.CommandType = CommandType.StoredProcedure;
 
-            objSelectCmd.Parameters.Add("p_diag_id", MySqlDbType.Int32).Value = p_diag_id;
+            objSelectCmd.Parameters.Add("p_diag_id", MySqlDbType.Int32).Value = _pDiagId;
 
             try
             {
