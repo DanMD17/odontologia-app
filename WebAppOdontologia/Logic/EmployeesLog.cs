@@ -39,7 +39,7 @@ namespace Logic
         //Metodo para borrar un empleado
         public bool deleteEmployee(int _idEmployee)
         {
-            return objCat.deleteEmployee(_idEmployee);
+            return objEmp.deleteEmployee(_idEmployee);
         }
     }
 }
