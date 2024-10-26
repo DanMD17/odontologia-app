@@ -89,7 +89,7 @@ namespace Data
         }
 
         // Método para borrar un historial clínico
-        public bool deleteClinicalHistory(int _pHistorialId)
+        public bool deleteClinicalHistory(int _pHistId)
         {
             bool executed = false;
             int row;
