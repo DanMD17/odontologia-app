@@ -9,28 +9,34 @@ namespace Logic
     {
         AuxiliariesDat objAssist = new AuxiliariesDat();
 
-        //Metodo para mostrar unicamente el id y la descripcion de los Provedores, en el DropDownList
-        public DataSet showAssistantsDDLL()
+        //Metodo para mostrar unicamente el id y la descripcion de los auxiliares en DDL
+        public DataSet showAssistantsDDL()
         {
             return objAssist.showAssistantsDDL();
         }
 
-        //Metodo para mostrar los Provedores
+        //Metodo para mostrar los auxiliar
         public DataSet showAssistants()
         {
             return objAssist.showAssistants();
         }
 
-        //Metodo para guardar un nuevo Proveedor
-        public bool saveProvider(string _fkEmpId, string _auxFuncion, string _auxNivelEducativo)
+        //Metodo para guardar un nuevo auxiliar
+        public bool saveAssistant(string _fkEmpId, string _auxFuncion, string _auxNivelEducativo)
         {
-            return objAssist.saveProvider(_fkEmpId, _auxFuncion, _auxNivelEducativo);
+            return objAssist.saveAssistant(_fkEmpId, _auxFuncion, _auxNivelEducativo);
         }
 
-        //Metodo para actualizar un Proveedor
-        public bool updateProvider(int _id, string _fkEmpId, string _auxFuncion, string _auxNivelEducativo)
+        //Metodo para actualizar un auxiliar
+        public bool updateAssistant(int _id, string _fkEmpId, string _auxFuncion, string _auxNivelEducativo)
         {
-            return objAssist.updateProvider( _id, _fkEmpId, _auxFuncion, _auxNivelEducativo);
+            return objAssist.updateAssistant(_id, _fkEmpId, _auxFuncion, _auxNivelEducativo);
+        }
+
+        //Metodo para borrar un auxiliar
+        public bool deleteAssistant(int _idAuxiliar)
+        {
+            return objAssist.deleteAssistant(_idAuxiliar);
         }
     }
 }
