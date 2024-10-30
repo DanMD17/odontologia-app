@@ -46,6 +46,22 @@ namespace Data
             return objData;
         }
 
+        //Metodo para mostrar unicamente el id y la descripcion
+        public DataSet showAssistantsDDL()
+        {
+            MySqlDataAdapter objAdapter = new MySqlDataAdapter();
+            DataSet objData = new DataSet();
+
+            MySqlCommand objSelectCmd = new MySqlCommand();
+            objSelectCmd.Connection = objPer.openConnection();
+            objSelectCmd.CommandText = "spSelectAssistantDDL";
+            objSelectCmd.CommandType = CommandType.StoredProcedure;
+            objAdapter.SelectCommand = objSelectCmd;
+            objAdapter.Fill(objData);
+            objPer.closeConnection();
+            return objData;
+        }
+
         //Metodo para guardar un nuevo auxiliar
 
         public bool saveAssistant(string _fkEmpId, string _auxFuncion, string _auxNivelEducativo)
