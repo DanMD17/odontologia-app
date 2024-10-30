@@ -24,6 +24,20 @@ namespace Data
             objPer.closeConnection();
             return objData;
         }
+        public DataSet showPatientsDDL()
+        {
+            MySqlDataAdapter objAdapter = new MySqlDataAdapter();
+            DataSet objData = new DataSet();
+
+            MySqlCommand objSelectCmd = new MySqlCommand();
+            objSelectCmd.Connection = objPer.openConnection();
+            objSelectCmd.CommandText = "spSelectPatientsDDL"; // Procedimiento almacenado para seleccionar solo ID y nombre
+            objSelectCmd.CommandType = CommandType.StoredProcedure;
+            objAdapter.SelectCommand = objSelectCmd;
+            objAdapter.Fill(objData);
+            objPer.closeConnection();
+            return objData;
+        }
 
         // Método para guardar un nuevo paciente
         public bool savePatient(string _pNombre, string _pApellido, DateTime _pFechaNacimiento, string _pDireccion, string _pCelular, string _pCorreo)
