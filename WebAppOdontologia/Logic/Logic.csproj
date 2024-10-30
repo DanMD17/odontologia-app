@@ -73,6 +73,7 @@
     <Compile Include="AuxiliaresLog.cs" />
     <Compile Include="ClinicalHistoryLog.cs" />
     <Compile Include="DentistLog.cs" />
+    <Compile Include="DiagosisLog.cs" />
     <Compile Include="EmployeesLog.cs" />
     <Compile Include="MaterialsLog.cs" />
     <Compile Include="PatientsLog.cs" />
