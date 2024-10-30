@@ -26,6 +26,21 @@ namespace Data
             return objData;
         }
 
+        public DataSet showEmployeesDDL()
+        {
+            MySqlDataAdapter objAdapter = new MySqlDataAdapter();
+            DataSet objData = new DataSet();
+
+            MySqlCommand objSelectCmd = new MySqlCommand();
+            objSelectCmd.Connection = objPer.openConnection();
+            objSelectCmd.CommandText = "spSelectEmployeesDDL";
+            objSelectCmd.CommandType = CommandType.StoredProcedure;
+            objAdapter.SelectCommand = objSelectCmd;
+            objAdapter.Fill(objData);
+            objPer.closeConnection();
+            return objData;
+        }
+
         //Metodo para crear empleados
         public bool saveEmployee(int _identificacion, string _nombre, string _apellidos, string _celular, string _direccion, string _correo)
         {
