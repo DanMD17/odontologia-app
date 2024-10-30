@@ -13,6 +13,7 @@ namespace Data
         {
             MySqlDataAdapter objAdapter = new MySqlDataAdapter();
             DataSet objData = new DataSet();
+
             MySqlCommand objSelectCmd = new MySqlCommand();
             objSelectCmd.Connection = objPer.openConnection();
             objSelectCmd.CommandText = "spSelectDentists";
@@ -22,6 +23,22 @@ namespace Data
             objPer.closeConnection();
             return objData;
         }
+        // Método para mostrar únicamente el id y la descripción de los odontólogos
+        public DataSet showDentistsDDL()
+        {
+            MySqlDataAdapter objAdapter = new MySqlDataAdapter();
+            DataSet objData = new DataSet();
+
+            MySqlCommand objSelectCmd = new MySqlCommand();
+            objSelectCmd.Connection = objPer.openConnection();
+            objSelectCmd.CommandText = "spSelectDentistsDDL"; // Nombre del procedimiento almacenado para el DDL
+            objSelectCmd.CommandType = CommandType.StoredProcedure;
+            objAdapter.SelectCommand = objSelectCmd;
+            objAdapter.Fill(objData);
+            objPer.closeConnection();
+            return objData;
+        }
+
 
         // Método para insertar un nuevo odontólogo
         public bool saveDentist(string _especialidad, int _fkempId)
