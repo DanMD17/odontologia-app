@@ -24,6 +24,21 @@ namespace Data
             objPer.closeConnection();
             return objData;
         }
+        //Metodo para mostrar unicamente el id y la descripcion
+        public DataSet showClinicalHistoriesDDL()
+        {
+            MySqlDataAdapter objAdapter = new MySqlDataAdapter();
+            DataSet objData = new DataSet();
+
+            MySqlCommand objSelectCmd = new MySqlCommand();
+            objSelectCmd.Connection = objPer.openConnection();
+            objSelectCmd.CommandText = "spSelectClinicalHistoriesDDL";
+            objSelectCmd.CommandType = CommandType.StoredProcedure;
+            objAdapter.SelectCommand = objSelectCmd;
+            objAdapter.Fill(objData);
+            objPer.closeConnection();
+            return objData;
+        }
 
         // Método para guardar un nuevo historial clínico
         public bool saveClinicalHistory(int _fkPacId, DateTime _pFechaCreacion, string _pDescripcionGeneral)
