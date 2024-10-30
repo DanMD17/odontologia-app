@@ -22,6 +22,21 @@ namespace Data
             objPer.closeConnection();
             return objData;
         }
+        //Metodo para mostrar unicamente el id y la descripcion
+        public DataSet showQuotesDDL()
+        {
+            MySqlDataAdapter objAdapter = new MySqlDataAdapter();
+            DataSet objData = new DataSet();
+
+            MySqlCommand objSelectCmd = new MySqlCommand();
+            objSelectCmd.Connection = objPer.openConnection();
+            objSelectCmd.CommandText = "spSelectQuotesDDL";
+            objSelectCmd.CommandType = CommandType.StoredProcedure;
+            objAdapter.SelectCommand = objSelectCmd;
+            objAdapter.Fill(objData);
+            objPer.closeConnection();
+            return objData;
+        }
 
         // Método para insertar una nueva cita
         public bool saveQuote(DateTime _fecha, TimeSpan _hora, string _estado, int _fkPaciId, int _fkOdoId)
