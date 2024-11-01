@@ -4,12 +4,13 @@ using System.Data;
 using System.Linq;
 using System.Web;
 using Data;
+using System.Data;
 
 namespace Logic
 {
     public class EmployeesLog
     {
-        
+
         EmployeesDat objEmp = new EmployeesDat();
 
         //Metodo para mostrar unicamente el id y la descripcion de los empleados en DDL
@@ -25,13 +26,13 @@ namespace Logic
         }
 
         //Metodo para guardar un nuevo empleado
-        public bool saveEmployee(int _identificacion, string _nombre, string _apellidos, string _celular, string _direccion, string _correo)
+        public bool saveEmployee(string _identificacion, string _nombre, string _apellidos, string _celular, string _direccion, string _correo)
         {
             return objEmp.saveEmployee(_identificacion, _nombre, _apellidos, _celular, _direccion, _correo);
         }
 
         //Metodo para actualizar un empleado
-        public bool updateEmployee(int _id, int _identificacion, string _nombre, string _apellidos, string _celular, string _direccion, string _correo)
+        public bool updateEmployee(int _id, string _identificacion, string _nombre, string _apellidos, string _celular, string _direccion, string _correo)
         {
             return objEmp.updateEmployee(_id, _identificacion, _nombre, _apellidos, _celular, _direccion, _correo);
         }
