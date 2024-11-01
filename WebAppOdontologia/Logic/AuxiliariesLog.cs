@@ -5,7 +5,7 @@ using System.Web;
 
 namespace Logic
 {
-    public class AuxiliaresLog
+    public class AuxiliariesLog
     {
         AuxiliariesDat objAssist = new AuxiliariesDat();
 

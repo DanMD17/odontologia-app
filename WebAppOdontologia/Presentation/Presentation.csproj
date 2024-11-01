@@ -44,6 +44,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="SimpleCrypto, Version=26.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\SimpleCrypto.0.3.30.26\lib\SimpleCrypto.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -67,12 +70,116 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Index.aspx" />
     <Content Include="Web.config" />
+    <Content Include="WFAuxiliaries.aspx" />
+    <Content Include="WFClinicalHistory.aspx" />
+    <Content Include="WFDentists.aspx" />
+    <Content Include="WFDiagnosis.aspx" />
+    <Content Include="WFEmployees.aspx" />
+    <Content Include="WFMaterials.aspx" />
+    <Content Include="WFPatients.aspx" />
+    <Content Include="WFQuotes.aspx" />
+    <Content Include="WFSecretaries.aspx" />
+    <Content Include="WFTreatments.aspx" />
+    <Content Include="WFUsers.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Index.aspx.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Index.aspx.designer.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Main.Master.cs">
+      <DependentUpon>Main.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Main.Master.designer.cs">
+      <DependentUpon>Main.Master</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WFAuxiliaries.aspx.cs">
+      <DependentUpon>WFAuxiliaries.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WFAuxiliaries.aspx.designer.cs">
+      <DependentUpon>WFAuxiliaries.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WFClinicalHistory.aspx.cs">
+      <DependentUpon>WFClinicalHistory.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WFClinicalHistory.aspx.designer.cs">
+      <DependentUpon>WFClinicalHistory.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WFDentists.aspx.cs">
+      <DependentUpon>WFDentists.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WFDentists.aspx.designer.cs">
+      <DependentUpon>WFDentists.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WFDiagnosis.aspx.cs">
+      <DependentUpon>WFDiagnosis.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WFDiagnosis.aspx.designer.cs">
+      <DependentUpon>WFDiagnosis.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WFEmployees.aspx.cs">
+      <DependentUpon>WFEmployees.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WFEmployees.aspx.designer.cs">
+      <DependentUpon>WFEmployees.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WFMaterials.aspx.cs">
+      <DependentUpon>WFMaterials.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WFMaterials.aspx.designer.cs">
+      <DependentUpon>WFMaterials.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WFPatients.aspx.cs">
+      <DependentUpon>WFPatients.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WFPatients.aspx.designer.cs">
+      <DependentUpon>WFPatients.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WFQuotes.aspx.cs">
+      <DependentUpon>WFQuotes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WFQuotes.aspx.designer.cs">
+      <DependentUpon>WFQuotes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WFSecretaries.aspx.cs">
+      <DependentUpon>WFSecretaries.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WFSecretaries.aspx.designer.cs">
+      <DependentUpon>WFSecretaries.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WFTreatments.aspx.cs">
+      <DependentUpon>WFTreatments.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WFTreatments.aspx.designer.cs">
+      <DependentUpon>WFTreatments.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WFUsers.aspx.cs">
+      <DependentUpon>WFUsers.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WFUsers.aspx.designer.cs">
+      <DependentUpon>WFUsers.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Main.Master" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -80,6 +187,12 @@
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Logic\Logic.csproj">
+      <Project>{5e12751f-6f7a-42a2-b1a6-a8a9457ef7ca}</Project>
+      <Name>Logic</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

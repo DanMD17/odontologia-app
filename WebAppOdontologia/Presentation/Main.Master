@@ -1,0 +1,33 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Main.master.cs" Inherits="Presentation.Main" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div>
+            <a href="#">Inicio</a>
+            <a href="WFAuxiliaries">Auxiliares</a>
+            <a href="WFClinicalHistory">Historial clínico</a>
+            <a href="WFDentists">Odontólogos</a>
+            <a href="WFDiagnosis">Diagnósticos</a>
+            <a href="WFEmployees">Empleados</a>
+            <a href="WFMaterials">Materiales</a>
+            <a href="WFPatients">Pacientes</a>
+            <a href="WFQuotes">Citas</a>
+            <a href="WFSecretaries">Secretarias</a>
+            <a href="WFTreatments">Tratamientos realizados</a>
+            <a href="WFUsers">Usuarios</a>
+            <a href="#">Cerrar sesión</a>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+    </form>
+</body>
+</html>
