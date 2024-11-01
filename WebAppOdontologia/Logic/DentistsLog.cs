@@ -6,7 +6,7 @@ using Data;
 
 namespace Logic
 {
-    public class DentistLog
+    public class DentistsLog
     {
         DentistsDat objDen = new DentistsDat();
 
