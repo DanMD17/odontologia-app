@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Data;
+using Data;
+using System.Runtime.Remoting;
 
 namespace Logic
 {
@@ -13,6 +16,11 @@ namespace Logic
         public DataSet showClinicalHistories()
         {
             return objHist.showClinicalHistories();
+        }
+
+        public DataSet showClinicalHistoriesDDL()
+        {
+            return objHist.showClinicalHistoriesDDL();
         }
 
         // Método para guardar un nuevo historial clínico

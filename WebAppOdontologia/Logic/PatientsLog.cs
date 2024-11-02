@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using Data;
@@ -14,6 +15,11 @@ namespace Logic
         public DataSet showPatients()
         {
             return objPat.showPatients();
+        }
+
+        public DataSet showPatientsDDL()
+        {
+            return objPat.showPatientsDDL();
         }
 
         // Método para guardar un nuevo paciente
