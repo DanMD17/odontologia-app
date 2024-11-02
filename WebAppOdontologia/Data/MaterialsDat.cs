@@ -2,12 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using MySql.Data.MySqlClient;
+using System.Data;
+using System.Runtime.Remoting;
 
 namespace Data
 {
     public class MaterialsDat
     {
-        Persistence objPer = new Persistence();
+        PersistenceDat objPer = new PersistenceDat();
 
         //Metodo para mostrar todos los Usuarios
         public DataSet showMaterials()
