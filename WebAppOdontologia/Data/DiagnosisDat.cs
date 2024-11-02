@@ -1,5 +1,7 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 
@@ -7,7 +9,7 @@ namespace Data
 {
     public class DiagnosisDat
     {
-        Persistence objPer = new Persistence();
+        PersistenceDat objPer = new PersistenceDat();
 
         // Método para mostrar todos los diagnósticos
         public DataSet showDiagnosis()
