@@ -47,7 +47,7 @@ namespace Presentation
             {
                 secretariesList.Add(new
                 {
-                    SecretariatID = row["id_sec"],
+                    SecretariaID = row["id_sec"],
                     Funcion = row["sec_funcion"],
                     AniosExperiencia = row["sec_anios_experiencia"],
                     FkEmpleado = row["tbl_empleado_emp_id"],
