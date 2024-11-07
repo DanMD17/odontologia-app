@@ -30,7 +30,7 @@
     <table id="secretariesTable" class="display" style="width: 100%">
         <thead>
             <tr>
-                <th>SecretariatID</th>
+                <th></th>
                 <th>Funcion</th>
                 <th>AniosExperiencia</th>
                 <th>FkEmpleado</th>
@@ -60,7 +60,7 @@
                     }
                 },
                 "columns": [
-                    { "data": "SecretariatID" },
+                    { "data": "SecretariaID" },
                     { "data": "Funcion" },
                     { "data": "AniosExperiencia" },
                     { "data": "FkEmpleado", "visible": false },
@@ -68,8 +68,8 @@
                     {
                         "data": null,
                         "render": function (data, type, row) {
-                            return `<button class="edit-btn" data-id="${row.SecretariatID}">Editar</button>
-                               <button class="delete-btn" data-id="${row.SecretariatID}">Eliminar</button>`;
+                            return `<button class="edit-btn" data-id="${row.SecretariaID}">Editar</button>
+                               <button class="delete-btn" data-id="${row.SecretariaID}">Eliminar</button>`;
                         }
                     }
                 ],
@@ -109,7 +109,7 @@
 
         // Función para agregar los datos en los TextBox y DDL para actualizar
         function loadSecretariatData(rowData) {
-            $('#<%= HFSecretariesID.ClientID %>').val(rowData.SecretariatID);
+            $('#<%= HFSecretariesID.ClientID %>').val(rowData.SecretariaID);
             $('#<%= TBFunction.ClientID %>').val(rowData.Funcion);
             $('#<%= TBYearsExp.ClientID %>').val(rowData.AniosExperiencia);
             $('#<%= DDLEmployee.ClientID %>').val(rowData.FkEmpleado);
