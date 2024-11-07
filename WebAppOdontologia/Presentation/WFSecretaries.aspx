@@ -30,10 +30,11 @@
     <table id="secretariesTable" class="display" style="width: 100%">
         <thead>
             <tr>
-                <th></th>
+                <th>SecretariaID</th>
                 <th>Funcion</th>
                 <th>AniosExperiencia</th>
                 <th>FkEmpleado</th>
+                <th>Empleado</th>
             </tr>
         </thead>
         <tbody>
