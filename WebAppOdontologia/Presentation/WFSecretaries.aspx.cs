@@ -47,10 +47,10 @@ namespace Presentation
             {
                 secretariesList.Add(new
                 {
-                    SecretariaID = row["id_sec"],
-                    Funcion = row["sec_funcion"],
-                    AniosExperiencia = row["sec_anios_experiencia"],
-                    FkEmpleado = row["tbl_empleado_emp_id"],
+                    SecretariatID = row["id_sec"],
+                    Function = row["sec_funcion"],
+                    YearsExp = row["sec_anios_experiencia"],
+                    FkEmployee = row["tbl_empleado_emp_id"],
                     NameEmployee = row["emp_nombre"]
                 });
             }

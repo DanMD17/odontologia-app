@@ -61,16 +61,16 @@
                     }
                 },
                 "columns": [
-                    { "data": "SecretariaID" },
-                    { "data": "Funcion" },
-                    { "data": "AniosExperiencia" },
-                    { "data": "FkEmpleado", "visible": false },
+                    { "data": "SecretariatID" },
+                    { "data": "Function" },
+                    { "data": "YearsExp" },
+                    { "data": "FkEmployee", "visible": false },
                     { "data": "NameEmployee" },
                     {
                         "data": null,
                         "render": function (data, type, row) {
-                            return `<button class="edit-btn" data-id="${row.SecretariaID}">Editar</button>
-                               <button class="delete-btn" data-id="${row.SecretariaID}">Eliminar</button>`;
+                            return `<button class="edit-btn" data-id="${row.SecretariatID}">Editar</button>
+                               <button class="delete-btn" data-id="${row.SecretariatID}">Eliminar</button>`;
                         }
                     }
                 ],
@@ -110,10 +110,10 @@
 
         // Función para agregar los datos en los TextBox y DDL para actualizar
         function loadSecretariatData(rowData) {
-            $('#<%= HFSecretariesID.ClientID %>').val(rowData.SecretariaID);
-            $('#<%= TBFunction.ClientID %>').val(rowData.Funcion);
-            $('#<%= TBYearsExp.ClientID %>').val(rowData.AniosExperiencia);
-            $('#<%= DDLEmployee.ClientID %>').val(rowData.FkEmpleado);
+            $('#<%= HFSecretariesID.ClientID %>').val(rowData.SecretariatID);
+            $('#<%= TBFunction.ClientID %>').val(rowData.Function);
+            $('#<%= TBYearsExp.ClientID %>').val(rowData.YearsExp);
+            $('#<%= DDLEmployee.ClientID %>').val(rowData.FkEmployee);
         }
 
         // Función para eliminar una secretaria
