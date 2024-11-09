@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Data;
 using Data;
 
 namespace Logic
@@ -14,12 +15,6 @@ namespace Logic
         public DataSet showMaterials()
         {
             return objMaterial.showMaterials();
-        }
-
-        // Método para mostrar solo el ID y la descripción del material
-        public DataSet showMaterialsDDL()
-        {
-            return objMaterial.showMaterialsDDL();
         }
 
         // Método para guardar un nuevo material
