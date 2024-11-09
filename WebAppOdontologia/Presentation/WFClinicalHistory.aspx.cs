@@ -28,6 +28,8 @@ namespace Presentation
             {
                 //Aqui se invocan todos los metodos
                 //showClinicalHistories();
+                //Se asigna la fecha actual al TextBox en formato "yyyy-MM-dd".
+                TBCreacionDate.Text = DateTime.Now.ToString("yyyy-MM-dd");
                 showPatientsDDL();
             }
         }
@@ -92,7 +94,7 @@ namespace Presentation
             
         }
 
-        //Boton de guardar un auxiliar
+        //Boton de guardar un historial clinico
         protected void BtnSave_Click(object sender, EventArgs e)
         {
             _pCreacionDate = Convert.ToDateTime(TBCreacionDate.Text);
@@ -131,7 +133,7 @@ namespace Presentation
 
             if (executed)
             {
-                LblMsg.Text = "La historia clinica se actualizo exitosamente!";
+                LblMsg.Text = "La Historia Clinica se actualizo exitosamente!";
                 clear(); //Se invoca el metodo para limpiar los campos 
             }
             else

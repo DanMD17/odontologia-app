@@ -36,11 +36,6 @@
         </div>
         <br />
 
-        <%--Lista de Historial Clínico--%>
-        <div>
-            <asp:GridView ID="GVClinicalHistory" runat="server"></asp:GridView>
-        </div>
-        <br />
     </form>
 
     <%--Lista de Historiales Clinicos--%>
@@ -62,21 +57,21 @@
 
     <script src="resources/js/datatables.min.js" type="text/javascript"></script>
 
-    <%--Auxiliares--%>
+    <%--Historiales Clinicos--%>
     <script type="text/javascript">
         $(document).ready(function () {
             $('#ClinicalHistoryTable').DataTable({
                 "processing": true,
                 "serverSide": false,
                 "ajax": {
-                    "url": "WFClinicalHistory.aspx/ListClinicalHistory",// Se invoca el WebMethod Listar auxiliares
+                    "url": "WFClinicalHistory.aspx/ListClinicalHistory",// Se invoca el WebMethod Listar historial clinico
                     "type": "POST",
                     "contentType": "application/json",
                     "data": function (d) {
                         return JSON.stringify(d);// Convierte los datos a JSON
                     },
                     "dataSrc": function (json) {
-                        return json.d.data;// Obtiene la lista de auxiliares del resultado
+                        return json.d.data;// Obtiene la lista de historiales clinicos del resultado
                     }
                 },
                 "columns": [
@@ -121,7 +116,7 @@
             // Eliminar un historial clinico
             $('#ClinicalHistoryTable').on('click', '.delete-btn', function () {
                 const id = $(this).data('id');// Obtener el ID del historial clinico
-                if (confirm("¿Estás seguro de que deseas eliminar este Historial Clinico?")) {
+                if (confirm("¿Estás seguro de que deseas eliminar el Historial Clinico?")) {
                     deleteClinicalHistory(id);// Invoca a la función para eliminar el historial clinico
                 }
             });
