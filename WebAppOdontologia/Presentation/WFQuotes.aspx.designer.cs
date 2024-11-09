@@ -15,6 +15,15 @@ namespace Presentation
     {
 
         /// <summary>
+        /// Control TBId.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox TBId;
+
+        /// <summary>
         /// Control Label1.
         /// </summary>
         /// <remarks>
@@ -78,13 +87,13 @@ namespace Presentation
         protected global::System.Web.UI.WebControls.Label Label4;
 
         /// <summary>
-        /// Control TBPatientId.
+        /// Control TBFKPatientId.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TBPatientId;
+        protected global::System.Web.UI.WebControls.TextBox TBFKPatientId;
 
         /// <summary>
         /// Control Label5.
@@ -96,13 +105,13 @@ namespace Presentation
         protected global::System.Web.UI.WebControls.Label Label5;
 
         /// <summary>
-        /// Control TBDentistId.
+        /// Control TBFKDentistId.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TBDentistId;
+        protected global::System.Web.UI.WebControls.TextBox TBFKDentistId;
 
         /// <summary>
         /// Control BtnSave.
@@ -130,14 +139,5 @@ namespace Presentation
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label LblMsg;
-
-        /// <summary>
-        /// Control GVQuotes.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GVQuotes;
     }
 }
