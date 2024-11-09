@@ -28,7 +28,7 @@
     <br />
 
     <%--Lista de Dentistas--%>
-    <h2>Lista de Auxiliares</h2>
+    <h2>Lista de Dentistas</h2>
     <table id="DentistsTable" class="display" style="width: 100%">
         <thead>
             <tr>
@@ -102,14 +102,14 @@
             // Eliminar un dentista
             $('#DentistsTable').on('click', '.delete-btn', function () {
                 const id = $(this).data('id');// Obtener el ID del dentista
-                if (confirm("¿Estás seguro de que deseas eliminar este dentista")) {
+                if (confirm("¿Estás seguro de que deseas eliminar este Dentista")) {
                     deleteDentist(id);// Invoca a la función para eliminar el dentista
                 }
             });
         });
 
         // Función para cargar los datos en los TextBox y DDL para actualizar
-        function loadDentistData(rowData) {
+        function loadDentistsData(rowData) {
             $('#<%= HFDentistID.ClientID %>').val(rowData.DentistID);
             $('#<%= TBSpecialty.ClientID %>').val(rowData.Specialty);
             $('#<%= DDLEmployee.ClientID %>').val(rowData.FkEmployee);
@@ -119,7 +119,7 @@
         function deleteDentist(id) {
             $.ajax({
                 type: "POST",
-                url: "WFDentists.aspx/DeleteDentist",// Se invoca el WebMethod Eliminar un 
+                url: "WFDentists.aspx/DeleteDentist",// Se invoca el WebMethod Eliminar un Dentista
                 contentType: "application/json; charset=utf-8",
                 data: JSON.stringify({ id: id }),
                 success: function (response) {
@@ -127,7 +127,7 @@
                     alert("Dentista eliminado exitosamente.");
                 },
                 error: function () {
-                    alert("Error al eliminar el auxiliar.");
+                    alert("Error al eliminar el Dentista.");
                 }
             });
         }

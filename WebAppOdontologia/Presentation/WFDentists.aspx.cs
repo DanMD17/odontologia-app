@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Web;
+using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -80,7 +81,7 @@ namespace Presentation
         private void clear()
         {
             HFDentistID.Value = "";
-            TBFSpecialty.Text = "";
+            TBSpecialty.Text = "";
             DDLEmployee.SelectedIndex = 0;
         }
 
@@ -90,7 +91,7 @@ namespace Presentation
             _specialty = TBSpecialty.Text;
             _fkEmployee = Convert.ToInt32(DDLEmployee.SelectedValue);
 
-            executed = objDen.saveAssistant(_fkEmployee, _specialty);
+            executed = objDen.saveDentist( _specialty, _fkEmployee);
 
             if (executed)
             {
@@ -115,7 +116,7 @@ namespace Presentation
             _specialty = TBSpecialty.Text;
             _fkEmployee = Convert.ToInt32(DDLEmployee.SelectedValue);
 
-            executed = objDen.updateDentist(_idDen, _fkEmployee, _specialty);
+            executed = objDen.updateDentist( _fkEmployee, _specialty, _idDen);
 
             if (executed)
             {
