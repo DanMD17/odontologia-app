@@ -49,10 +49,11 @@
               <th>Descripcion</th>
               <th>Fecha</th>
               <th>Observaciones</th>
-              <th>FkHistorialClinico</th>
-              <th>HistorialClinico</th>
               <th>FkCitas</th>
               <th>Citas</th>
+              <th>FkHistorialClinico</th>
+              <th>HistorialClinico</th>
+              
           </tr>
       </thead>
       <tbody>
@@ -61,7 +62,7 @@
 
   <script src="resources/js/datatables.min.js" type="text/javascript"></script>
 
-  <%--Productos--%>
+  <%--Diagnosticos--%>
   <script type="text/javascript">
       $(document).ready(function () {
           $('#diagnosisTable').DataTable({
@@ -83,10 +84,11 @@
                   { "data": "Description" },
                   { "data": "Date" },
                   { "data": "Observations" },
-                  { "data": "FkClinicalHistory", "visible": false },
-                  { "data": "DateCinicalHistory" },
                   { "data": "FkQuotes", "visible": false },
-                  { "data": "DateQuote" },
+                  { "data": "Status" },
+                  { "data": "FkClinicalHistory", "visible": false },
+                  { "data": "Description" },
+                 
                   {
                       "data": null,
                       "render": function (data, type, row) {
@@ -123,7 +125,7 @@
           // Eliminar un producto
           $('#diagnosisTable').on('click', '.delete-btn', function () {
               const id = $(this).data('id');// Obtener el ID del diagnostico
-              if (confirm("¿Estás seguro de que deseas eliminar este diagnostico?")) {
+              if (confirm("¿Estás seguro de que deseas eliminar este Diagnostico?")) {
                   deleteDiagnosis(id);// Invoca a la función para eliminar el diagnostico
               }
           });
@@ -132,11 +134,12 @@
       // Cargar los datos en los TextBox y DDL para actualizar
       function loadDiagnosisData(rowData) {
           $('#<%= HFDiagnosisID.ClientID %>').val(rowData.DiagnosisID);
-        $('#<%= TBDescription.ClientID %>').val(rowData.Description);
-        $('#<%= TBDate.ClientID %>').val(rowData.Date);
-        $('#<%= TBObservations.ClientID %>').val(rowData.Observations);
-        $('#<%= DDLClinicalHistory.ClientID %>').val(rowData.FkClinicalHistory);
-        $('#<%= DDLQuotes.ClientID %>').val(rowData.FkQuotes);
+          $('#<%= TBDescription.ClientID %>').val(rowData.Description);
+          $('#<%= TBDate.ClientID %>').val(rowData.Date);
+          $('#<%= TBObservations.ClientID %>').val(rowData.Observations);
+          $('#<%= DDLQuotes.ClientID %>').val(rowData.FkQuotes);
+          $('#<%= DDLClinicalHistory.ClientID %>').val(rowData.FkClinicalHistory);
+
       }
 
       // Función para eliminar un producto

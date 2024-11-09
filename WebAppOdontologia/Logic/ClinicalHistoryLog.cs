@@ -17,6 +17,12 @@ namespace Logic
             return objHist.showClinicalHistories();
         }
 
+        public DataSet showClinicalHistoriesDDL()
+        {
+            return objHist.showClinicalHistoriesDDL();
+        }
+
+
         // Método para guardar un nuevo historial clínico
         public bool saveClinicalHistory(int _fkPacId, DateTime _pFechaCreacion, string _pDescripcionGeneral)
 

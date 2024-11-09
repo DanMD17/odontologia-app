@@ -6,7 +6,7 @@ namespace Data
 {
     public class QuotesDat
     {
-        Persistence objPer = new Persistence();
+        PersistenceDat objPer = new PersistenceDat();
 
         // Método para mostrar todas las citas
         public DataSet showQuotes()

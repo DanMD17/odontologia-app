@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Web;
+using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -24,10 +25,12 @@ namespace Presentation
             if (!IsPostBack)
             {
                 //Aqui se invocan todos los metodos
+
+                // showDiagnosis();
+                TBDate.Text = DateTime.Now.ToString("yyyy-MM-dd");
                 
-               // showDiagnosis();
-                showQuotesDDL();
                 showClinicalHistoryDDL();
+                showQuotesDDL();
             }
         }
 
@@ -36,29 +39,29 @@ namespace Presentation
         {
             DiagnosisLog objDiag = new DiagnosisLog();
 
-            // Se obtiene un DataSet que contiene la lista de diagnosticos desde la base de datos.
+            // Se obtiene un DataSet que contiene la lista de usuarios desde la base de datos.
             var dataSet = objDiag.showDiagnosis();
 
-            // Se crea una lista para almacenar los diagnosticos que se van a devolver.
+            // Se crea una lista para almacenar los usuarios que se van a devolver.
             var diagnosisList = new List<object>();
 
-            // Se itera sobre cada fila del DataSet (que representa un diagnostico).
+            // Se itera sobre cada fila del DataSet (que representa un usuario).
             foreach (DataRow row in dataSet.Tables[0].Rows)
             {
                 diagnosisList.Add(new
                 {
-                    DiagnosisID = row["diag_id"],
-                    Description = row["diag_descripcion"],
-                    Date = Convert.ToDateTime(row["diag_fecha"]).ToString("yyyy-MM-dd"), // Formato de fecha específico.
-                    Observations = row["diag_observaciones"], 
-                    FkClinicalHistory = row["tbl_historialclinico_hist_id"],
-                    DateClinicalHistory = row["Hist_fecha_creacion"],
+                    DiagID = row["usu_id"],
+                    Descrption = row["diag_correo"],
+                    Date = row["diag_fecha"],
+                    Observations = row["diag_observaciones"],
                     FkQuotes = row["tbl_citas_cita_id"],
-                    DateQuote = row["cita_fecha"]
+                    Status = row["cita_estado"],
+                    FkClinicalHistory = row["tbl_historialclinico_hist_id"],
+                    Description = row["hist_descripcion_general"]
                 });
             }
 
-            // Devuelve un objeto en formato JSON que contiene la lista de diagnosticos.
+            // Devuelve un objeto en formato JSON que contiene la lista de diagnosis.
             return new { data = diagnosisList };
         }
 
@@ -84,11 +87,11 @@ namespace Presentation
         //Metodo para mostrar las citas en el DDL
         private void showQuotesDDL()
         {
-            DDLQuote.DataSource = objQuo.showQuotesDDL();
-            DDLQuote.DataValueField = "cita_id";//Nombre de la llave primaria
-            DDLQuote.DataTextField = "cita_estado";
-            DDLQuote.DataBind();
-            DDLQuote.Items.Insert(0, "Seleccione");
+            DDLQuotes.DataSource = objQuo.showQuotesDDL();
+            DDLQuotes.DataValueField = "cita_id";//Nombre de la llave primaria
+            DDLQuotes.DataTextField = "cita_estado";
+            DDLQuotes.DataBind();
+            DDLQuotes.Items.Insert(0, "Seleccione");
         }
         //Metodo para limpiar los TextBox y los DDL
         private void clear()
@@ -106,10 +109,10 @@ namespace Presentation
             _description = TBDescription.Text;
             _date = DateTime.Parse(TBDate.Text);
             _observations = TBObservations.Text;
-            _fkClinicalHistroy = Convert.ToInt32(DDLClinicalHistory.SelectedValue);
+            _fkClinicalHistory = Convert.ToInt32(DDLClinicalHistory.SelectedValue);
             _fkQuotes = Convert.ToInt32(DDLQuotes.SelectedValue);
 
-            executed = objDiag.saveDiagnosis( _description, _date, _observations, _fkClinicalHistory, _fkQuotes);
+            executed = objDiag.saveDiagnosis(_fkQuotes, _description, _date, _observations, _fkClinicalHistory);
 
             if (executed)
             {
@@ -125,19 +128,19 @@ namespace Presentation
         protected void BtnUpdate_Click(object sender, EventArgs e)
         {
             // Verifica si se ha seleccionado un diagnostico para actualizar
-            if (string.IsNullOrEmpty(HFProductID.Value))
+            if (string.IsNullOrEmpty(HFDiagnosisID.Value))
             {
                 LblMsg.Text = "No se ha seleccionado un diagnostico para actualizar.";
                 return;
             }
-            _id = Convert.ToInt32(HFProductID.Value);
+            _idDiag = Convert.ToInt32(HFDiagnosisID.Value);
             _description = TBDescription.Text;
             _date = DateTime.Parse(TBDate.Text);
             _observations = TBObservations.Text;
             _fkClinicalHistory = Convert.ToInt32(DDLClinicalHistory.SelectedValue);
             _fkQuotes = Convert.ToInt32(DDLQuotes.SelectedValue);
 
-            executed = objDiag.updateDiagnosis(_id, _description, _date, _observations, _fkClinicalHistory, _fkQuotes);
+            executed = objDiag.updateDiagnosis(_idDiag, _fkQuotes, _description, _date, _observations, _fkClinicalHistory);
 
             if (executed)
             {
