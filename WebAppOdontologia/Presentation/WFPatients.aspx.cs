@@ -1,6 +1,11 @@
 ﻿using System;
 using Logic;
+using System.Collections.Generic;
 using System.Data;
+using System.Linq;
+using System.Security.Cryptography;
+using System.Web;
+using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -19,63 +24,112 @@ namespace Presentation
         {
             if (!IsPostBack)
             {
-                showPatients();
+                //showPatients();
             }
         }
-
-        // Método para mostrar pacientes
-        private void showPatients()
+        // Método para listar los pacientes
+        [WebMethod]
+        public static object ListPatients()
         {
-            DataSet ds = new DataSet();
-            ds = objPat.showPatients();
-            GVPatients.DataSource = ds;
-            GVPatients.DataBind();
+            PatientsLog objPat = new PatientsLog();
+
+            // Se obtiene un DataSet que contiene la lista de pacientes desde la base de datos.
+            var dataSet = objPat.showPatients();
+
+            // Se crea una lista para almacenar los pacientes que se van a devolver.
+            var patientsList = new List<object>();
+
+            // Se itera sobre cada fila del DataSet (que representa un paciente).
+            foreach (DataRow row in dataSet.Tables[0].Rows)
+            {
+                patientsList.Add(new
+                {
+                    PatientID = row["paci_id"],
+                    Name = row["paci_nombre"],
+                    LastName = row["paci_apellido"],
+                    Address = row["paci_direccion"],
+                    CellPhone = row["paci_celular"],
+                    Email = row["paci_correo"],
+                    DateOfBirth = row["paci_fecha_nacimiento"]
+                });
+            }
+
+            // Devuelve un objeto en formato JSON que contiene la lista de pacientes.
+            return new { data = patientsList };
         }
 
-        // Botón de guardar
+        // Eliminar un paciente
+        [WebMethod]
+        public static bool DeletePatient(int id)
+        {
+            PatientsLog objPat = new PatientsLog();
+
+            // Invocar al método para eliminar el paciente y devolver el resultado
+            return objPat.deletePatient(id);
+        }
+
+        // Método para limpiar los TextBox y los DDL
+        private void clear()
+        {
+            HFPatientID.Value = "";
+            TBName.Text = "";
+            TBLastName.Text = "";
+            TBAddress.Text = "";
+            TBCellPhone.Text = "";
+            TBEmail.Text = "";
+            TBDateOfBirth.Text = "";
+            DDLPatients.SelectedIndex = 0;
+        }
+
+        // Evento que se ejecuta cuando se da clic en el botón guardar
         protected void BtnSave_Click(object sender, EventArgs e)
         {
             _name = TBName.Text;
             _lastName = TBLastName.Text;
-            _dateOfBirth = DateTime.Parse(TBDateOfBirth.Text);
             _address = TBAddress.Text;
             _cellPhone = TBCellPhone.Text;
             _email = TBEmail.Text;
+            _dateOfBirth = Convert.ToDateTime(TBDateOfBirth.Text);
 
-            executed = objPat.savePatient(_name, _lastName, _dateOfBirth, _address, _cellPhone, _email);
+            executed = objPat.savePatient(_name, _lastName, _address, _cellPhone, _email, _dateOfBirth);
 
             if (executed)
             {
                 LblMsg.Text = "El paciente se guardó exitosamente!";
-                showPatients();
             }
             else
             {
-                LblMsg.Text = "Error al guardar el paciente.";
+                LblMsg.Text = "Error al guardar :(";
             }
         }
 
-        // Botón de actualizar
+        // Evento del botón actualizar
         protected void BtnUpdate_Click(object sender, EventArgs e)
         {
-            _patientId = int.Parse(TBId.Text);
+            if (string.IsNullOrEmpty(HFPatientID.Value))
+            {
+                LblMsg.Text = "No se ha seleccionado un paciente para actualizar.";
+                return;
+            }
+
+            _patientId = Convert.ToInt32(HFPatientID.Value);
             _name = TBName.Text;
             _lastName = TBLastName.Text;
-            _dateOfBirth = DateTime.Parse(TBDateOfBirth.Text);
             _address = TBAddress.Text;
             _cellPhone = TBCellPhone.Text;
             _email = TBEmail.Text;
+            _dateOfBirth = Convert.ToDateTime(TBDateOfBirth.Text);
 
-            executed = objPat.updatePatient(_patientId, _name, _lastName, _dateOfBirth, _address, _cellPhone, _email);
+            executed = objPat.updatePatient(_patientId, _name, _lastName, _address, _cellPhone, _email, _dateOfBirth);
 
             if (executed)
             {
                 LblMsg.Text = "El paciente se actualizó exitosamente!";
-                showPatients();
+                clear();
             }
             else
             {
-                LblMsg.Text = "Error al actualizar el paciente.";
+                LblMsg.Text = "Error al actualizar";
             }
         }
     }
