@@ -77,6 +77,7 @@
     <Content Include="WFMaterials.aspx" />
     <Content Include="WFPatients.aspx" />
     <Content Include="WFQuotes.aspx" />
+    <Content Include="WFRolesPermissions.aspx" />
     <Content Include="WFSecretaries.aspx" />
     <Content Include="WFTreatments.aspx" />
     <Content Include="WFUsers.aspx" />
@@ -153,6 +154,13 @@
     <Compile Include="WFQuotes.aspx.designer.cs">
       <DependentUpon>WFQuotes.aspx</DependentUpon>
     </Compile>
+    <Compile Include="WFRolesPermissions.aspx.cs">
+      <DependentUpon>WFRolesPermissions.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WFRolesPermissions.aspx.designer.cs">
+      <DependentUpon>WFRolesPermissions.aspx</DependentUpon>
+    </Compile>
     <Compile Include="WFSecretaries.aspx.cs">
       <DependentUpon>WFSecretaries.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -191,6 +199,7 @@
       <Name>Logic</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
