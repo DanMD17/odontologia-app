@@ -1,12 +1,16 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
+using System.Collections.Generic;
 using System.Data;
-using MySql.Data.MySqlClient;
+using System.Linq;
+using System.Runtime.Remoting;
+using System.Web;
 
 namespace Data
 {
     public class DentistsDat
     {
-        Persistence objPer = new Persistence();
+        PersistenceDat objPer = new PersistenceDat();
 
         // Método para mostrar todos los odontólogos
         public DataSet showDentists()
@@ -22,6 +26,25 @@ namespace Data
             objPer.closeConnection();
             return objData;
         }
+
+        public DataSet showDentistsDDL()
+        {
+            MySqlDataAdapter objAdapter = new MySqlDataAdapter();
+            DataSet objData = new DataSet();
+
+            MySqlCommand objSelectCmd = new MySqlCommand();
+            objSelectCmd.Connection = objPer.openConnection();
+            objSelectCmd.CommandText = "spSelecDentistsDDL";
+            objSelectCmd.CommandType = CommandType.StoredProcedure;
+            objAdapter.SelectCommand = objSelectCmd;
+            objAdapter.Fill(objData);
+            objPer.closeConnection();
+            return objData;
+        }
+
+
+
+
 
         // Método para insertar un nuevo odontólogo
         public bool saveDentist(string _especialidad, int _fkempId)
