@@ -10,7 +10,7 @@
 
 
     <%--Aqui va todo lo de el formulario de Materiales--%>
-    <asp:TextBox ID="TBId" runat="server"></asp:TextBox>
+    <asp:HiddenField ID="TBId" runat="server" />
 
     <%--Nombre del material--%>
     <asp:Label ID="Label1" runat="server" Text="Ingrese el nombre del material"></asp:Label>
@@ -62,8 +62,7 @@
     <script src="resources/js/datatables.min.js" type="text/javascript"></script>
 
     <%--Materials--%>
-    <script>          
-
+        
         <script type="text/javascript">
             $(document).ready(function () {
                 $('#materialsTable').DataTable({
@@ -119,7 +118,7 @@
 
             // Eliminar un material
             $('#materialsTable').on('click', '.delete-btn', function () {
-                const id = $(this).data('id'); // Obtener el ID del material
+            const id = $(this).data('id'); // Obtener el ID del material
             if (confirm("¿Está seguro de que desea eliminar este material?")) {
                 deleteMaterial(id); // Invoca a la función para eliminar el material
                 }
@@ -128,7 +127,7 @@
 
             // Función para cargar los datos del material en los TextBox y DDL para actualizar
             function loadMaterialData(rowData) {
-                $('#<%= TBId.ClientID %>').val(rowData.MaterialID);
+        $('#<%= TBId.ClientID %>').val(rowData.MaterialID);
         $('#<%= TBmaterialName.ClientID %>').val(rowData.Nombre);
         $('#<%= TBmaterialDescription.ClientID %>').val(rowData.Descripcion);
         $('#<%= TBmaterialQuantity.ClientID %>').val(rowData.Cantidad);
