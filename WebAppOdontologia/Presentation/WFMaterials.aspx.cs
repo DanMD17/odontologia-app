@@ -24,7 +24,7 @@ namespace Presentation
             if (!IsPostBack)
             {
                 // Aquí se invocan todos los métodos
-                showMaterials();
+                //showMaterials();
                 showTreatmentsDDL();
             }
         }
@@ -42,7 +42,7 @@ namespace Presentation
             var materialsList = new List<object>();
 
             // Iterar sobre cada fila del DataSet
-            foreach (DataRow row in ds.Tables[0].Rows)
+            foreach (DataRow row in dataSet.Tables[0].Rows)
             {
                 materialsList.Add(new
                 {
@@ -95,12 +95,12 @@ namespace Presentation
         protected void BtnUpdate_Click(object sender, EventArgs e)
         {
             // Verifica si se ha seleccionado un material para actualizar
-            if (string.IsNullOrEmpty(TBId.Text))
+            if (string.IsNullOrEmpty(TBId.Value))
             {
                 LblMsg.Text = "No se ha seleccionado un material para actualizar.";
                 return;
             }
-            _IdMat = Convert.ToInt32(TBId.Text);
+            _IdMat = Convert.ToInt32(TBId.Value);
             _materialDescription = TBmaterialDescription.Text;
             _materialName = TBmaterialName.Text;
             _materialQuantity = Convert.ToInt32(TBmaterialQuantity.Text);
@@ -111,8 +111,7 @@ namespace Presentation
             if (executed)
             {
                 LblMsg.Text = "El material se actualizó exitosamente!";
-                showMaterials();
-                clearFields(); // Se invoca el metodo para limpiar los campos
+                clear(); // Se invoca el metodo para limpiar los campos
             }
             else
             {
@@ -140,9 +139,9 @@ namespace Presentation
         }
 
         // Método para limpiar los TextBox y el DDL
-        private void clearFields()
+        private void clear()
         {
-            TBId.Text = "";
+            TBId.Value = "";
             TBmaterialName.Text = "";
             TBmaterialDescription.Text = "";
             TBmaterialQuantity.Text = "";
