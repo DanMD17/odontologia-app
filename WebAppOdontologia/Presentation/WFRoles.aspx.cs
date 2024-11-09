@@ -126,7 +126,6 @@ namespace Presentation
             if (executed)
             {
                 LblMsg.Text = "Rol actualizado exitosamente!";
-                showRolesDDL(); // Actualiza el DropDownList de roles
                 clear(); // Limpia los campos después de actualizar
             }
             else
