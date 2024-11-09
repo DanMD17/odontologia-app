@@ -71,6 +71,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Index.aspx" />
+    <Content Include="Resources\css\datatables.css" />
+    <Content Include="Resources\css\datatables.min.css" />
+    <Content Include="Resources\js\datatables.js" />
+    <Content Include="Resources\js\datatables.min.js" />
     <Content Include="Web.config" />
     <Content Include="WFAuxiliaries.aspx" />
     <Content Include="WFClinicalHistory.aspx" />
@@ -193,6 +197,9 @@
       <Project>{5e12751f-6f7a-42a2-b1a6-a8a9457ef7ca}</Project>
       <Name>Logic</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\image\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
