@@ -19,7 +19,11 @@ namespace Presentation
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!IsPostBack)
+            {
+                // Llamar al método para cargar los roles en el DropDownList
+                showRolesDDL();
+            }
         }
 
         // Método para listar roles
@@ -60,35 +64,52 @@ namespace Presentation
             return objRol.deleteRol(id);
         }
 
+        // Método para mostrar los roles en el DDL
+        private void showRolesDDL()
+        {
+            DDLRoles.DataSource = objRol.showRoles();  // Método que retorna roles
+            DDLRoles.DataValueField = "rol_id"; // La llave primaria
+            DDLRoles.DataTextField = "rol_nombre"; // El nombre del rol
+            DDLRoles.DataBind();
+            DDLRoles.Items.Insert(0, "Seleccione");
+        }
+
+
         // Método para limpiar los TextBox
         private void clear()
         {
             HFRolesID.Value = "";
             TBName.Text = "";
             TBDescription.Text = "";
+            DDLRoles.SelectedIndex = 0;
         }
 
-        // Evento al hacer clic en el botón Guardar
-        protected void BtnSave_Click(object sender, EventArgs e)
+        // Botón de guardar un rol
+        protected void BtnSaveRole_Click(object sender, EventArgs e)
         {
-            _nombre = TBName.Text;
-            _descripcion = TBDescription.Text;
+            // Asignar los valores de los campos a las variables
+            _roleName = TBRolName.Text;
+            _roleDescription = TBRolDescription.Text;
 
-            executed = objRol.saveRoles(_nombre, _descripcion);
+            // Ejecutar el método de la lógica para guardar el rol
+            executed = objRol.saveRole(_roleName, _roleDescription);
 
+            // Verificar si el rol se guardó exitosamente
             if (executed)
             {
-                LblMsg.Text = "Rol guardado exitosamente!";
+                LblMsg.Text = "El rol se guardó exitosamente!";
             }
             else
             {
-                LblMsg.Text = "Error al guardar el rol.";
+                LblMsg.Text = "Error al guardar el rol :(";
             }
         }
+
 
         // Evento al hacer clic en el botón Actualizar
         protected void BtnUpdate_Click(object sender, EventArgs e)
         {
+            // Verificar si se ha seleccionado un rol para actualizar
             if (string.IsNullOrEmpty(HFRolesID.Value))
             {
                 LblMsg.Text = "No se ha seleccionado un rol para actualizar.";
@@ -101,10 +122,12 @@ namespace Presentation
 
             executed = objRol.updateRol(_id, _nombre, _descripcion);
 
+
             if (executed)
             {
                 LblMsg.Text = "Rol actualizado exitosamente!";
-                clear(); //Se invoca el metodo para limpiar los campos 
+                showRolesDDL(); // Actualiza el DropDownList de roles
+                clear(); // Limpia los campos después de actualizar
             }
             else
             {
@@ -113,5 +136,3 @@ namespace Presentation
         }
     }
 }
-
-

@@ -5,6 +5,7 @@
     <%--Estilos--%>
     <link href="resources/css/datatables.min.css" rel="stylesheet" />
 </asp:Content>
+
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
     <%--Id del Rol--%>
@@ -13,11 +14,17 @@
     <%--Nombre del Rol--%>
     <asp:Label ID="Label1" runat="server" Text="Ingrese el nombre del rol"></asp:Label>
     <asp:TextBox ID="TBNombreRol" runat="server"></asp:TextBox>
-
     <br />
+
     <%--Descripción del Rol--%>
     <asp:Label ID="Label2" runat="server" Text="Ingrese la descripción"></asp:Label>
     <asp:TextBox ID="TBDescripcionRol" runat="server"></asp:TextBox>
+    <br />
+
+    <%--Seleccionar Rol--%>
+    <asp:Label ID="Label3" runat="server" Text="Seleccione un rol"></asp:Label>
+    <asp:DropDownList ID="DDLRoles" runat="server" CssClass="form-select">
+    </asp:DropDownList>
     <br />
 
     <%--Botones--%>
@@ -49,7 +56,7 @@
                 "processing": true,
                 "serverSide": false,
                 "ajax": {
-                    "url": "WFRoles.aspx/ListRoles",
+                    "url": "WFRoles.aspx/ListRoles", // Se invoca el WebMethod Listar roles
                     "type": "POST",
                     "contentType": "application/json",
                     "data": function (d) {
@@ -113,11 +120,11 @@
         function deleteRole(id) {
             $.ajax({
                 type: "POST",
-                url: "WFRoles.aspx/DeleteRole",
+                url: "WFRoles.aspx/DeleteRole", // Se invoca el WebMethod Eliminar un rol
                 contentType: "application/json; charset=utf-8",
                 data: JSON.stringify({ id: id }),
                 success: function (response) {
-                    $('#rolesTable').DataTable().ajax.reload();
+                    $('#rolesTable').DataTable().ajax.reload(); // Recargar la tabla después de eliminar
                     alert("Rol eliminado exitosamente.");
                 },
                 error: function () {
