@@ -79,11 +79,6 @@ namespace Presentation
             DDLPatient.DataSource = objPati.showPatientsDDL();
             DDLPatient.DataValueField = "paci_id";//Nombre de la llave primaria
             DDLPatient.DataTextField = "paci_nombre";
-            DDLPatient.DataTextField = "paci_apellido";
-            DDLPatient.DataTextField = "paci_fecha_nacimiento";
-            DDLPatient.DataTextField = "paci_direccion";
-            DDLPatient.DataTextField = "paci_celular";
-            DDLPatient.DataTextField = "paci_correo";
             DDLPatient.DataBind();
             DDLPatient.Items.Insert(0, "Seleccione");
         }
@@ -120,7 +115,7 @@ namespace Presentation
         // Evento del boton actualizar
         protected void BtnUpdate_Click(object sender, EventArgs e)
         {
-            // Verifica si se ha seleccionado un producto para actualizar
+            // Verifica si se ha seleccionado un historial clinico para actualizar
             if (string.IsNullOrEmpty(HFClinicalHistoryID.Value))
             {
                 LblMsg.Text = "No se ha seleccionado una historia clinica para actualizar.";

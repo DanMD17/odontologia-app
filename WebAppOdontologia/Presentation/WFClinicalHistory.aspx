@@ -122,7 +122,7 @@
             $('#ClinicalHistoryTable').on('click', '.delete-btn', function () {
                 const id = $(this).data('id');// Obtener el ID del historial clinico
                 if (confirm("¿Estás seguro de que deseas eliminar este Historial Clinico?")) {
-                    deleteAssistant(id);// Invoca a la función para eliminar el auxiliar
+                    deleteClinicalHistory(id);// Invoca a la función para eliminar el historial clinico
                 }
             });
         });
