@@ -120,11 +120,11 @@
         function deleteSecretariat(id) {
             $.ajax({
                 type: "POST",
-                url: "WFSecretaries.aspx/DeleteSecretariat",// Se invoca el WebMethod Eliminar una secretaria
+                url: "WFSecretaries.aspx/DeleteSecretariat",//Se invoca el WebMethod Eliminar una secretaria
                 contentType: "application/json; charset=utf-8",
                 data: JSON.stringify({ id: id }),
                 success: function (response) {
-                    $('#secretariesTable').DataTable().ajax.reload();// Recargar la tabla después de eliminar
+                    $('#secretariesTable').DataTable().ajax.reload();//Recargar la tabla después de eliminar
                     alert("Secretaria eliminada exitosamente.");
                 },
                 error: function () {

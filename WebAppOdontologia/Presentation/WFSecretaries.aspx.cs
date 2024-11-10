@@ -127,7 +127,7 @@ namespace Presentation
             if (executed)
             {
                 LblMsg.Text = "La secretaria se actualizo exitosamente!";
-                clear(); //Se invoca el metodo para limpiar los campos 
+                clear(); //Se invoca el metodo para limpiar los campos
             }
             else
             {
