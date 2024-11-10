@@ -15,7 +15,7 @@ namespace Presentation
     {
 
         /// <summary>
-        /// Control HFSecretariesID
+        /// Control HFSecretariesID.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
