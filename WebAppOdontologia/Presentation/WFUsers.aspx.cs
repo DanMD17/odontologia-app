@@ -129,7 +129,7 @@ namespace Presentation
             }
 
         }
-        // Evento que se ejecuta cuando se da clic en el boton actualizar
+        // Evento que se ejecuta cuando se da clic en el boton actualizar 
         protected void BtnUpdate_Click(object sender, EventArgs e)
         {
             // Verifica si se ha seleccionado un usuario para actualizar
