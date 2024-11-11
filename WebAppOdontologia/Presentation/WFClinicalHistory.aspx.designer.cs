@@ -15,7 +15,7 @@ namespace Presentation
     {
 
         /// <summary>
-        /// Control HFClinicalHistoryID.
+        /// Control HFClinicalHistoryID. 
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.

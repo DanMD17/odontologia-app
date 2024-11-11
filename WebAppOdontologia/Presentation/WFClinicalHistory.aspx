@@ -130,7 +130,7 @@
             $('#<%= DDLPatient.ClientID %>').val(rowData.FkPatient);
         }
 
-        // Función para eliminar un historial clinico
+        // Función para eliminar un historial clinico 
         function deleteClinicalHistory(id) {
             $.ajax({
                 type: "POST",

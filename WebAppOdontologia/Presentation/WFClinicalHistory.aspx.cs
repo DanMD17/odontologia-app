@@ -26,7 +26,7 @@ namespace Presentation
         {
             if (!IsPostBack)
             {
-                //Aqui se invocan todos los metodos
+                //Aqui se invocan todos los metodos 
                 //showClinicalHistories();
                 //Se asigna la fecha actual al TextBox en formato "yyyy-MM-dd".
                 TBCreacionDate.Text = DateTime.Now.ToString("yyyy-MM-dd");
