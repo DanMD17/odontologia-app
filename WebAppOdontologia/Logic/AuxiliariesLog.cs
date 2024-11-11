@@ -1,11 +1,13 @@
 ﻿using System;
+using Data;
+using System.Data;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
 namespace Logic
 {
-    public class AuxiliariesLog
+    public class AuxiliaresLog
     {
         AuxiliariesDat objAssist = new AuxiliariesDat();
 
@@ -22,13 +24,13 @@ namespace Logic
         }
 
         //Metodo para guardar un nuevo auxiliar
-        public bool saveAssistant(string _fkEmpId, string _auxFuncion, string _auxNivelEducativo)
+        public bool saveAssistant(int _fkEmpId, string _auxFuncion, string _auxNivelEducativo)
         {
             return objAssist.saveAssistant(_fkEmpId, _auxFuncion, _auxNivelEducativo);
         }
 
         //Metodo para actualizar un auxiliar
-        public bool updateAssistant(int _id, string _fkEmpId, string _auxFuncion, string _auxNivelEducativo)
+        public bool updateAssistant(int _id, int _fkEmpId, string _auxFuncion, string _auxNivelEducativo)
         {
             return objAssist.updateAssistant(_id, _fkEmpId, _auxFuncion, _auxNivelEducativo);
         }

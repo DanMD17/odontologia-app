@@ -64,7 +64,7 @@ namespace Data
 
         //Metodo para guardar un nuevo auxiliar
 
-        public bool saveAssistant(string _fkEmpId, string _auxFuncion, string _auxNivelEducativo)
+        public bool saveAssistant(int _fkEmpId, string _auxFuncion, string _auxNivelEducativo)
         {
             // Se inicializa una variable para indicar si la operación se ejecutó correctamente.
             bool executed = false;
@@ -103,7 +103,7 @@ namespace Data
         }
 
         //Metodo para actulizar un producto
-        public bool updateAssistant(int _id, string _fkEmpId, string _auxFuncion, string _auxNivelEducativo)
+        public bool updateAssistant(int _id, int _fkEmpId, string _auxFuncion, string _auxNivelEducativo)
         {
             bool executed = false;
             int row;
