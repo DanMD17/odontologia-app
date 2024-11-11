@@ -111,9 +111,9 @@
 
           // Editar un empleado
           $('#employeesTable').on('click', '.edit-btn', function () {
-              //const id = $(this).data('id');
+              // const id = $(this).data('id');
               const rowData = $('#employeesTable').DataTable().row($(this).parents('tr')).data();
-              //alert(JSON.stringify(rowData, null, 2));
+              // alert(JSON.stringify(rowData, null, 2));
               loadEmployeesData(rowData);
           });
 

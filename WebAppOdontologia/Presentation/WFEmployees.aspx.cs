@@ -42,7 +42,7 @@ namespace Presentation
             // Se crea una lista para almacenar los empleados que se van a devolver.
             var employeesList = new List<object>();
 
-            // Se itera sobre cada fila del DataSet (que representa un empleado).
+            // Se itera sobre cada fila del DataSet (que representa un empleado)
             foreach (DataRow row in dataSet.Tables[0].Rows)
             {
                 employeesList.Add(new
