@@ -14,7 +14,7 @@ namespace Presentation
     public partial class WFUsers
     {
 
-        /// <summary> 
+        /// <summary>
         /// Control HFUserId.
         /// </summary>
         /// <remarks>

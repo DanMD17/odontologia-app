@@ -149,7 +149,7 @@
             $('#<%= DDLEmployees.ClientID %>').val(rowData.FkEmployee);
         }
 
-        // Función para eliminar un usuario 
+        // Función para eliminar un usuario
         function deleteUser(id) {
             $.ajax({
                 type: "POST",
