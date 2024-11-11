@@ -59,7 +59,7 @@
 
     <script src="resources/js/datatables.min.js" type="text/javascript"></script>
 
-      <%--Empleado--%>
+      <%-- Empleado --%>
   <script type="text/javascript">
       $(document).ready(function () {
           $('#employeesTable').DataTable({
