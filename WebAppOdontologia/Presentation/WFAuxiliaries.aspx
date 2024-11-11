@@ -125,11 +125,11 @@
         function deleteAssistant(id) {
             $.ajax({
                 type: "POST",
-                url: "WFAuxiliaries.aspx/DeleteAssistant",// Se invoca el WebMethod Eliminar un auxiliar
+                url: "WFAuxiliaries.aspx/DeleteAssistant",//Se invoca el WebMethod Eliminar un auxiliar
                 contentType: "application/json; charset=utf-8",
                 data: JSON.stringify({ id: id }),
                 success: function (response) {
-                    $('#assistantsTable').DataTable().ajax.reload();// Recargar la tabla después de eliminar
+                    $('#assistantsTable').DataTable().ajax.reload();//Recargar la tabla después de eliminar
                     alert("Auxiliar eliminado exitosamente.");
                 },
                 error: function () {

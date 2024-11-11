@@ -39,7 +39,7 @@ namespace Presentation
             // Se obtiene un DataSet que contiene la lista de auxiliares desde la base de datos.
             var dataSet = objAux.showAssistants();
 
-            // Se crea una lista para almacenar los auxiliares que se van a devolver.
+            // Se crea una lista para almacenar los auxiliares que se van a devolver
             var assistantsList = new List<object>();
 
             // Se itera sobre cada fila del DataSet (que representa un auxiliar).

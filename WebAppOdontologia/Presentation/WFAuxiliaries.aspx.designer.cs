@@ -15,7 +15,7 @@ namespace Presentation
     {
 
         /// <summary>
-        /// Control HFAssistantID.
+        /// Control HFAssistantID
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
