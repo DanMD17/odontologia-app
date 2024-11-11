@@ -42,7 +42,7 @@ namespace Data
         }
 
         //Metodo para crear empleados
-        public bool saveEmployee(int _identificacion, string _nombre, string _apellidos, string _celular, string _direccion, string _correo)
+        public bool saveEmployee(string _identificacion, string _nombre, string _apellidos, string _celular, string _direccion, string _correo)
         {
             // Se inicializa una variable para indicar si la operación se ejecutó correctamente.
             bool executed = false;
@@ -55,7 +55,7 @@ namespace Data
             objSelectCmd.CommandType = CommandType.StoredProcedure;
 
             // Se agregan parámetros al comando para pasar los valores del producto.
-            objSelectCmd.Parameters.Add("p_emp_identificacion", MySqlDbType.Int64).Value = _identificacion;
+            objSelectCmd.Parameters.Add("p_emp_identificacion", MySqlDbType.VarString).Value = _identificacion;
             objSelectCmd.Parameters.Add("p_emp_nombre", MySqlDbType.VarString).Value = _nombre;
             objSelectCmd.Parameters.Add("p_emp_apellidos", MySqlDbType.VarString).Value = _apellidos;
             objSelectCmd.Parameters.Add("p_emp_celular", MySqlDbType.String).Value = _celular;
@@ -84,7 +84,7 @@ namespace Data
         }
 
         //Metodo para actualizar un empleado
-        public bool updateEmployee(int _id, int _identificacion, string _nombre, string _apellidos, string _celular, string _direccion, string _correo)
+        public bool updateEmployee(int _id, string _identificacion, string _nombre, string _apellidos, string _celular, string _direccion, string _correo)
         {
             bool executed = false;
             int row;
@@ -96,7 +96,7 @@ namespace Data
 
             // Se agregan parámetros al comando para pasar los valores del producto.
             objSelectCmd.Parameters.Add("p_emp_id", MySqlDbType.Int64).Value = _id;
-            objSelectCmd.Parameters.Add("p_emp_identificacion", MySqlDbType.Int64).Value = _identificacion;
+            objSelectCmd.Parameters.Add("p_emp_identificacion", MySqlDbType.VarString).Value = _identificacion;
             objSelectCmd.Parameters.Add("p_emp_nombre", MySqlDbType.VarString).Value = _nombre;
             objSelectCmd.Parameters.Add("p_emp_apellidos", MySqlDbType.VarString).Value = _apellidos;
             objSelectCmd.Parameters.Add("p_emp_celular", MySqlDbType.String).Value = _celular;
