@@ -1,4 +1,4 @@
-﻿﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Main.Master" AutoEventWireup="true" CodeBehind="WFUsers.aspx.cs" Inherits="Presentation.WFUsers" %>
+﻿﻿﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Main.Master" AutoEventWireup="true" CodeBehind="WFUsers.aspx.cs" Inherits="Presentation.WFUsers" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <%--Estilos--%>
@@ -149,7 +149,7 @@
             $('#<%= DDLEmployees.ClientID %>').val(rowData.FkEmployee);
         }
 
-        // Función para eliminar un usuario
+        // Función para eliminar un usuario 
         function deleteUser(id) {
             $.ajax({
                 type: "POST",
