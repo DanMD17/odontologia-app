@@ -16,6 +16,12 @@ namespace Presentation
         QuotesLog objQuotesLog = new QuotesLog();
         PatientsLog objPat = new PatientsLog();
         DentistsLog objDent = new DentistsLog();
+
+        private int _quoteId, _fkPatientId, _fkDentistId;
+        private DateTime _date;
+        private TimeSpan _time;
+        private string _status; 
+            
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
