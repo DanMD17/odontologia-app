@@ -15,22 +15,22 @@ namespace Logic
             return objUser.showUsers();
         }
 
-        // Método para mostrar solo el ID y el nombre de usuario 
-        public DataSet showUsersDDL()
+        //Metodo para mostrar el Usuarios pasandole el correo
+        public User showUsersMail(string _mail)
         {
-            return objUser.showUsersDDL();
+            return objUse.showUsersMail(_mail);
         }
 
         // Método para guardar un nuevo usuario
-        public bool saveUser(string _mail, string _password, string _state, DateTime _date, int _fkEmployee, int _fkRol)
+        public bool saveUser(string _mail, string _password, string _salt, string _state, DateTime _date, int _fkEmployee, int _fkRol)
         {
-            return objUser.saveUser(_mail, _password, _state, _date, _fkEmployee, _fkRol);
+            return objUser.saveUser(_mail, _password, _salt, _state, _date, _fkEmployee, _fkRol);
         }
 
         // Método para actualizar un usuario existente
-        public bool updateUser(int _id, string _mail, string _password, string _state, int _fkEmployee, int _fkRol)
+        public bool updateUser(int _id, string _mail, string _password, string _salt, string _state, int _fkEmployee, int _fkRol)
         {
-            return objUser.updateUser(_id, _mail, _password, _state, _fkEmployee, _fkRol);
+            return objUser.updateUser(_id, _mail, _password, _salt, _state, _fkEmployee, _fkRol);
         }
 
         // Método para borrar un usuario
