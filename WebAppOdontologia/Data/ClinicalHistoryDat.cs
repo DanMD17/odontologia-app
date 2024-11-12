@@ -12,7 +12,7 @@ namespace Data
 
         PersistenceDat objPer = new PersistenceDat();
 
-        // Método para mostrar todos los historiales clínicos
+        //Método para mostrar todos los historiales clínicos
         public DataSet showClinicalHistories()
         {
             MySqlDataAdapter objAdapter = new MySqlDataAdapter();
