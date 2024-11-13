@@ -10,7 +10,7 @@ namespace Data
 {
     public class UsersDat
     {
-        Persistence objPer = new Persistence();
+        PersistenceDat objPer = new PersistenceDat();
         //Metodo para mostrar todas los usuarios 
 
 

@@ -10,7 +10,7 @@ namespace Data
     public class PatientsDat
     {
 
-        Persistence objPer = new Persistence();
+        PersistenceDat objPer = new PersistenceDat();
 
         // Método para mostrar todos los pacientes
         public DataSet showPatients()
