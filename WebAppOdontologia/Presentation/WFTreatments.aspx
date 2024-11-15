@@ -5,7 +5,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <%--Formulario de Tratamientos--%>
-    <asp:TextBox ID="TBId" runat="server" Visible="false"></asp:TextBox>
+    <asp:HiddenField ID="HFTreatmentID" runat="server" Visible="false"></asp:HiddenField>
     
     <%--Nombre--%>
     <asp:Label ID="Label1" runat="server" Text="Ingrese el nombre del tratamiento"></asp:Label>
@@ -28,18 +28,18 @@
     <br />
     
     <%--FK Cita ID--%>
-    <asp:Label ID="Label5" runat="server" Text="ID de la cita"></asp:Label>
-    <asp:TextBox ID="TBFkCitaId" runat="server"></asp:TextBox>
+    <asp:Label ID="Label5" runat="server" Text="Seleccione una cita"></asp:Label>
+    <asp:DropDownList ID="DDLQuotes" runat="server"></asp:DropDownList>
     <br />
     
-    <%--FK Historial ID--%>
-    <asp:Label ID="Label6" runat="server" Text="ID del historial"></asp:Label>
-    <asp:TextBox ID="TBFkHistId" runat="server"></asp:TextBox>
+    <%--DDL Historial--%>
+    <asp:Label ID="Label6" runat="server" Text="Seleccione un historial"></asp:Label>
+    <asp:DropDownList ID="DDLHistory" runat="server"></asp:DropDownList>
     <br />
     
-    <%--FK Auxiliar ID--%>
-    <asp:Label ID="Label7" runat="server" Text="ID del auxiliar"></asp:Label>
-    <asp:TextBox ID="TBFkAuxId" runat="server"></asp:TextBox>
+    <%--DDL Auxiliar ID--%>
+    <asp:Label ID="Label7" runat="server" Text="Seleccione un auxiliar"></asp:Label>
+    <asp:DropDownList ID="DDLAux" runat="server"></asp:DropDownList>
     <br />
     
     <%--Botones--%>
@@ -93,9 +93,12 @@
                 { "data": "Description" },
                 { "data": "Date" },
                 { "data": "Observations" },
-                { "data": "FkCitaId" },
-                { "data": "FkHistId" },
-                { "data": "FkAuxId" },
+                { "data": "FkCitaId", "visible": false },
+                { "data": "StatusQuote"},
+                { "data": "FkHistId", "visible": false },
+                { "data": "DescriptionHistory" },
+                { "data": "FkAuxId", "visible": false },
+                { "data": "FunctionAuxiliaries" },
                 {
                     "data": null,
                     "render": function (data, type, row) {
@@ -137,14 +140,14 @@
 
     // Función para cargar los datos del tratamiento en el formulario
     function loadTreatmentData(rowData) {
-        $('#<%= TBId.ClientID %>').val(rowData.TreatmentID);
+        $('#<%= HFTreatmentID.ClientID %>').val(rowData.TreatmentID);
         $('#<%= TBName.ClientID %>').val(rowData.Name);
         $('#<%= TBDescription.ClientID %>').val(rowData.Description);
         $('#<%= TBDate.ClientID %>').val(rowData.Date);
         $('#<%= TBObservations.ClientID %>').val(rowData.Observations);
         $('#<%= DDLQuotes.ClientID %>').val(rowData.FkCitaId);
-        $('#<%= DDLClinalHistory.ClientID %>').val(rowData.FkHistId);
-        $('#<%= DDLAuxiliaries.ClientID %>').val(rowData.FkAuxId);
+        $('#<%= DDLHistory.ClientID %>').val(rowData.FkHistId);
+        $('#<%= DDLAux.ClientID %>').val(rowData.FkAuxId);
     }
 
     // Función para eliminar un tratamiento

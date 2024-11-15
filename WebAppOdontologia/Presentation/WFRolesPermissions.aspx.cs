@@ -1,7 +1,9 @@
 ﻿using Logic;
+using Model;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 using System.Web;
 using System.Web.Services;
 using System.Web.UI;
@@ -9,132 +11,249 @@ using System.Web.UI.WebControls;
 
 namespace Presentation
 {
-    public partial class WFRolesPermissions : System.Web.UI.Page
+    public partial class WFPermissionsRoles : System.Web.UI.Page
     {
-        // Crear los objetos de lógica
-        RolesLog objRol = new RolesLog();
+        //Crear los objetos
         PermissionsLog objPer = new PermissionsLog();
-        Roles_PermissionLog objRolPer = new Roles_PermissionLog();
+        RolesLog objRol = new RolesLog();
+        PermisoRolLog objPerRol = new PermisoRolLog();
 
-        private int _idRol, _idPermiso;
-        private bool executed;
-
+        private int _id, _fkRol, _fkPermiso;
+        private DateTime _date;
+        private bool executed = false;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                // Invocar métodos para mostrar roles y permisos en los DDL
-                showRoleDDL();
-                showPermissionDDL();
+                //Se asigna la fecha actual al TextBox en formato "yyyy-MM-dd".
+                TBDate.Text = DateTime.Now.ToString("yyyy-MM-dd");
+                //Aqui se invocan todos los metodos
+                showRolesDDL();
+                showPermissionsDDL();
             }
+            //validatePermissionRol();
         }
-
-        // Método para listar las relaciones de roles y permisos
         [WebMethod]
-        public static object ListRolesPermissions()
+        public static object ListPermissionsRoles()
         {
-            Roles_PermissionLog objRolPer = new Roles_PermissionLog();
-            var dataSet = objRolPer.showRolesPermissions();
-            var rolesPermissionsList = new List<object>();
+            PermisoRolLog objPerRol = new PermisoRolLog();
 
+            // Se obtiene un DataSet que contiene la lista de los permisos roles desde la base de datos.
+            var dataSet = objPerRol.showPermissionRol();
+
+            // Se crea una lista para almacenar los permisos roles que se van a devolver.
+            var permissionsRolesList = new List<object>();
+
+            // Se itera sobre cada fila del DataSet (que representa un permiso rol).
             foreach (DataRow row in dataSet.Tables[0].Rows)
             {
-                rolesPermissionsList.Add(new
+                permissionsRolesList.Add(new
                 {
-                    RoleID = row["rol_id"],
-                    RoleName = row["rol_nombre"],
-                    PermissionID = row["per_id"],
-                    PermissionName = row["per_nombre"]
+                    RolPermisoID = row["rol_permiso"],
+                    RolID = row["tbl_rol_rol_id"],
+                    NameRol = row["rol_nombre"],
+                    PermissionID = row["tbl_permiso_per_id"],
+                    NamePermission = row["per_nombre"],
+                    Date = Convert.ToDateTime(row["per_rol_fecha_asignacion"]).ToString("yyyy-MM-dd"), // Formato de fecha específico.
                 });
             }
 
-            return new { data = rolesPermissionsList };
+            // Devuelve un objeto en formato JSON que contiene la lista de permisos roles.
+            return new { data = permissionsRolesList };
         }
 
-        // Método para mostrar los roles en el DropDownList
-        private void showRoleDDL()
+        [WebMethod]
+        public static bool DeletePermissionsRoles(int id)
         {
-            DDLRoles.DataSource = objRol.showRolesDDL();  // 
-            DDLRoles.DataValueField = "rol_id";  // llave primaria
-            DDLRoles.DataTextField = "rol_nombre";  // nombre del rol
+            // Crear una instancia de la clase de lógica de permisos roles
+            PermisoRolLog objPerRol = new PermisoRolLog();
+
+            // Invocar al método para eliminar el permiso rol y devolver el resultado
+            return objPerRol.deletePermissionRol(id);
+        }
+
+        // Metodo para validar permisos roles
+        //private void validatePermissionRol()
+        //{
+        //    // Se Obtiene el usuario actual desde la sesión
+        //    var objUser = (User)Session["User"];
+
+        //    // Variable para acceder a la MasterPage y modificar la visibilidad de los enlaces.
+        //    var masterPage = (Main)Master;
+
+        //    if (objUser == null)
+        //    {
+        //        // Redirige a la página de inicio de sesión si el usuario no está autenticado
+        //        Response.Redirect("WFDefault.aspx");
+        //        return;
+        //    }
+        //    // Obtener el rol del usuario
+        //    var userRole = objUser.Rol.Nombre;
+
+        //    if (userRole == "Administrador")
+        //    {
+        //        //LblMsg.Text = "Bienvenido, Administrador!";
+
+        //        foreach (var permiso in objUser.Permisos)
+        //        {
+        //            switch (permiso.Nombre)
+        //            {
+        //                case "CREAR":
+
+        //                    break;
+        //                case "ACTUALIZAR":
+
+        //                    break;
+        //                case "MOSTRAR":
+        //                    //LblMsg.Text += " Tienes permiso de Mostrar!";
+        //                    break;
+        //                case "ELIMINAR":
+        //                    //LblMsg.Text += " Tienes permiso de Eliminar!";
+        //                    break;
+        //                default:
+        //                    // Si el permiso no coincide con ninguno de los casos anteriores
+        //                    LblMsg.Text += $" Permiso desconocido: {permiso.Nombre}";
+        //                    break;
+        //            }
+        //        }
+        //    }
+        //    else if (userRole == "Auxiliar")
+        //    {
+        //        //LblMsg.Text = "Bienvenido, Gerente!";
+
+        //        masterPage.linkUser.Visible = false;// Se oculta el enlace de Usuario
+        //        masterPage.linkPermission.Visible = false;
+        //        masterPage.linkPermissionRol.Visible = false;// Se oculta el enlace de Permiso Rol
+
+        //        foreach (var permiso in objUser.Permisos)
+        //        {
+        //            switch (permiso.Nombre)
+        //            {
+        //                case "CREAR":
+
+        //                    break;
+        //                case "ACTUALIZAR":
+
+        //                    break;
+        //                case "MOSTRAR":
+        //                    //LblMsg.Text += " Tienes permiso de Mostrar!";
+        //                    break;
+        //                case "ELIMINAR":
+        //                    //LblMsg.Text += " Tienes permiso de Eliminar!";
+        //                    break;
+        //                default:
+        //                    // Si el permiso no coincide con ninguno de los casos anteriores
+        //                    LblMsg.Text += $" Permiso desconocido: {permiso.Nombre}";
+        //                    break;
+        //            }
+        //        }
+
+        //    }
+        //    else if (userRole == "Secretaria")
+        //    {
+        //        //LblMsg.Text = "Bienvenido, Secretaria!";
+        //        masterPage.linkUsers.Visible = false;
+        //        masterPage.linkPermission.Visible = false;
+        //        masterPage.linkPermissionRol.Visible = false;
+
+        //        foreach (var permiso in objUser.Permisos)
+        //        {
+        //            switch (permiso.Nombre)
+        //            {
+        //                case "CREAR":
+
+        //                    break;
+        //                case "ACTUALIZAR":
+
+        //                    break;
+        //                case "MOSTRAR":
+
+        //                    break;
+        //                case "ELIMINAR":
+
+        //                    break;
+        //                default:
+        //                    // Si el permiso no coincide con ninguno de los casos anteriores
+        //                    LblMsg.Text += $" Permiso desconocido: {permiso.Nombre}";
+        //                    break;
+        //            }
+        //        }
+        //    }
+        //    else
+        //    {
+        //        // Si el rol no es reconocido, se deniega el acceso
+        //        LblMsg.Text = "Rol no reconocido. No tienes permisos suficientes para acceder a esta página.";
+        //        Response.Redirect("WFInicio.aspx");
+        //    }
+        //}
+        //Metodo para mostrar los roles en el DDL
+        private void showRolesDDL()
+        {
+            DDLRoles.DataSource = objRol.showRolesDDL();
+            DDLRoles.DataValueField = "rol_id";//Nombre de la llave primaria
+            DDLRoles.DataTextField = "rol_nombre";
             DDLRoles.DataBind();
-            DDLRoles.Items.Insert(0, new ListItem("Seleccione", "0"));
+            DDLRoles.Items.Insert(0, "Seleccione");
         }
-
-        // Método para mostrar los permisos en el DropDownList
-        private void showPermissionDDL()
+        //Metodo para mostrar los permisos en el DDL
+        private void showPermissionsDDL()
         {
-            DDLPermissions.DataSource = objPer.showPermissionsDDL();  // 
-            DDLPermissions.DataValueField = "permiso_id";  // llave primaria
-            DDLPermissions.DataTextField = "permiso_nombre";  // nombre del permiso
-            DDLPermissions.DataBind();
-            DDLPermissions.Items.Insert(0, new ListItem("Seleccione", "0"));
+            DDLPermisos.DataSource = objPer.showPermissionDDl();
+            DDLPermisos.DataValueField = "per_id";//Nombre de la llave primaria
+            DDLPermisos.DataTextField = "per_nombre";
+            DDLPermisos.DataBind();
+            DDLPermisos.Items.Insert(0, "Seleccione");
         }
-
-        // Método para limpiar los controles
+        //Metodo para limpiar los TextBox y los DDL
         private void clear()
         {
-            HFRolePermissionID.Value = "";
+            HFRolPermisoID.Value = "";
             DDLRoles.SelectedIndex = 0;
-            DDLPermissions.SelectedIndex = 0;
+            DDLPermisos.SelectedIndex = 0;
+            TBDate.Text = DateTime.Now.ToString("yyyy-MM-dd");
         }
-
-        // Evento para guardar el permiso asignado a un rol
-        protected void BtnSave_Click(object sender, EventArgs e)
+        //Eventos que se ejecutan cuando se da clic en los botones
+        protected void BtnGuardar_Click(object sender, EventArgs e)
         {
-            // Obtener los valores seleccionados en los DDL
-            _idRol = Convert.ToInt32(DDLRoles.SelectedValue);
-            _idPermiso = Convert.ToInt32(DDLPermissions.SelectedValue);
+            _fkRol = Convert.ToInt32(DDLRoles.SelectedValue);
+            _fkPermiso = Convert.ToInt32(DDLPermisos.SelectedValue);
+            _date = DateTime.Parse(TBDate.Text);
 
-            if (_idRol == 0 || _idPermiso == 0)
-            {
-                LblMsg.Text = "Debe seleccionar un rol y un permiso.";
-                return;
-            }
-
-            executed = objRolPer.saveRolePermission(_idRol, _idPermiso);
+            executed = objPerRol.savePermissionRol(_fkRol, _fkPermiso, _date);
 
             if (executed)
             {
-                LblMsg.Text = "El permiso se asignó exitosamente al rol!";
+                LblMsg.Text = "El permiso rol se guardo exitosamente!";
+                clear();//Se invoca el metodo para limpiar los campos 
             }
             else
             {
-                LblMsg.Text = "Error al asignar el permiso.";
+                LblMsg.Text = "Error al guardar";
             }
         }
-
-        // Evento para eliminar una asignación de permiso a rol
-        [WebMethod]
-        public static bool DeleteRolePermission(int id)
+        protected void BtnActualizar_Click(object sender, EventArgs e)
         {
-            Roles_PermissionLog objRolPer = new Roles_PermissionLog();
-            return objRolPer.deleteRolePermission(id);
-        }
-
-        // Evento para actualizar la asignación de un permiso a rol
-        protected void BtnUpdate_Click(object sender, EventArgs e)
-        {
-            if (string.IsNullOrEmpty(HFRolePermissionID.Value))
+            // Verifica si se ha seleccionado un permiso rol para actualizar
+            if (string.IsNullOrEmpty(HFRolPermisoID.Value))
             {
-                LblMsg.Text = "No se ha seleccionado una asignación para actualizar.";
+                LblMsg.Text = "No se ha seleccionado un permiso rol para actualizar.";
                 return;
             }
+            _id = Convert.ToInt32(HFRolPermisoID.Value);
+            _fkRol = Convert.ToInt32(DDLRoles.SelectedValue);
+            _fkPermiso = Convert.ToInt32(DDLPermisos.SelectedValue);
+            _date = DateTime.Parse(TBDate.Text);
 
-            int rolePermissionID = Convert.ToInt32(HFRolePermissionID.Value);
-            _tbl_roles_rol_id = Convert.ToInt32(DDLRoles.SelectedValue);
-            _tbl_permiso_id_per = Convert.ToInt32(DDLPermissions.SelectedValue);
-
-            executed = objRolPer.updateRolePermission(rolePermissionID, _tbl_roles_rol_id, _tbl_permiso_id_per);
+            executed = objPerRol.updatePermissionRol(_id, _fkRol, _fkPermiso, _date);
 
             if (executed)
             {
-                LblMsg.Text = "La asignación se actualizó exitosamente!";
-                clear();
+                LblMsg.Text = "El permiso rol se actualizo exitosamente!";
+                clear();//Se invoca el metodo para limpiar los campos 
             }
             else
             {
-                LblMsg.Text = "Error al actualizar la asignación";
+                LblMsg.Text = "Error al actualizar";
             }
         }
     }

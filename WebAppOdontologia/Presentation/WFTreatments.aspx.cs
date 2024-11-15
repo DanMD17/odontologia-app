@@ -28,8 +28,8 @@ namespace Presentation
             if (!IsPostBack)
             {
                 showQuotesDDL();
-                showHistoryDDL();
-                showAuxiliariesDDL();
+                showClinicalHistoriesDDL();
+                showAssistantsDDL();
                 //showTreatments();
             }
         }
@@ -57,8 +57,11 @@ namespace Presentation
                     Date = row["trata_fecha"],
                     Observations = row["trata_observaciones"],
                     FkCitaId = row["tbl_citas_cita_id"],
+                    StatusQuote = row["cita_estado"],
                     FkHistId = row["tbl_historialclinico_hist_id"],
-                    FkAuxId = row["tbl_auxiliares_aux_id"]
+                    DescriptionHistory = row["hist_descripcion_general"],
+                    FkAuxId = row["tbl_auxiliares_aux_id"],
+                    FunctionAuxiliaries = row["aux_funcion"],
                 });
             }
 
@@ -81,27 +84,27 @@ namespace Presentation
         {
             DDLQuotes.DataSource = objQuotes.showQuotesDDL();
             DDLQuotes.DataValueField = "cita_id"; // Nombre de la llave primaria de la tabla de citas
-            DDLQuotes.DataTextField = "cita_descripcion";
+            DDLQuotes.DataTextField = "cita_estado";
             DDLQuotes.DataBind();
             DDLQuotes.Items.Insert(0, "Seleccione");
         }
 
         // Método para mostrar las historias clínicas en el DDL
-        private void showHistoryDDL()
+        private void showClinicalHistoriesDDL()
         {
-            DDLHistory.DataSource = objHistory.showHistoryDDL();
+            DDLHistory.DataSource = objHistory.showClinicalHistoriesDDL();
             DDLHistory.DataValueField = "hist_id"; // Nombre de la llave primaria de la tabla de historia clínica
-            DDLHistory.DataTextField = "hist_descripcion";
+            DDLHistory.DataTextField = "hist_descripcion_general";
             DDLHistory.DataBind();
             DDLHistory.Items.Insert(0, "Seleccione");
         }
 
         // Método para mostrar los auxiliares en el DDL
-        private void showAuxiliariesDDL()
+        private void showAssistantsDDL()
         {
-            DDLAux.DataSource = objAux.showAuxiliariesDDL();
+            DDLAux.DataSource = objAux.showAssistantsDDL();
             DDLAux.DataValueField = "aux_id"; // Nombre de la llave primaria de la tabla de auxiliares
-            DDLAux.DataTextField = "aux_nombre";
+            DDLAux.DataTextField = "aux_funcion";
             DDLAux.DataBind();
             DDLAux.Items.Insert(0, "Seleccione");
         }

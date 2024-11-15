@@ -15,13 +15,13 @@ namespace Presentation
     {
 
         /// <summary>
-        /// Control TBId.
+        /// Control HFMaterialsID.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TBId;
+        protected global::System.Web.UI.WebControls.HiddenField HFMaterialsID;
 
         /// <summary>
         /// Control Label1.
@@ -105,13 +105,13 @@ namespace Presentation
         protected global::System.Web.UI.WebControls.Button BtnSave;
 
         /// <summary>
-        /// Control BtbUpdate.
+        /// Control BtnUpdate.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BtbUpdate;
+        protected global::System.Web.UI.WebControls.Button BtnUpdate;
 
         /// <summary>
         /// Control LblMsg.

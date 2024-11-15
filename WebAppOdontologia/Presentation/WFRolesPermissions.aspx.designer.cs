@@ -11,17 +11,26 @@ namespace Presentation
 {
 
 
-    public partial class WFRolesPermissions
+    public partial class WFPermissionsRoles
     {
 
         /// <summary>
-        /// Control HFRolesPermissionID.
+        /// Control FrmPermissionRol.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField HFRolesPermissionID;
+        protected global::System.Web.UI.HtmlControls.HtmlForm FrmPermissionRol;
+
+        /// <summary>
+        /// Control HFRolPermisoID.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField HFRolPermisoID;
 
         /// <summary>
         /// Control Label1.
@@ -51,31 +60,49 @@ namespace Presentation
         protected global::System.Web.UI.WebControls.Label Label2;
 
         /// <summary>
-        /// Control DDLPermissions.
+        /// Control DDLPermisos.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DDLPermissions;
+        protected global::System.Web.UI.WebControls.DropDownList DDLPermisos;
 
         /// <summary>
-        /// Control BtnSave.
+        /// Control Label4.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BtnSave;
+        protected global::System.Web.UI.WebControls.Label Label4;
 
         /// <summary>
-        /// Control BtnUpdate.
+        /// Control TBDate.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BtnUpdate;
+        protected global::System.Web.UI.WebControls.TextBox TBDate;
+
+        /// <summary>
+        /// Control BtnGuardar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button BtnGuardar;
+
+        /// <summary>
+        /// Control BtnActualizar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button BtnActualizar;
 
         /// <summary>
         /// Control LblMsg.

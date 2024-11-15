@@ -22,7 +22,7 @@ namespace Presentation
             if (!IsPostBack)
             {
                 // Llamar al método para cargar los roles en el DropDownList
-                showRolesDDL();
+                //showRolesDDL();
             }
         }
 
@@ -64,35 +64,24 @@ namespace Presentation
             return objRol.deleteRol(id);
         }
 
-        // Método para mostrar los roles en el DDL
-        private void showRolesDDL()
-        {
-            DDLRoles.DataSource = objRol.showRoles();  // Método que retorna roles
-            DDLRoles.DataValueField = "rol_id"; // La llave primaria
-            DDLRoles.DataTextField = "rol_nombre"; // El nombre del rol
-            DDLRoles.DataBind();
-            DDLRoles.Items.Insert(0, "Seleccione");
-        }
-
 
         // Método para limpiar los TextBox
         private void clear()
         {
-            HFRolesID.Value = "";
-            TBName.Text = "";
-            TBDescription.Text = "";
-            DDLRoles.SelectedIndex = 0;
+            HFRolID.Value = "";
+            TBNombreRol.Text = "";
+            TBDescripcionRol.Text = "";
         }
 
         // Botón de guardar un rol
         protected void BtnSaveRole_Click(object sender, EventArgs e)
         {
             // Asignar los valores de los campos a las variables
-            _roleName = TBRolName.Text;
-            _roleDescription = TBRolDescription.Text;
+            _nombre = TBNombreRol.Text;
+            _descripcion = TBDescripcionRol.Text;
 
             // Ejecutar el método de la lógica para guardar el rol
-            executed = objRol.saveRole(_roleName, _roleDescription);
+            executed = objRol.saveRoles(_nombre, _descripcion);
 
             // Verificar si el rol se guardó exitosamente
             if (executed)
@@ -110,15 +99,15 @@ namespace Presentation
         protected void BtnUpdate_Click(object sender, EventArgs e)
         {
             // Verificar si se ha seleccionado un rol para actualizar
-            if (string.IsNullOrEmpty(HFRolesID.Value))
+            if (string.IsNullOrEmpty(HFRolID.Value))
             {
                 LblMsg.Text = "No se ha seleccionado un rol para actualizar.";
                 return;
             }
 
-            _id = Convert.ToInt32(HFRolesID.Value);
-            _nombre = TBName.Text;
-            _descripcion = TBDescription.Text;
+            _id = Convert.ToInt32(HFRolID.Value);
+            _nombre = TBNombreRol.Text;
+            _descripcion = TBDescripcionRol.Text;
 
             executed = objRol.updateRol(_id, _nombre, _descripcion);
 

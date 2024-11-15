@@ -2,7 +2,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <%--Estilos--%>
-    <link href="Resources/css/datatables.min.css" rel="stylesheet" />
+    <link href="resources/css/datatables.min.css" rel="stylesheet" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
@@ -62,7 +62,7 @@
         </tbody>
     </table>
 
-    <script src="Resources/js/datatables.min.js"></script>
+    <script src="resources/js/datatables.min.js"></script>
 
     <script type="text/javascript">
         $(document).ready(function () {

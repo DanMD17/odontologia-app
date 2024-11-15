@@ -35,7 +35,7 @@
     <%--Botones guardar y actualizar--%>
     <div>
         <asp:Button ID="BtnSave" runat="server" Text="Guardar" OnClick="BtnSave_Click" />
-        <asp:Button ID="BtbUpdate" runat="server" Text="Actualizar" OnClick="BtbUpdate_Click" />
+        <asp:Button ID="BtnUpdate" runat="server" Text="Actualizar" OnClick="BtnUpdate_Click" />
         <asp:Label ID="LblMsg" runat="server" Text=""></asp:Label>
     </div>
     <br />

@@ -15,13 +15,13 @@ namespace Presentation
     {
 
         /// <summary>
-        /// Control TBId.
+        /// Control HFQuoteID.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TBId;
+        protected global::System.Web.UI.WebControls.HiddenField HFQuoteID;
 
         /// <summary>
         /// Control Label1.
@@ -87,13 +87,13 @@ namespace Presentation
         protected global::System.Web.UI.WebControls.Label Label4;
 
         /// <summary>
-        /// Control TBFKPatientId.
+        /// Control DDLPatient.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TBFKPatientId;
+        protected global::System.Web.UI.WebControls.DropDownList DDLPatient;
 
         /// <summary>
         /// Control Label5.
@@ -105,13 +105,13 @@ namespace Presentation
         protected global::System.Web.UI.WebControls.Label Label5;
 
         /// <summary>
-        /// Control TBFKDentistId.
+        /// Control DDLDentist.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TBFKDentistId;
+        protected global::System.Web.UI.WebControls.DropDownList DDLDentist;
 
         /// <summary>
         /// Control BtnSave.

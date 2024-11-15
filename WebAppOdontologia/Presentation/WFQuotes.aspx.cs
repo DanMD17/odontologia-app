@@ -20,8 +20,9 @@ namespace Presentation
         private int _quoteId, _fkPatientId, _fkDentistId;
         private DateTime _date;
         private TimeSpan _time;
-        private string _status; 
-            
+        private string _status;
+        private bool executed;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -54,7 +55,9 @@ namespace Presentation
                     Time = row["cita_hora"],
                     Status = row["cita_estado"],
                     FkPatientId = row["tbl_pacientes_paci_id"],
-                    FkDentistId = row["tbl_odontologos_odo_id"]
+                    NamePatient = row["paci_nombre"],
+                    FkDentistId = row["tbl_odontologos_odo_id"],
+                    SpecialtyDentist = row["odo_especialidad"]
                 });
             }
 
@@ -87,7 +90,7 @@ namespace Presentation
         {
             DDLDentist.DataSource = objDent.showDentistsDDL();
             DDLDentist.DataValueField = "odo_id"; // Nombre de la llave primaria de la tabla de odontólogos
-            DDLDentist.DataTextField = "odo_nombre";
+            DDLDentist.DataTextField = "odo_especialidad";
             DDLDentist.DataBind();
             DDLDentist.Items.Insert(0, "Seleccione");
         }

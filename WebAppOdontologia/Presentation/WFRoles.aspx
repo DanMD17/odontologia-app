@@ -21,12 +21,6 @@
     <asp:TextBox ID="TBDescripcionRol" runat="server"></asp:TextBox>
     <br />
 
-    <%--Seleccionar Rol--%>
-    <asp:Label ID="Label3" runat="server" Text="Seleccione un rol"></asp:Label>
-    <asp:DropDownList ID="DDLRoles" runat="server" CssClass="form-select">
-    </asp:DropDownList>
-    <br />
-
     <%--Botones--%>
     <asp:Button ID="BtnSave" runat="server" Text="Guardar" OnClick="BtnSave_Click" />
     <asp:Button ID="BtnUpdate" runat="server" Text="Actualizar" OnClick="BtnUpdate_Click" />

@@ -71,14 +71,13 @@ namespace Presentation
         // Método para limpiar los TextBox y los DDL
         private void clear()
         {
-            HFPatientID.Value = "";
+            HFPatientsID.Value = "";
             TBName.Text = "";
             TBLastName.Text = "";
             TBAddress.Text = "";
-            TBCellPhone.Text = "";
+            TBPhone.Text = "";
             TBEmail.Text = "";
             TBDateOfBirth.Text = "";
-            DDLPatients.SelectedIndex = 0;
         }
 
         // Evento que se ejecuta cuando se da clic en el botón guardar
@@ -87,11 +86,11 @@ namespace Presentation
             _name = TBName.Text;
             _lastName = TBLastName.Text;
             _address = TBAddress.Text;
-            _cellPhone = TBCellPhone.Text;
+            _cellPhone = TBPhone.Text;
             _email = TBEmail.Text;
             _dateOfBirth = Convert.ToDateTime(TBDateOfBirth.Text);
 
-            executed = objPat.savePatient(_name, _lastName, _address, _cellPhone, _email, _dateOfBirth);
+            executed = objPat.savePatient(_name, _lastName, _dateOfBirth, _address, _cellPhone, _email);
 
             if (executed)
             {
@@ -106,21 +105,21 @@ namespace Presentation
         // Evento del botón actualizar
         protected void BtnUpdate_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(HFPatientID.Value))
+            if (string.IsNullOrEmpty(HFPatientsID.Value))
             {
                 LblMsg.Text = "No se ha seleccionado un paciente para actualizar.";
                 return;
             }
 
-            _patientId = Convert.ToInt32(HFPatientID.Value);
+            _patientId = Convert.ToInt32(HFPatientsID.Value);
             _name = TBName.Text;
             _lastName = TBLastName.Text;
             _address = TBAddress.Text;
-            _cellPhone = TBCellPhone.Text;
+            _cellPhone = TBPhone.Text;
             _email = TBEmail.Text;
             _dateOfBirth = Convert.ToDateTime(TBDateOfBirth.Text);
 
-            executed = objPat.updatePatient(_patientId, _name, _lastName, _address, _cellPhone, _email, _dateOfBirth);
+            executed = objPat.updatePatient(_patientId, _name, _lastName, _dateOfBirth, _address, _cellPhone, _email);
 
             if (executed)
             {
