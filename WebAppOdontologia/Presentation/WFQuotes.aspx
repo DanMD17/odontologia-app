@@ -5,7 +5,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <%--Formulario para Citas--%>
-    <asp:TextBox ID="TBId" runat="server" Visible="false"></asp:TextBox>
+    <asp:HiddenField ID="HFQuoteID" runat="server" Visible="false"></asp:HiddenField>
 
     <asp:Label ID="Label1" runat="server" Text="Ingrese la fecha de la cita"></asp:Label>
     <asp:TextBox ID="TBDate" runat="server" TextMode="Date"></asp:TextBox>
@@ -19,12 +19,12 @@
     <asp:TextBox ID="TBStatus" runat="server"></asp:TextBox>
     <br />
 
-    <asp:Label ID="Label4" runat="server" Text="ID del Paciente"></asp:Label>
-    <asp:TextBox ID="TBFKPatientId" runat="server"></asp:TextBox>
+    <asp:Label ID="Label4" runat="server" Text="Seleccione un paciente"></asp:Label>
+    <asp:DropDownList ID="DDLPatient" runat="server"></asp:DropDownList>
     <br />
 
-    <asp:Label ID="Label5" runat="server" Text="ID del Odontólogo"></asp:Label>
-    <asp:TextBox ID="TBFKDentistId" runat="server"></asp:TextBox>
+    <asp:Label ID="Label5" runat="server" Text="Seleccione un Odontólogo"></asp:Label>
+    <asp:DropDownList ID="DDLDentist" runat="server"></asp:DropDownList>
     <br />
 
      <%--Botones--%>
@@ -75,8 +75,11 @@
                 { "data": "Date" },
                 { "data": "Time" },
                 { "data": "Status" },
-                { "data": "FkPatientId" },
-                { "data": "FkDentistId" },
+                { "data": "FkPatientId", "visible": false },
+                { "data": "NamePatient" },
+                { "data": "FkDentistId", "visible": false },
+                { "data": "SpecialtyDentist" },
+
                 {
                     "data": null,
                     "render": function (data, type, row) {
@@ -118,7 +121,7 @@
 
     // Función para cargar los datos de la cita en el formulario
     function loadQuoteData(rowData) {
-        $('#<%= TBId.ClientID %>').val(rowData.QuoteID);
+        $('#<%= HFQuoteID.ClientID %>').val(rowData.QuoteID);
         $('#<%= TBDate.ClientID %>').val(rowData.Date);
         $('#<%= TBTime.ClientID %>').val(rowData.Time);
         $('#<%= TBStatus.ClientID %>').val(rowData.Status);

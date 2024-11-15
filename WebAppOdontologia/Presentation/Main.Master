@@ -12,19 +12,19 @@
 <body>
     <form id="form1" runat="server">
         <div>
-            <a href="#">Inicio</a>
-            <a href="WFAuxiliaries">Auxiliares</a>
-            <a href="WFClinicalHistory">Historial clínico</a>
-            <a href="WFDentists">Odontólogos</a>
-            <a href="WFDiagnosis">Diagnósticos</a>
-            <a href="WFEmployees">Empleados</a>
-            <a href="WFMaterials">Materiales</a>
-            <a href="WFPatients">Pacientes</a>
-            <a href="WFQuotes">Citas</a>
-            <a href="WFSecretaries">Secretarias</a>
-            <a href="WFTreatments">Tratamientos realizados</a>
-            <a href="WFUsers">Usuarios</a>
-            <a href="#">Cerrar sesión</a>
+            <a id="linkInicio" runat="server" href="Index.aspx">Inicio</a>
+            <a id="linkAuxiliaries" runat="server" href="WFAuxiliaries.aspx">Auxiliares</a>
+            <a id="linkClinicalHistory" runat="server" href="WFClinicalHistory.aspx">Historial clínico</a>
+            <a id="linkDentists" runat="server" href="WFDentists.aspx">Odontólogos</a>
+            <a id="linkDiagnosis" runat="server" href="WFDiagnosis.aspx">Diagnósticos</a>
+            <a id="linkEmployees" runat="server" href="WFEmployees.aspx">Empleados</a>
+            <a id="linkMaterials" runat="server" href="WFMaterials.aspx">Materiales</a>
+            <a id="linkPatients" runat="server" href="WFPatients.aspx">Pacientes</a>
+            <a id="linkQuotes" runat="server" href="WFQuotes.aspx">Citas</a>
+            <a id="linkSecretaries" runat="server" href="WFSecretaries.aspx">Secretarias</a>
+            <a id="linkTreatments" runat="server" href="WFTreatments.aspx">Tratamientos realizados</a>
+            <a id="linkUsers" runat="server" href="WFUsers.aspx">Usuarios</a>
+            <a id="linkLogOut" runat="server" href="#">Cerrar sesión</a>
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
             </asp:ContentPlaceHolder>
         </div>

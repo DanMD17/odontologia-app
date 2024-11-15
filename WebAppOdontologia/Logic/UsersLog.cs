@@ -23,7 +23,7 @@ namespace Logic
         //Metodo para mostrar el Usuarios pasandole el correo
         public User showUsersMail(string _mail)
         {
-            return objUse.showUsersMail(_mail);
+            return objUser.showUsersMail(_mail);
         }
 
         // Método para guardar un nuevo usuario
@@ -33,15 +33,15 @@ namespace Logic
         }
 
         // Método para actualizar un usuario existente
-        public bool updateUser(int _id, string _mail, string _password, string _salt, string _state, int _fkEmployee, int _fkRol)
+        public bool updateUser(int _id, string _mail, string _password, string _salt, string _state, DateTime _date, int _fkEmployee, int _fkRol)
         {
-            return objUser.updateUser(_id, _mail, _password, _salt, _state, _fkEmployee, _fkRol);
+            return objUser.updateUser(_id, _mail, _password, _salt, _state, _date, _fkEmployee, _fkRol);
         }
 
         // Método para borrar un usuario
-        public bool deleteUser(int _id)
-        {
-            return objUser.deleteUser(_id);
-        }
+        //public bool deleteUser(int _id)
+       // {
+        //    return objUser.deleteUser(_id);
+        //}
     }
 }

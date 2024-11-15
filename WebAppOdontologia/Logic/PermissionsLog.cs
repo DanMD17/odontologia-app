@@ -9,7 +9,7 @@ using System.Security;
 
 namespace Logic
 {
-    public class PermissionLog
+    public class PermissionsLog
     {
         PermissionsDat objPer = new PermissionsDat();
 

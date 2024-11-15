@@ -9,8 +9,6 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-    <form runat="server">
-
         <%--Formulario de Historial Clínico--%>
         <asp:HiddenField ID="HFClinicalHistoryID" runat="server" />
 
@@ -31,12 +29,10 @@
         <%--Botones guardar y actualizar--%>
         <div>
             <asp:Button ID="BtnSave" runat="server" Text="Guardar" OnClick="BtnSave_Click" />
-            <asp:Button ID="BtbUpdate" runat="server" Text="Actualizar" OnClick="BtbUpdate_Click" />
+            <asp:Button ID="BtnUpdate" runat="server" Text="Actualizar" OnClick="BtnUpdate_Click" />
             <asp:Label ID="LblMsg" runat="server" Text=""></asp:Label>
         </div>
         <br />
-
-    </form>
 
     <%--Lista de Historiales Clinicos--%>
     <h2>Lista de Historias Clinicas</h2>

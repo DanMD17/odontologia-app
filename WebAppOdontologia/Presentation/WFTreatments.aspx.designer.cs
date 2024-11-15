@@ -15,13 +15,13 @@ namespace Presentation
     {
 
         /// <summary>
-        /// Control TBId.
+        /// Control HFTreatmentID.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TBId;
+        protected global::System.Web.UI.WebControls.HiddenField HFTreatmentID;
 
         /// <summary>
         /// Control Label1.
@@ -105,13 +105,13 @@ namespace Presentation
         protected global::System.Web.UI.WebControls.Label Label5;
 
         /// <summary>
-        /// Control TBFkCitaId.
+        /// Control DDLQuotes.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TBFkCitaId;
+        protected global::System.Web.UI.WebControls.DropDownList DDLQuotes;
 
         /// <summary>
         /// Control Label6.
@@ -123,13 +123,13 @@ namespace Presentation
         protected global::System.Web.UI.WebControls.Label Label6;
 
         /// <summary>
-        /// Control TBFkHistId.
+        /// Control DDLHistory.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TBFkHistId;
+        protected global::System.Web.UI.WebControls.DropDownList DDLHistory;
 
         /// <summary>
         /// Control Label7.
@@ -141,13 +141,13 @@ namespace Presentation
         protected global::System.Web.UI.WebControls.Label Label7;
 
         /// <summary>
-        /// Control TBFkAuxId.
+        /// Control DDLAux.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TBFkAuxId;
+        protected global::System.Web.UI.WebControls.DropDownList DDLAux;
 
         /// <summary>
         /// Control BtnSave.

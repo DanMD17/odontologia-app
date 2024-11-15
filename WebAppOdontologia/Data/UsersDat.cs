@@ -29,26 +29,81 @@ namespace Data
         }
 
         // Método que retorna un objeto con el usuario encontrado por el correo
+        // public User showUsersMail(string mail)
+        // {
+        //     User objUser = null;
+        //     MySqlCommand objSelectCmd = new MySqlCommand();
+        //     objSelectCmd.Connection = objPer.openConnection();
+        //     objSelectCmd.CommandText = "spSelectUserMail";
+        //     objSelectCmd.CommandType = CommandType.StoredProcedure;
+        //     objSelectCmd.Parameters.Add("p_mail", MySqlDbType.VarString).Value = mail;
+        //     MySqlDataReader reader = objSelectCmd.ExecuteReader();
+        //     if (!reader.HasRows)
+        //     {
+        //         return objUser;
+        //     }
+        //    else
+        //    {
+        //        while (reader.Read())
+        //       {
+        //            objUser = new User(reader["usu_correo"].ToString(),
+        //            reader["usu_contrasena"].ToString(), reader["usu_salt"].ToString(),
+        //            reader["usu_estado"].ToString(), reader["rol_nombre"].ToString(), Convert.ToInt32(reader["per_id"]));
+        //        }
+        //   }
+        //   objPer.closeConnection();
+        //   return objUser;
+        // }
+
+        // Metodo modificado que retorna un objeto con el usuario encontrado por el correo
         public User showUsersMail(string mail)
         {
             User objUser = null;
-            MySqlCommand objSelectCmd = new MySqlCommand();
-            objSelectCmd.Connection = objPer.openConnection();
-            objSelectCmd.CommandText = "spSelectUserMail";
-            objSelectCmd.CommandType = CommandType.StoredProcedure;
-            objSelectCmd.Parameters.Add("p_mail", MySqlDbType.VarString).Value = mail;
-            MySqlDataReader reader = objSelectCmd.ExecuteReader();
-            if (!reader.HasRows)
+            List<Permissions> permisos = new List<Permissions>();
+
+            using (MySqlCommand objSelectCmd = new MySqlCommand())
             {
-                return objUser;
-            }
-            else
-            {
-                while (reader.Read())
+                objSelectCmd.Connection = objPer.openConnection();
+                objSelectCmd.CommandText = "spSelectUserMail";
+                objSelectCmd.CommandType = CommandType.StoredProcedure;
+                objSelectCmd.Parameters.Add("p_mail", MySqlDbType.VarChar).Value = mail;
+
+                using (MySqlDataReader reader = objSelectCmd.ExecuteReader())
                 {
-                    objUser = new User(reader["usu_correo"].ToString(),
-                    reader["usu_contrasena"].ToString(), reader["usu_salt"].ToString(),
-                    reader["usu_estado"].ToString(), reader["rol_nombre"].ToString(), Convert.ToInt32(reader["per_id"]));
+                    if (!reader.HasRows)
+                    {
+                        return objUser;
+                    }
+
+                    while (reader.Read())
+                    {
+                        // Inicializar User si es nulo (se hace una vez)
+                        if (objUser == null)
+                        {
+                            Roles userRol = new Roles(
+                                id: Convert.ToInt32(reader["rol_id"]),
+                                nombre: reader["rol_nombre"].ToString(),
+                                descripcion: reader["rol_descripcion"].ToString()
+                            );
+
+                            objUser = new User(
+                                correo: reader["usu_correo"].ToString(),
+                                contrasena: reader["usu_contrasena"].ToString(),
+                                salt: reader["usu_salt"].ToString(),
+                                state: reader["usu_estado"].ToString(),
+                                rol: userRol,
+                                permisos: permisos
+                            );
+                        }
+
+                        // Agregar permisos a la lista
+                        Permissions permiso = new Permissions(
+                            id: Convert.ToInt32(reader["per_id"]),
+                            nombre: reader["per_nombre"].ToString(),
+                            descripcion: reader["per_descripcion"].ToString()
+                        );
+                        permisos.Add(permiso);
+                    }
                 }
             }
             objPer.closeConnection();
@@ -61,63 +116,62 @@ namespace Data
             bool executed = false;
             int row;
 
-            MySqlCommand objSelectCmd = new MySqlCommand();
-            objSelectCmd.Connection = objPer.openConnection();
-            objSelectCmd.CommandText = "spInsertUser"; // nombre del procedimiento almacenado
-            objSelectCmd.CommandType = CommandType.StoredProcedure;
-            objSelectCmd.Parameters.Add("p_usu_correo", MySqlDbType.VarString).Value = _mail;
-            objSelectCmd.Parameters.Add("p_usu_contrasena", MySqlDbType.Text).Value = _password;
-            objSelectCmd.Parameters.Add("p_salt", MySqlDbType.VarString).Value = _salt;
-            objSelectCmd.Parameters.Add("p_usu_estado", MySqlDbType.VarString).Value = _state;
-            objSelectCmd.Parameters.Add("p_usu_fecha_creacion", MySqlDbType.Date).Value = _date;
-            objSelectCmd.Parameters.Add("p_usu_empleado_emp_id", MySqlDbType.Int32).Value = _fkEmployee;
-            objSelectCmd.Parameters.Add("p_usu_roles_rol_id", MySqlDbType.Int32).Value = _fkRol;
+            using (MySqlCommand objSelectCmd = new MySqlCommand())
+            {
+                objSelectCmd.Connection = objPer.openConnection();
+                objSelectCmd.CommandText = "spInsertUser";
+                objSelectCmd.CommandType = CommandType.StoredProcedure;
+                objSelectCmd.Parameters.Add("p_mail", MySqlDbType.VarChar).Value = _mail;
+                objSelectCmd.Parameters.Add("p_password", MySqlDbType.Text).Value = _password;
+                objSelectCmd.Parameters.Add("p_salt", MySqlDbType.VarChar).Value = _salt;
+                objSelectCmd.Parameters.Add("p_state", MySqlDbType.VarChar).Value = _state;
+                objSelectCmd.Parameters.Add("p_date", MySqlDbType.Date).Value = _date;
+                objSelectCmd.Parameters.Add("p_fkrol", MySqlDbType.Int32).Value = _fkRol;
+                objSelectCmd.Parameters.Add("p_fkemployee", MySqlDbType.Int32).Value = _fkEmployee;
 
-            try
-            {
-                row = objSelectCmd.ExecuteNonQuery();
-                if (row == 1)
+                try
                 {
-                    executed = true;
+                    row = objSelectCmd.ExecuteNonQuery();
+                    executed = (row == 1);
                 }
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("Error: " + e.ToString());
+                catch (Exception e)
+                {
+                    Console.WriteLine("Error: " + e.Message);
+                }
             }
             objPer.closeConnection();
             return executed;
         }
 
         // Método para actualizar un Usuario
-        public bool updateUser(int _id, string _mail, string _password, string _salt, string _state, int _fkEmployee, int _fkRol)
+        public bool updateUser(int _id, string _mail, string _password, string _salt, string _state, DateTime _date, int _fkEmployee, int _fkRol)
         {
             bool executed = false;
             int row;
 
-            MySqlCommand objSelectCmd = new MySqlCommand();
-            objSelectCmd.Connection = objPer.openConnection();
-            objSelectCmd.CommandText = "spUpdateUser"; // nombre del procedimiento almacenado
-            objSelectCmd.CommandType = CommandType.StoredProcedure;
-            objSelectCmd.Parameters.Add("p_usu_id", MySqlDbType.Int32).Value = _id;
-            objSelectCmd.Parameters.Add("p_usu_correo", MySqlDbType.VarString).Value = _mail;
-            objSelectCmd.Parameters.Add("p_usu_contrasena", MySqlDbType.Text).Value = _password;
-            objSelectCmd.Parameters.Add("p_salt", MySqlDbType.VarString).Value = _salt;
-            objSelectCmd.Parameters.Add("p_usu_estado", MySqlDbType.VarString).Value = _state;
-            objSelectCmd.Parameters.Add("p_usu_empleado_emp_id", MySqlDbType.Int32).Value = _fkEmployee;
-            objSelectCmd.Parameters.Add("p_usu_roles_rol_id", MySqlDbType.Int32).Value = _fkRol;
+            using (MySqlCommand objSelectCmd = new MySqlCommand())
+            {
+                objSelectCmd.Connection = objPer.openConnection();
+                objSelectCmd.CommandText = "spUpdateUser";
+                objSelectCmd.CommandType = CommandType.StoredProcedure;
+                objSelectCmd.Parameters.Add("p_id", MySqlDbType.Int32).Value = _id;
+                objSelectCmd.Parameters.Add("p_correo", MySqlDbType.VarChar).Value = _mail;
+                objSelectCmd.Parameters.Add("p_contrasena", MySqlDbType.Text).Value = _password;
+                objSelectCmd.Parameters.Add("p_salt", MySqlDbType.VarChar).Value = _salt;
+                objSelectCmd.Parameters.Add("p_estado", MySqlDbType.VarChar).Value = _state;
+                objSelectCmd.Parameters.Add("p_fecha_creacion", MySqlDbType.Date).Value = _date;
+                objSelectCmd.Parameters.Add("p_fkrol", MySqlDbType.Int32).Value = _fkRol;
+                objSelectCmd.Parameters.Add("p_fkempleado", MySqlDbType.Int32).Value = _fkEmployee;
 
-            try
-            {
-                row = objSelectCmd.ExecuteNonQuery();
-                if (row == 1)
+                try
                 {
-                    executed = true;
+                    row = objSelectCmd.ExecuteNonQuery();
+                    executed = (row == 1);
                 }
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("Error: " + e.ToString());
+                catch (Exception e)
+                {
+                    Console.WriteLine("Error: " + e.Message);
+                }
             }
             objPer.closeConnection();
             return executed;

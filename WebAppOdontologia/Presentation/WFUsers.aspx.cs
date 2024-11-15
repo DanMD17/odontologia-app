@@ -14,7 +14,7 @@ namespace Presentation
     public partial class WFUsers : System.Web.UI.Page
     {
         //Crear los objetos
-        RolLog objRol = new RolLog();
+        RolesLog objRol = new RolesLog();
         EmployeesLog objEmp = new EmployeesLog();
         UsersLog objUse = new UsersLog();
 
@@ -116,7 +116,7 @@ namespace Presentation
             _fkrol = Convert.ToInt32(DDLRol.SelectedValue);
             _fkemployee = Convert.ToInt32(DDLEmployees.SelectedValue);
 
-            executed = objUse.saveUsers(_mail, _encryptedPassword, _salt, _state, _date, _fkrol, _fkemployee);
+            executed = objUse.saveUser(_mail, _encryptedPassword, _salt, _state, _date, _fkrol, _fkemployee);
 
             if (executed)
             {
@@ -152,7 +152,7 @@ namespace Presentation
             _fkrol = Convert.ToInt32(DDLRol.SelectedValue);
             _fkemployee = Convert.ToInt32(DDLEmployees.SelectedValue);
 
-            executed = objUse.updateUsers(_id, _mail, _encryptedPassword, _salt, _state, _date, _fkrol, _fkemployee);
+            executed = objUse.updateUser(_id, _mail, _password, _salt, _state, _date, _fkemployee, _fkrol);
 
             if (executed)
             {

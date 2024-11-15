@@ -1,41 +1,36 @@
-﻿using System;
+﻿using Data;
+using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
-using System.Data;
-using Data;
-using System.Data.SqlClient;
-using System.Runtime.Remoting;
 
 namespace Logic
 {
-    public class Roles_PermissionLog
+    public class PermisoRolLog
     {
-        Roles_PermissionDat objRolPer = new Roles_PermissionDat();
-        public DataSet showRolesPermissions()
+        PermisoRolDat objPerRol = new PermisoRolDat();
+
+        //Metodo para mostrar todos los Permisos Roles
+        public DataSet showPermissionRol()
         {
-            return objRolPer.showRolesPermissions();
+            return objPerRol.showPermissionRol();
         }
 
-        
-      
-        public bool saveRolePermission(int _rol_id, int _permiso_id)
+        //Metodo para guardar un nuevo Permiso Rol
+        public bool savePermissionRol(int _fkRol, int _fkPermiso, DateTime _date)
         {
-            return objRolPer.saveRolePermission(_rol_id, _permiso_id);
+            return objPerRol.savePermissionRol(_fkRol, _fkPermiso, _date);
         }
-
-        //Metodo para actualizar rol y permiso
-        public bool updateRolePermission(int _o_rol_id, int _o_permiso_id, int _n_rol_id,
-            int _n_permiso_id)
+        //Metodo para actualizar un nuevo Permiso Rol
+        public bool updatePermissionRol(int _id, int _fkRol, int _fkPermiso, DateTime _date)
         {
-            return objRolPer.updateRolePermission(_o_rol_id, _o_permiso_id, _n_rol_id,
-             _n_permiso_id);
+            return objPerRol.updatePermissionRol(_id, _fkRol, _fkPermiso, _date);
         }
-
-        //Metodo para borrar un Rol-Permiso
-        public bool deleteRolePermision(int _rol_id, int _permiso_id)
+        //Metodo para borrar un Permiso Rol
+        public bool deletePermissionRol(int _idPermissionRol)
         {
-            return objRolPer.deleteRolePermision(_rol_id, _permiso_id);
+            return objPerRol.deletePermissionRol(_idPermissionRol);
         }
     }
 }

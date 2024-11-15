@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Web;
+using System.Security.Cryptography;
 using System.Linq;
 using System.Web.Services;
 using System.Web.UI;
@@ -83,8 +84,7 @@ namespace Presentation
             if (executed)
             {
                 LblMsg.Text = "El material se guardó exitosamente!";
-                showMaterials();
-                clearFields(); // Se invoca el metodo para limpiar los campos
+                clear(); // Se invoca el metodo para limpiar los campos
             }
             else
             {
@@ -96,12 +96,12 @@ namespace Presentation
         protected void BtnUpdate_Click(object sender, EventArgs e)
         {
             // Verifica si se ha seleccionado un material para actualizar
-            if (string.IsNullOrEmpty(TBId.Value))
+            if (string.IsNullOrEmpty(HFMaterialsID.Value))
             {
                 LblMsg.Text = "No se ha seleccionado un material para actualizar.";
                 return;
             }
-            _IdMat = Convert.ToInt32(TBId.Value);
+            _IdMat = Convert.ToInt32(HFMaterialsID.Value);
             _materialDescription = TBmaterialDescription.Text;
             _materialName = TBmaterialName.Text;
             _materialQuantity = Convert.ToInt32(TBmaterialQuantity.Text);
@@ -131,18 +131,11 @@ namespace Presentation
             return objMat.deleteMaterial(id);
         }
 
-        // Método para mostrar los materiales en el GridView
-        private void showMaterials()
-        {
-            DataSet ds = objMat.showMaterials();
-            GVMateriales.DataSource = ds;
-            GVMateriales.DataBind();
-        }
 
         // Método para limpiar los TextBox y el DDL
         private void clear()
         {
-            TBId.Value = "";
+            HFMaterialsID.Value = "";
             TBmaterialName.Text = "";
             TBmaterialDescription.Text = "";
             TBmaterialQuantity.Text = "";

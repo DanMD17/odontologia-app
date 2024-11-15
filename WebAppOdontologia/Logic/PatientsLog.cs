@@ -13,6 +13,11 @@ namespace Logic
     {
         PatientsDat objPat = new PatientsDat();
 
+        public DataSet showPatientsDDL()
+        {
+            return objPat.showPatientsDDL();
+        }
+
         // Método para mostrar todos los pacientes
         public DataSet showPatients()
         {
