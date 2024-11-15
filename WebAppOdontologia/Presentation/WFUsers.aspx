@@ -6,7 +6,6 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <form runat="server">
 
         <%--Id--%>
         <asp:HiddenField ID="HFUserId" runat="server" />
@@ -45,7 +44,6 @@
 
         <asp:Label ID="LblMsg" runat="server" Text=""></asp:Label>
 
-    </form>
 
     <%--Lista de Usuarios--%>
     <h2>Lista de Usuarios</h2>

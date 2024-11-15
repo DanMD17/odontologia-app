@@ -19,7 +19,7 @@ namespace Data
             DataSet objData = new DataSet();
             MySqlCommand objSelectCmd = new MySqlCommand();
             objSelectCmd.Connection = objPer.openConnection();
-            objSelectCmd.CommandText = "spSelectPatients"; // Procedimiento almacenado para seleccionar pacientes
+            objSelectCmd.CommandText = "spSelectPatient"; // Procedimiento almacenado para seleccionar pacientes
             objSelectCmd.CommandType = CommandType.StoredProcedure;
             objAdapter.SelectCommand = objSelectCmd;
             objAdapter.Fill(objData);
