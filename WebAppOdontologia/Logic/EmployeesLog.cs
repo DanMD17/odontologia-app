@@ -27,15 +27,15 @@ namespace Logic
         }
 
         //Metodo para guardar un nuevo empleado
-        public bool saveEmployee(string _identificacion, string _nombre, string _apellidos, string _celular, string _direccion, string _correo)
+        public bool saveEmployee(string _identificacion, string _nombre, string _apellidos, string _celular, string _correo, string _direccion)
         {
-            return objEmp.saveEmployee(_identificacion, _nombre, _apellidos, _celular, _direccion, _correo);
+            return objEmp.saveEmployee(_identificacion, _nombre, _apellidos, _celular, _correo, _direccion);
         }
 
         //Metodo para actualizar un empleado
-        public bool updateEmployee(int _id, string _identificacion, string _nombre, string _apellidos, string _celular, string _direccion, string _correo)
+        public bool updateEmployee(int _id, string _identificacion, string _nombre, string _apellidos, string _celular, string _correo, string _direccion)
         {
-            return objEmp.updateEmployee(_id, _identificacion, _nombre, _apellidos, _celular, _direccion, _correo);
+            return objEmp.updateEmployee(_id, _identificacion, _nombre, _apellidos, _celular, _correo, _direccion);
         }
 
         //Metodo para borrar un empleado

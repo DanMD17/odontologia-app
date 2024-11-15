@@ -48,7 +48,7 @@ namespace Presentation
                     Name = row["paci_nombre"],
                     LastName = row["paci_apellido"],
                     Address = row["paci_direccion"],
-                    CellPhone = row["paci_celular"],
+                    Phone = row["paci_celular"],
                     Email = row["paci_correo"],
                     DateOfBirth = row["paci_fecha_nacimiento"]
                 });
