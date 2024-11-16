@@ -27,6 +27,7 @@ namespace Presentation
         {
             if (!IsPostBack)
             {
+                TBDate.Text = DateTime.Now.ToString("yyyy-MM-dd");
                 showPatientsDDL();
                 showDentistsDDL();
                 //showQuotes();
@@ -51,8 +52,8 @@ namespace Presentation
                 quotesList.Add(new
                 {
                     QuoteID = row["cita_id"],
-                    Date = row["cita_fecha"],
-                    Time = row["cita_hora"],
+                    Date = Convert.ToDateTime(row["cita_fecha"]).ToString("yyyy-MM-dd"),
+                    Time = TimeSpan.Parse(row["cita_hora"].ToString()).ToString(@"hh\:mm"),
                     Status = row["cita_estado"],
                     FkPatientId = row["tbl_pacientes_paci_id"],
                     NamePatient = row["paci_nombre"],
@@ -99,7 +100,7 @@ namespace Presentation
         private void clear()
         {
             HFQuoteID.Value = "";
-            TBDate.Text = "";
+            TBDate.Text = DateTime.Now.ToString("yyyy-MM-dd");
             TBTime.Text = "";
             TBStatus.Text = "";
             DDLPatient.SelectedIndex = 0;
@@ -109,7 +110,7 @@ namespace Presentation
         // Evento que se ejecuta cuando se da clic en el botón guardar
         protected void BtnSave_Click(object sender, EventArgs e)
         {
-            _date = Convert.ToDateTime(TBDate.Text);
+            _date = DateTime.Parse(TBDate.Text);
             _time = TimeSpan.Parse(TBTime.Text);
             _status = TBStatus.Text;
             _fkPatientId = Convert.ToInt32(DDLPatient.SelectedValue);
@@ -130,7 +131,7 @@ namespace Presentation
 
         // Evento del botón actualizar
         protected void BtnUpdate_Click(object sender, EventArgs e)
-        {
+        {            
             if (string.IsNullOrEmpty(HFQuoteID.Value))
             {
                 LblMsg.Text = "No se ha seleccionado una cita para actualizar.";
@@ -138,7 +139,7 @@ namespace Presentation
             }
 
             _quoteId = Convert.ToInt32(HFQuoteID.Value);
-            _date = Convert.ToDateTime(TBDate.Text);
+            _date = DateTime.Parse(TBDate.Text);
             _time = TimeSpan.Parse(TBTime.Text);
             _status = TBStatus.Text;
             _fkPatientId = Convert.ToInt32(DDLPatient.SelectedValue);

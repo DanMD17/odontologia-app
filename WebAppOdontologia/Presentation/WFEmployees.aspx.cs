@@ -52,8 +52,8 @@ namespace Presentation
                     Name = row["emp_nombre"],
                     LastName = row["emp_apellidos"],
                     CellPhone = row["emp_celular"],
-                    Address = row["emp_direccion"],
-                    Email = row["emp_correo"]
+                    Email = row["emp_correo"],
+                    Address = row["emp_direccion"]
                 });
             }
 
@@ -80,8 +80,8 @@ namespace Presentation
             TBName.Text = "";
             TBLastName.Text = "";
             TBCellPhone.Text = "";
-            TBAddress.Text = "";
             TBEmail.Text = "";
+            TBAddress.Text = "";
         }
 
         //Evento del boton de guardar
@@ -91,10 +91,10 @@ namespace Presentation
             _name = TBName.Text;
             _lastName = TBLastName.Text;
             _cellPhone = TBCellPhone.Text;
-            _address = TBAddress.Text;
             _email = TBEmail.Text;
+            _address = TBAddress.Text;
 
-            executed = objEmp.saveEmployee(_identification, _name, _lastName, _cellPhone, _address, _email);
+            executed = objEmp.saveEmployee(_identification, _name, _lastName, _cellPhone, _email, _address);
 
             if (executed)
             {
@@ -123,7 +123,7 @@ namespace Presentation
             _address = TBAddress.Text;
             _email = TBEmail.Text;
 
-            executed = objEmp.updateEmployee(_idEmp, _identification, _name, _lastName, _cellPhone, _address, _email);
+            executed = objEmp.updateEmployee(_idEmp, _identification, _name, _lastName, _cellPhone, _email, _address);
 
             if (executed)
             {

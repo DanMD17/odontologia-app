@@ -36,7 +36,7 @@
 
     <%--Lista de Historiales Clinicos--%>
     <h2>Lista de Historias Clinicas</h2>
-    <table id="productsTable" class="display" style="width: 100%">
+    <table id="ClinicalHistoryTable" class="display" style="width: 100%">
         <thead>
             <tr>
                 <th>HistorialID</th>
@@ -44,7 +44,6 @@
                 <th>DescripcionGeneral</th>
                 <th>FkPaciente</th>
                 <th>Paciente</th>
-
             </tr>
         </thead>
         <tbody>

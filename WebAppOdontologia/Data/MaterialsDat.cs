@@ -66,7 +66,7 @@ namespace Data
 
             MySqlCommand objSelectCmd = new MySqlCommand();
             objSelectCmd.Connection = objPer.openConnection();
-            objSelectCmd.CommandText = "spUpdateMaterial";
+            objSelectCmd.CommandText = "spUpdateMaterials";
             objSelectCmd.CommandType = CommandType.StoredProcedure;
             objSelectCmd.Parameters.Add("p_mate_id", MySqlDbType.Int32).Value = _materialId;
             objSelectCmd.Parameters.Add("p_mate_nombre", MySqlDbType.VarString).Value = _nombre;

@@ -48,11 +48,11 @@ namespace Presentation
             {
                 materialsList.Add(new
                 {
-                    MaterialID = row["material_id"],
-                    Nombre = row["material_nombre"],
-                    Descripcion = row["material_descripcion"],
-                    Cantidad = row["material_cantidad"],
-                    FkTratamiento = row["tbl_tratamiento_trata_id"],
+                    MaterialID = row["mate_id"],
+                    Nombre = row["mate_nombre"],
+                    Descripcion = row["mate_descripcion"],
+                    Cantidad = row["mate_cantidad"],
+                    FkTratamiento = row["tbl_tratamientos_realizados_trata_id"],
                     Tratamiento = row["trata_nombre"]
                 });
             }
@@ -79,7 +79,7 @@ namespace Presentation
             _materialQuantity = Convert.ToInt32(TBmaterialQuantity.Text);
             _fkTrataId = Convert.ToInt32(DDLTreatments.SelectedValue);
 
-            executed = objMat.saveMaterial(_materialDescription, _materialName, _materialQuantity, _fkTrataId);
+            executed = objMat.saveMaterial(_materialName, _materialDescription, _materialQuantity, _fkTrataId);
 
             if (executed)
             {
@@ -107,7 +107,7 @@ namespace Presentation
             _materialQuantity = Convert.ToInt32(TBmaterialQuantity.Text);
             _fkTrataId = Convert.ToInt32(DDLTreatments.SelectedValue);
 
-            executed = objMat.updateMaterial(_IdMat, _materialDescription, _materialName, _materialQuantity, _fkTrataId);
+            executed = objMat.updateMaterial(_IdMat, _materialName, _materialDescription, _materialQuantity, _fkTrataId);
 
             if (executed)
             {

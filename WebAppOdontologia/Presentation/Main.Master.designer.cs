@@ -141,6 +141,33 @@ namespace Presentation
         protected global::System.Web.UI.HtmlControls.HtmlAnchor linkUsers;
 
         /// <summary>
+        /// Control linkRoles.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor linkRoles;
+
+        /// <summary>
+        /// Control linkPermission.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor linkPermission;
+
+        /// <summary>
+        /// Control linkPermissionRol.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor linkPermissionRol;
+
+        /// <summary>
         /// Control linkLogOut.
         /// </summary>
         /// <remarks>

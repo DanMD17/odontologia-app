@@ -24,14 +24,15 @@
     <asp:Label ID="Label4" runat="server" Text="Ingrese el numero de celular"></asp:Label>
     <asp:TextBox ID="TBCellPhone" runat="server"></asp:TextBox>
     <br />
-    <%--Direccion--%>
-    <asp:Label ID="Label5" runat="server" Text="Ingrese la direccion"></asp:Label>
-    <asp:TextBox ID="TBAddress" runat="server"></asp:TextBox>
-    <br />
     <%--Correo Electronico--%>
     <asp:Label ID="Label6" runat="server" Text="Ingrese el correo"></asp:Label>
     <asp:TextBox ID="TBEmail" runat="server"></asp:TextBox>
     <br />
+    <%--Direccion--%>
+    <asp:Label ID="Label5" runat="server" Text="Ingrese la direccion"></asp:Label>
+    <asp:TextBox ID="TBAddress" runat="server"></asp:TextBox>
+    <br />
+    
     <%--Botones guardar y actualizar--%>
     <div>
         <asp:Button ID="BtnSave" runat="server" Text="Guardar" OnClick="BtnSave_Click" />
@@ -49,8 +50,8 @@
                 <th>Nombre</th>
                 <th>Apellidos</th>
                 <th>Celular</th>
-                <th>Direccion</th>
                 <th>Correo</th>
+                <th>Direccion</th>
             </tr>
         </thead>
         <tbody>
@@ -82,8 +83,8 @@
                   { "data": "Name" },
                   { "data": "LastName" },
                   { "data": "CellPhone" },
-                  { "data": "Address" },
                   { "data": "Email" },
+                  { "data": "Address" },
                   {
                       "data": null,
                       "render": function (data, type, row) {
@@ -133,8 +134,8 @@
           $('#<%= TBName.ClientID %>').val(rowData.Name);
           $('#<%= TBLastName.ClientID %>').val(rowData.LastName);
           $('#<%= TBCellPhone.ClientID %>').val(rowData.CellPhone);
-          $('#<%= TBAddress.ClientID %>').val(rowData.Address);
           $('#<%= TBEmail.ClientID %>').val(rowData.Email);
+          $('#<%= TBAddress.ClientID %>').val(rowData.Address);
       }
 
       // Función para eliminar un empleado

@@ -72,7 +72,7 @@ namespace Data
             // Se crea un comando MySQL para insertar un nuevo producto utilizando un procedimiento almacenado.
             MySqlCommand objSelectCmd = new MySqlCommand();
             objSelectCmd.Connection = objPer.openConnection();
-            objSelectCmd.CommandText = "spInsertAssistants"; //nombre del procedimiento almacenado
+            objSelectCmd.CommandText = "spInsertAssistant"; //nombre del procedimiento almacenado
             objSelectCmd.CommandType = CommandType.StoredProcedure;
 
             // Se agregan parámetros al comando para pasar los valores del producto.
@@ -113,7 +113,7 @@ namespace Data
             objSelectCmd.CommandType = CommandType.StoredProcedure;
 
             // Se agregan parámetros al comando para pasar los valores del producto.
-            objSelectCmd.Parameters.Add("p_aux_funcion", MySqlDbType.Int32).Value = _id;
+            objSelectCmd.Parameters.Add("p_aux_id", MySqlDbType.Int32).Value = _id;
             objSelectCmd.Parameters.Add("p_emp_id", MySqlDbType.Int32).Value = _fkEmpId;
             objSelectCmd.Parameters.Add("p_aux_funcion", MySqlDbType.VarString).Value = _auxFuncion;
             objSelectCmd.Parameters.Add("p_aux_nivel_educativo", MySqlDbType.VarString).Value = _auxNivelEducativo;

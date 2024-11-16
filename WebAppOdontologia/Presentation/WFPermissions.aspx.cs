@@ -46,9 +46,9 @@ namespace Presentation
             {
                 permisosList.Add(new
                 {
-                    ID = row["per_id"],
+                    PermissionID = row["per_id"],
                     Name = row["per_nombre"],
-                    Description = row["per_descripcion"],
+                    Description = row["per_descripcion"]
                 });
             }
             // Devuelve un objeto en formato JSON que contiene la lista de productos.
@@ -57,7 +57,7 @@ namespace Presentation
         [WebMethod]
 
         //Método para eliminar un Permiso
-        public static bool deletePermission(int id)
+        public static bool DeletePermission(int id)
         {
             // Crear una instancia de la clase de lógica de rol
             PermissionsLog objPer = new PermissionsLog();

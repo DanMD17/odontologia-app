@@ -96,7 +96,7 @@ namespace Presentation
         //Boton de guardar un historial clinico
         protected void BtnSave_Click(object sender, EventArgs e)
         {
-            _pCreacionDate = Convert.ToDateTime(TBCreacionDate.Text);
+            _pCreacionDate = DateTime.Parse(TBCreacionDate.Text);
             _pOverview = TBOverview.Text;
             _fkPatient = Convert.ToInt32(DDLPatient.SelectedValue);
 
@@ -123,12 +123,12 @@ namespace Presentation
                 return;
             }
             _id = Convert.ToInt32(HFClinicalHistoryID.Value);
-            _pCreacionDate = Convert.ToDateTime(TBCreacionDate.Text);
+            _pCreacionDate = DateTime.Parse(TBCreacionDate.Text);
             _pOverview = TBOverview.Text;
             _fkPatient = Convert.ToInt32(DDLPatient.SelectedValue);
 
 
-            executed = objCliH.updateClinicalHistory(_fkPatient, _pCreacionDate, _pOverview, _id);
+            executed = objCliH.updateClinicalHistory(_id, _pCreacionDate, _pOverview, _fkPatient);
 
             if (executed)
             {

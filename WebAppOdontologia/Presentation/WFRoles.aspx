@@ -62,8 +62,8 @@
                 },
                 "columns": [
                     { "data": "RolID" },
-                    { "data": "Nombre" },
-                    { "data": "Descripcion" },
+                    { "data": "Name" },
+                    { "data": "Description" },
                     {
                         "data": null,
                         "render": function (data, type, row) {
@@ -106,8 +106,8 @@
         // Función para cargar datos del rol en los campos de edición y actualizar 
         function loadRoleData(rowData) {
             $('#<%= HFRolID.ClientID %>').val(rowData.RolID);
-            $('#<%= TBNombreRol.ClientID %>').val(rowData.Nombre);
-            $('#<%= TBDescripcionRol.ClientID %>').val(rowData.Descripcion);
+            $('#<%= TBNombreRol.ClientID %>').val(rowData.Name);
+            $('#<%= TBDescripcionRol.ClientID %>').val(rowData.Description);
         }
 
         // Función para eliminar un rol

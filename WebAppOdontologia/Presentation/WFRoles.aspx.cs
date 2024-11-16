@@ -43,7 +43,7 @@ namespace Presentation
             {
                 rolesList.Add(new
                 {
-                    RoleID = row["rol_id"],
+                    RolID = row["rol_id"],
                     Name = row["rol_nombre"],
                     Description = row["rol_descripcion"]
                 });
@@ -74,7 +74,7 @@ namespace Presentation
         }
 
         // Botón de guardar un rol
-        protected void BtnSaveRole_Click(object sender, EventArgs e)
+        protected void BtnSave_Click(object sender, EventArgs e)
         {
             // Asignar los valores de los campos a las variables
             _nombre = TBNombreRol.Text;

@@ -27,6 +27,7 @@ namespace Presentation
         {
             if (!IsPostBack)
             {
+                TBDate.Text = DateTime.Now.ToString("yyyy-MM-dd");
                 showQuotesDDL();
                 showClinicalHistoriesDDL();
                 showAssistantsDDL();
@@ -54,7 +55,7 @@ namespace Presentation
                     TreatmentID = row["trata_id"],
                     Name = row["trata_nombre"],
                     Description = row["trata_descripcion"],
-                    Date = row["trata_fecha"],
+                    Date = Convert.ToDateTime(row["trata_fecha"]).ToString("yyyy-MM-dd"),
                     Observations = row["trata_observaciones"],
                     FkCitaId = row["tbl_citas_cita_id"],
                     StatusQuote = row["cita_estado"],
@@ -116,7 +117,7 @@ namespace Presentation
             TBName.Text = "";
             TBDescription.Text = "";
             TBObservations.Text = "";
-            TBDate.Text = "";
+            TBDate.Text = DateTime.Now.ToString("yyyy-MM-dd");
             DDLQuotes.SelectedIndex = 0;
             DDLHistory.SelectedIndex = 0;
             DDLAux.SelectedIndex = 0;
@@ -128,7 +129,7 @@ namespace Presentation
             _name = TBName.Text;
             _description = TBDescription.Text;
             _observations = TBObservations.Text;
-            _date = Convert.ToDateTime(TBDate.Text);
+            _date = DateTime.Parse(TBDate.Text);
             _fkCitaId = Convert.ToInt32(DDLQuotes.SelectedValue);
             _fkHistId = Convert.ToInt32(DDLHistory.SelectedValue);
             _fkAuxId = Convert.ToInt32(DDLAux.SelectedValue);
@@ -159,7 +160,7 @@ namespace Presentation
             _name = TBName.Text;
             _description = TBDescription.Text;
             _observations = TBObservations.Text;
-            _date = Convert.ToDateTime(TBDate.Text);
+            _date = DateTime.Parse(TBDate.Text);
             _fkCitaId = Convert.ToInt32(DDLQuotes.SelectedValue);
             _fkHistId = Convert.ToInt32(DDLHistory.SelectedValue);
             _fkAuxId = Convert.ToInt32(DDLAux.SelectedValue);

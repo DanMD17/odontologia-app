@@ -34,6 +34,7 @@
     <%-- Botón guardar --%>
     <div>
         <asp:Button ID="BtnSave" runat="server" Text="Guardar" OnClick="BtnSave_Click" />
+        <asp:Button ID="BtnUpdate" runat="server" Text="Actualizar" OnClick="BtnUpdate_Click" />
         <asp:Label ID="LblMsg" runat="server" Text=""></asp:Label>
     </div>
     <br />
@@ -80,20 +81,20 @@
                   }
               },
               "columns": [
-                  { "data": "DiagnosisID" },
+                  { "data": "DiagID" },
                   { "data": "Description" },
                   { "data": "Date" },
                   { "data": "Observations" },
                   { "data": "FkQuotes", "visible": false },
                   { "data": "Status" },
                   { "data": "FkClinicalHistory", "visible": false },
-                  { "data": "Description" },
+                  { "data": "DescriptionCH" },
                  
                   {
                       "data": null,
                       "render": function (data, type, row) {
-                          return `<button class="edit-btn" data-id="${row.DiagnosisID}">Editar</button>
-                             <button class="delete-btn" data-id="${row.DiagnosisID}">Eliminar</button>`;
+                          return `<button class="edit-btn" data-id="${row.DiagID}">Editar</button>
+                             <button class="delete-btn" data-id="${row.DiagID}">Eliminar</button>`;
                       }
                   }
               ],
@@ -133,7 +134,7 @@
 
       // Cargar los datos en los TextBox y DDL para actualizar
       function loadDiagnosisData(rowData) {
-          $('#<%= HFDiagnosisID.ClientID %>').val(rowData.DiagnosisID);
+          $('#<%= HFDiagnosisID.ClientID %>').val(rowData.DiagID);
           $('#<%= TBDescription.ClientID %>').val(rowData.Description);
           $('#<%= TBDate.ClientID %>').val(rowData.Date);
           $('#<%= TBObservations.ClientID %>').val(rowData.Observations);
