@@ -25,7 +25,7 @@
 
         <%--Botones de Guardar y Actualizar--%>
         <asp:Button ID="BtnSave" runat="server" Text="Guardar" OnClick="BtnSave_Click" CssClass="btn btn-primary" />
-        <asp:Button ID="BtnUpdate" runat="server" Text="Actualizar" OnClick="BtnUpdate_Click" CssClass="btn btn-secondary" Visible="false" />
+        <asp:Button ID="BtnUpdate" runat="server" Text="Actualizar" OnClick="BtnUpdate_Click" CssClass="btn btn-secondary" />
         <asp:Label ID="LblMsg" runat="server" Text="" CssClass="msg-label"></asp:Label>
     </div>
     <br />
@@ -37,10 +37,9 @@
             <tr>
                 <th>AuxiliarID</th>
                 <th>Función</th>
-                <th>Nivel Educativo</th>
-                <th>Fk Empleado</th>
+                <th>NivelEducativo</th>
+                <th>FkEmpleado</th>
                 <th>Empleado</th>
-                <th>Acciones</th>
             </tr>
         </thead>
         <tbody></tbody>

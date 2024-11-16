@@ -50,14 +50,14 @@ namespace Presentation
             {
                 diagnosisList.Add(new
                 {
-                    DiagID = row["usu_id"],
-                    Descrption = row["diag_correo"],
-                    Date = row["diag_fecha"],
+                    DiagID = row["diag_id"],
+                    Description = row["diag_descripcion"],
+                    Date = Convert.ToDateTime(row["diag_fecha"]).ToString("yyyy-MM-dd"),
                     Observations = row["diag_observaciones"],
                     FkQuotes = row["tbl_citas_cita_id"],
                     Status = row["cita_estado"],
                     FkClinicalHistory = row["tbl_historialclinico_hist_id"],
-                    Description = row["hist_descripcion_general"]
+                    DescriptionCH = row["hist_descripcion_general"]
                 });
             }
 
@@ -117,7 +117,6 @@ namespace Presentation
             if (executed)
             {
                 LblMsg.Text = "El Diagnostico se guardo exitosamente!";
-
             }
             else
             {

@@ -84,7 +84,7 @@ namespace Data
             MySqlCommand objSelectCmd = new MySqlCommand();
             objSelectCmd.Connection = objPer.openConnection();
 
-            objSelectCmd.CommandText = "spUpdatePatient"; // Nombre del procedimiento almacenado
+            objSelectCmd.CommandText = "spUpdatePatients"; // Nombre del procedimiento almacenado
             objSelectCmd.CommandType = CommandType.StoredProcedure;
 
             // Agregar parámetros al comando

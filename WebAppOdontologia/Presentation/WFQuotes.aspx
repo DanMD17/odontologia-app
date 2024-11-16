@@ -5,7 +5,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <%--Formulario para Citas--%>
-    <asp:HiddenField ID="HFQuoteID" runat="server" Visible="false"></asp:HiddenField>
+    <asp:HiddenField ID="HFQuoteID" runat="server"></asp:HiddenField>
 
     <asp:Label ID="Label1" runat="server" Text="Ingrese la fecha de la cita"></asp:Label>
     <asp:TextBox ID="TBDate" runat="server" TextMode="Date"></asp:TextBox>
@@ -119,14 +119,14 @@
         });
     });
 
-    // Función para cargar los datos de la cita en el formulario
-    function loadQuoteData(rowData) {
-        $('#<%= HFQuoteID.ClientID %>').val(rowData.QuoteID);
-        $('#<%= TBDate.ClientID %>').val(rowData.Date);
-        $('#<%= TBTime.ClientID %>').val(rowData.Time);
-        $('#<%= TBStatus.ClientID %>').val(rowData.Status);
-        $('#<%= DDLPatient.ClientID %>').val(rowData.FkPatientId);
-        $('#<%= DDLDentist.ClientID %>').val(rowData.FkDentistId);
+        // Función para cargar los datos de la cita en el formulario
+        function loadQuoteData(rowData) {
+            $('#<%= HFQuoteID.ClientID %>').val(rowData.QuoteID);
+            $('#<%= TBDate.ClientID %>').val(rowData.Date);
+            $('#<%= TBTime.ClientID %>').val(rowData.Time);
+            $('#<%= TBStatus.ClientID %>').val(rowData.Status);
+            $('#<%= DDLPatient.ClientID %>').val(rowData.FkPatientId);
+            $('#<%= DDLDentist.ClientID %>').val(rowData.FkDentistId);
     }
 
     // Función para eliminar una cita

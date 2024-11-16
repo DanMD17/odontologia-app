@@ -50,7 +50,7 @@ namespace Presentation
                     AssistantID = row["aux_id"],
                     Function = row["aux_funcion"],
                     EducationalLevel = row["aux_nivel_educativo"],
-                    FkEmployee = row["tbl_empleado_emp_id"],
+                    FkEmployee = row["tbl_empleados_emp_id"],
                     NameEmployee = row["emp_nombre"]
                 });
             }
@@ -122,7 +122,7 @@ namespace Presentation
             _educationalLevel = TBEducationalLevel.Text;
             _fkEmployee = Convert.ToInt32(DDLEmployee.SelectedValue);
 
-            executed = objAux.updateAssistant(_idAux, _fkEmployee, _function, _function);
+            executed = objAux.updateAssistant(_idAux, _fkEmployee, _function, _educationalLevel);
 
             if (executed)
             {

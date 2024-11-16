@@ -49,16 +49,16 @@ namespace Data
             int row;
             MySqlCommand objInsertCmd = new MySqlCommand();
             objInsertCmd.Connection = objPer.openConnection();
-            objInsertCmd.CommandText = "spInserTreatmentPerformed";
+            objInsertCmd.CommandText = "spInsertTreatmentPerformed";
             objInsertCmd.CommandType = CommandType.StoredProcedure;
 
             objInsertCmd.Parameters.Add("p_trata_nombre", MySqlDbType.VarChar).Value = _nombre;
             objInsertCmd.Parameters.Add("p_trata_descripcion", MySqlDbType.VarChar).Value = _descripcion;
             objInsertCmd.Parameters.Add("p_trata_fecha", MySqlDbType.Date).Value = _fecha;
             objInsertCmd.Parameters.Add("p_trata_observaciones", MySqlDbType.Text).Value = _observaciones;
-            objInsertCmd.Parameters.Add("p_cita_id", MySqlDbType.Int32).Value = _fkCitaId;
-            objInsertCmd.Parameters.Add("p_hist_id", MySqlDbType.Int32).Value = _fkHistId;
-            objInsertCmd.Parameters.Add("p_aux_id", MySqlDbType.Int32).Value = _fkAuxId;
+            objInsertCmd.Parameters.Add("p_trata_cita_id", MySqlDbType.Int32).Value = _fkCitaId;
+            objInsertCmd.Parameters.Add("p_trata_hist_id", MySqlDbType.Int32).Value = _fkHistId;
+            objInsertCmd.Parameters.Add("p_trata_aux_id", MySqlDbType.Int32).Value = _fkAuxId;
 
             try
             {

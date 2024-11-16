@@ -11,7 +11,7 @@ using System.Web.UI.WebControls;
 
 namespace Presentation
 {
-    public partial class WFPermissionsRoles : System.Web.UI.Page
+    public partial class WFRolesPermissions : System.Web.UI.Page
     {
         //Crear los objetos
         PermissionsLog objPer = new PermissionsLog();
@@ -50,11 +50,11 @@ namespace Presentation
                 permissionsRolesList.Add(new
                 {
                     RolPermisoID = row["rol_permiso"],
-                    RolID = row["tbl_rol_rol_id"],
+                    RolID = row["tbl_roles_rol_id"],
                     NameRol = row["rol_nombre"],
-                    PermissionID = row["tbl_permiso_per_id"],
+                    PermissionID = row["tbl_permisos_id_per"],
                     NamePermission = row["per_nombre"],
-                    Date = Convert.ToDateTime(row["per_rol_fecha_asignacion"]).ToString("yyyy-MM-dd"), // Formato de fecha específico.
+                    Date = Convert.ToDateTime(row["per_rol_fecha_asignacion"]).ToString("yyyy-MM-dd") // Formato de fecha específico.
                 });
             }
 

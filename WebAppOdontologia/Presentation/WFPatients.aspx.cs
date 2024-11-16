@@ -50,7 +50,7 @@ namespace Presentation
                     Address = row["paci_direccion"],
                     Phone = row["paci_celular"],
                     Email = row["paci_correo"],
-                    DateOfBirth = row["paci_fecha_nacimiento"]
+                    DateOfBirth = Convert.ToDateTime(row["paci_fecha_nacimiento"]).ToString("yyyy-MM-dd")
                 });
             }
 
@@ -77,7 +77,7 @@ namespace Presentation
             TBAddress.Text = "";
             TBPhone.Text = "";
             TBEmail.Text = "";
-            TBDateOfBirth.Text = "";
+            TBDateOfBirth.Text = DateTime.Now.ToString("yyyy-MM-dd");
         }
 
         // Evento que se ejecuta cuando se da clic en el botón guardar
@@ -88,7 +88,7 @@ namespace Presentation
             _address = TBAddress.Text;
             _cellPhone = TBPhone.Text;
             _email = TBEmail.Text;
-            _dateOfBirth = Convert.ToDateTime(TBDateOfBirth.Text);
+            _dateOfBirth = DateTime.Parse(TBDateOfBirth.Text);
 
             executed = objPat.savePatient(_name, _lastName, _dateOfBirth, _address, _cellPhone, _email);
 
@@ -117,7 +117,7 @@ namespace Presentation
             _address = TBAddress.Text;
             _cellPhone = TBPhone.Text;
             _email = TBEmail.Text;
-            _dateOfBirth = Convert.ToDateTime(TBDateOfBirth.Text);
+            _dateOfBirth = DateTime.Parse(TBDateOfBirth.Text);
 
             executed = objPat.updatePatient(_patientId, _name, _lastName, _dateOfBirth, _address, _cellPhone, _email);
 

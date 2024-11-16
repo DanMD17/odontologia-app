@@ -84,7 +84,7 @@ namespace Data
             objSelectCmd.CommandText = "spUpdateClinicalHistory"; // Nombre del procedimiento almacenado
             objSelectCmd.CommandType = CommandType.StoredProcedure;
 
-            objSelectCmd.Parameters.Add("p_hist_historial_id", MySqlDbType.Int32).Value = _pHistorialId;
+            objSelectCmd.Parameters.Add("p_hist_id", MySqlDbType.Int32).Value = _pHistorialId;
             objSelectCmd.Parameters.Add("p_hist_fecha_creacion", MySqlDbType.DateTime).Value = _pFechaCreacion;
             objSelectCmd.Parameters.Add("p_hist_descripcion_general", MySqlDbType.Text).Value = _pDescripcionGeneral;
             objSelectCmd.Parameters.Add("p_hist_pac_id", MySqlDbType.Int32).Value = _fkPacId;

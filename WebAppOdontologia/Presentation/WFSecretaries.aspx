@@ -21,7 +21,7 @@
     <asp:DropDownList ID="DDLEmployee" runat="server" CssClass="fromn-select"></asp:DropDownList>
     <br />
     <asp:Button ID="BtnSave" runat="server" Text="Guardar" OnClick="BtnSave_Click" />
-    <asp:Button ID="BtnUpdate" runat="server" Text="Actualizar" />
+    <asp:Button ID="BtnUpdate" runat="server" Text="Actualizar" OnClick="BtnUpdate_Click" />
     <asp:Label ID="LblMsg" runat="server" Text=""></asp:Label>
     <br />
 

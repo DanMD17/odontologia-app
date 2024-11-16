@@ -11,17 +11,8 @@ namespace Presentation
 {
 
 
-    public partial class WFPermissionsRoles
+    public partial class WFRolesPermissions
     {
-
-        /// <summary>
-        /// Control FrmPermissionRol.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm FrmPermissionRol;
 
         /// <summary>
         /// Control HFRolPermisoID.

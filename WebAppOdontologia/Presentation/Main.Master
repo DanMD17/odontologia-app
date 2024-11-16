@@ -24,6 +24,9 @@
             <a id="linkSecretaries" runat="server" href="WFSecretaries.aspx">Secretarias</a>
             <a id="linkTreatments" runat="server" href="WFTreatments.aspx">Tratamientos realizados</a>
             <a id="linkUsers" runat="server" href="WFUsers.aspx">Usuarios</a>
+            <a id="linkRoles" runat="server" href="WFRoles.aspx">Roles</a>
+            <a id="linkPermission" runat="server" href="WFPermissions.aspx">Permisos</a>
+            <a id="linkPermissionRol" runat="server" href="WFRolesPermissions.aspx">Permisos Roles</a>
             <a id="linkLogOut" runat="server" href="#">Cerrar sesión</a>
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
             </asp:ContentPlaceHolder>

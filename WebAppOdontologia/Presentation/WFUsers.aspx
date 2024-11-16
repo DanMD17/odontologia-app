@@ -99,8 +99,7 @@
                     {
                         "data": null,
                         "render": function (row) {
-                            return '<button class="edit-btn" data-id="' + row.UserID + '">Editar</button> ' +
-                                '<button class="delete-btn" data-id="' + row.UserID + '">Eliminar</button>';
+                            return `<button class="edit-btn" data-id="${row.UserID}">Editar</button>`;
                         }
                     }
                 ],

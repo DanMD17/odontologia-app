@@ -57,10 +57,10 @@ namespace Presentation
                     Salt = row["usu_salt"],
                     State = row["usu_estado"],
                     Date = Convert.ToDateTime(row["usu_fecha_creacion"]).ToString("yyyy-MM-dd"), // Formato de fecha específico.
-                    FkRol = row["tbl_rol_rol_id"],
+                    FkRol = row["tbl_roles_rol_id"],
                     NameRol = row["rol_nombre"],
-                    FkEmployee = row["tbl_empleado_emp_id"],
-                    NameEmployee = row["emp_nombres"]
+                    FkEmployee = row["tbl_empleados_emp_id"],
+                    NameEmployee = row["emp_nombre"]
                 });
             }
 
@@ -82,7 +82,7 @@ namespace Presentation
         {
             DDLEmployees.DataSource = objEmp.showEmployeesDDL();
             DDLEmployees.DataValueField = "emp_id";//Nombre de la llave primaria
-            DDLEmployees.DataTextField = "nombre";
+            DDLEmployees.DataTextField = "emp_nombre";
             DDLEmployees.DataBind();
             DDLEmployees.Items.Insert(0, "Seleccione");
         }
@@ -116,7 +116,7 @@ namespace Presentation
             _fkrol = Convert.ToInt32(DDLRol.SelectedValue);
             _fkemployee = Convert.ToInt32(DDLEmployees.SelectedValue);
 
-            executed = objUse.saveUser(_mail, _encryptedPassword, _salt, _state, _date, _fkrol, _fkemployee);
+            executed = objUse.saveUser(_mail, _encryptedPassword, _salt, _state, _date, _fkemployee, _fkrol);
 
             if (executed)
             {
@@ -152,7 +152,7 @@ namespace Presentation
             _fkrol = Convert.ToInt32(DDLRol.SelectedValue);
             _fkemployee = Convert.ToInt32(DDLEmployees.SelectedValue);
 
-            executed = objUse.updateUser(_id, _mail, _password, _salt, _state, _date, _fkemployee, _fkrol);
+            executed = objUse.updateUser(_id, _mail, _encryptedPassword, _salt, _state, _date, _fkemployee, _fkrol);
 
             if (executed)
             {

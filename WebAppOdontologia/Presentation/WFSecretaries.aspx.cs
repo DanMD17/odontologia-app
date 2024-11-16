@@ -50,7 +50,7 @@ namespace Presentation
                     SecretariatID = row["id_sec"],
                     Function = row["sec_funcion"],
                     YearsExp = row["sec_anios_experiencia"],
-                    FkEmployee = row["tbl_empleado_emp_id"],
+                    FkEmployee = row["tbl_empleados_emp_id"],
                     NameEmployee = row["emp_nombre"]
                 });
             }

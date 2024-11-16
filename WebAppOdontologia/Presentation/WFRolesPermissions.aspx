@@ -1,9 +1,9 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Main.Master" AutoEventWireup="true" CodeBehind="WFPermissionsRoles.aspx.cs" Inherits="Presentation.WFPermissionsRoles" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Main.Master" AutoEventWireup="true" CodeBehind="WFRolesPermissions.aspx.cs" Inherits="Presentation.WFRolesPermissions" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <form id="FrmPermissionRol" runat="server">
+
         <%--Id--%>
         <asp:HiddenField ID="HFRolPermisoID" runat="server" />
         <%--Roles--%>
@@ -22,7 +22,7 @@
         <asp:Button ID="BtnGuardar" runat="server" Text="Guardar" OnClick="BtnGuardar_Click" />
         <asp:Button ID="BtnActualizar" runat="server" Text="Actualizar" OnClick="BtnActualizar_Click" />
         <asp:Label ID="LblMsg" runat="server" Text=""></asp:Label>
-    </form>
+
     <%--Lista de Productos--%>
     <h2>Lista de Permisos Roles</h2>
     <table id="permisoRolTable" class="display" style="width: 100%">
@@ -50,7 +50,7 @@
                 "processing": true,
                 "serverSide": false,
                 "ajax": {
-                    "url": "WFPermissionsRoles.aspx/ListPermissionsRoles",// Se invoca el WebMethod Listar Permisos Roles
+                    "url": "WFRolesPermissions.aspx/ListPermissionsRoles",// Se invoca el WebMethod Listar Permisos Roles
                     "type": "POST",
                     "contentType": "application/json",
                     "data": function (d) {
@@ -121,7 +121,7 @@
         function deletePermissionsRoles(id) {
             $.ajax({
                 type: "POST",
-                url: "WFPermissionsRoles.aspx/DeletePermissionsRoles",// Se invoca el WebMethod Eliminar un Permiso Rol
+                url: "WFRolesPermissions.aspx/DeletePermissionsRoles",// Se invoca el WebMethod Eliminar un Permiso Rol
                 contentType: "application/json; charset=utf-8",
                 data: JSON.stringify({ id: id }),
                 success: function (response) {

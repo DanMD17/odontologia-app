@@ -37,7 +37,6 @@
                 <th>ID</th>
                 <th>NombrePermiso</th>
                 <th>Descripcion</th>
-
             </tr>
         </thead>
         <tbody>
@@ -53,7 +52,7 @@
                 "processing": true,
                 "serverSide": false,
                 "ajax": {
-                    "url": "WFPermissionsaspx/ListPermissions",// Se invoca el WebMethod Listar Permisos
+                    "url": "WFPermissions.aspx/ListPermissions",// Se invoca el WebMethod Listar Permisos
                     "type": "POST",
                     "contentType": "application/json",
                     "data": function (d) {
@@ -122,7 +121,7 @@
         function deletepermission(id) {
             $.ajax({
                 type: "POST",
-                url: "WFPermissions.aspx/deletePermision",// Se invoca el WebMethod Eliminar un Permiso
+                url: "WFPermissions.aspx/DeletePermission",// Se invoca el WebMethod Eliminar un Permiso
                 contentType: "application/json; charset=utf-8",
                 data: JSON.stringify({ id: id }),
                 success: function (response) {

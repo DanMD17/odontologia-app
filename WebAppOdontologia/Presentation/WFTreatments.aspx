@@ -5,7 +5,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <%--Formulario de Tratamientos--%>
-    <asp:HiddenField ID="HFTreatmentID" runat="server" Visible="false"></asp:HiddenField>
+    <asp:HiddenField ID="HFTreatmentID" runat="server"></asp:HiddenField>
     
     <%--Nombre--%>
     <asp:Label ID="Label1" runat="server" Text="Ingrese el nombre del tratamiento"></asp:Label>

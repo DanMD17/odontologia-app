@@ -47,7 +47,7 @@ namespace Presentation
                 {
                     DentistID = row["odo_id"],
                     Specialty = row["odo_especialidad"],
-                    FkEmployee = row["tbl_empleado_emp_id"],
+                    FkEmployee = row["tbl_empleados_emp_id"],
                     NameEmployee = row["emp_nombre"]
                 });
             }
@@ -116,7 +116,7 @@ namespace Presentation
             _specialty = TBSpecialty.Text;
             _fkEmployee = Convert.ToInt32(DDLEmployee.SelectedValue);
 
-            executed = objDen.updateDentist( _fkEmployee, _specialty, _idDen);
+            executed = objDen.updateDentist(_idDen, _specialty, _fkEmployee);
 
             if (executed)
             {
