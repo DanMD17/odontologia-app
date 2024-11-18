@@ -5,12 +5,144 @@
 <html>
 <head runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title></title>
+    <title>Cosultorio Odontologico</title>
+     <%--CSS Bootstrap--%>
+ <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+ <%--Iconos--%>
+ <link href="https://cdn.lineicons.com/5.0/lineicons.css" rel="stylesheet" />
+ <%--CSS Sidebar--%>
+ <link href="resources/css/stylesidebar.css" rel="stylesheet" />
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
 <body>
-    <form id="form1" runat="server">
+     <!-- Navbar -->
+ <nav class="navbar navbar-expand-lg navbar-white navbar-light">
+     <div class="container-fluid">
+         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+             <span class="navbar-toggler-icon"></span>
+         </button>
+         <a class="navbar-brand text-dark" href="WFIndex.aspx">OdontologiaApp</a>
+         <div class="collapse navbar-collapse" id="navbarNav">
+             <ul class="navbar-nav">
+                 <li class="nav-item">
+                     <a class="nav-link" href="#">Acerca de</a>
+                 </li>
+                 <li class="nav-item">
+                     <a class="nav-link" href="#">Ayuda</a>
+                 </li>
+             </ul>
+         </div>
+     </div>
+ </nav>
+
+ <div class="wrapper">
+     <!-- Sidebar -->
+     <aside id="sidebar">
+         <div class="d-flex">
+             <button class="toggle-btn" type="button">
+                 <i class="lni lni-dashboard-square-1"></i>
+             </button>
+             <div class="sidebar-logo">
+                 <a href="WFIndex.aspx">Inicio</a>
+             </div>
+         </div>
+         <ul class="sidebar-nav">
+             <li class="sidebar-item">
+                 <a href="WFAuxiliaries.aspx" class="sidebar-link">
+                     <i class="lni lni-user-multiple-4"></i>
+                     <span>Auxiliares</span>
+                 </a>
+             </li>
+             <li class="sidebar-item">
+                 <a href="WFDentists.aspx" class="sidebar-link">
+                     <i class="lni lni-cart-1"></i>
+                     <span>Dentistas</span>
+                 </a>
+             </li>
+             <li class="sidebar-item">
+                 <a href="WFMaterials.aspx" class="sidebar-link">
+                     <i class="lni lni-agenda"></i>
+                     <span>Materiales</span>
+                 </a>
+             </li>
+             <li class="sidebar-item">
+                 <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse"
+                     data-bs-target="#auth" aria-expanded="false" aria-controls="auth">
+                     <i class="lni lni-shield-2-check"></i>
+                     <span>Seguridad</span>
+                 </a>
+                 <ul id="auth" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+                     <li class="sidebar-item">
+                         <a href="WFUsers.aspx" class="sidebar-link">Usuarios</a>
+                     </li>
+                     <li class="sidebar-item">
+                         <a href="WFRoles.aspx" class="sidebar-link">Roles</a>
+                     </li>
+                     <li class="sidebar-item">
+                         <a href="WFPermissions.aspx" class="sidebar-link">Permisos</a>
+                     </li>
+                     <li class="sidebar-item">
+                         <a href="WFRolesPermissions.aspx" class="sidebar-link">Permisos Roles</a>
+                     </li>
+                 </ul>
+             </li>
+             <li class="sidebar-item">
+                 <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse"
+                     data-bs-target="#multi" aria-expanded="false" aria-controls="multi">
+                     <i class="lni lni-layout-9"></i>
+                     <span>Multi Level</span>
+                 </a>
+                 <ul id="multi" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+                     <li class="sidebar-item">
+                         <a href="#" class="sidebar-link collapsed" data-bs-toggle="collapse"
+                             data-bs-target="#multi-two" aria-expanded="false" aria-controls="multi-two">Two Links
+                         </a>
+                         <ul id="multi-two" class="sidebar-dropdown list-unstyled collapse">
+                             <li class="sidebar-item">
+                                 <a href="#" class="sidebar-link">Link 1</a>
+                             </li>
+                             <li class="sidebar-item">
+                                 <a href="#" class="sidebar-link">Link 2</a>
+                             </li>
+                         </ul>
+                     </li>
+                 </ul>
+             </li>
+             <li class="sidebar-item">
+                 <a href="#" class="sidebar-link">
+                     <i class="lni lni-message-3-text"></i>
+                     <span>Notification</span>
+                 </a>
+             </li>
+             <li class="sidebar-item">
+                 <a href="#" class="sidebar-link">
+                     <i class="lni lni-gear-1"></i>
+                     <span>Setting</span>
+                 </a>
+             </li>
+         </ul>
+         <div class="sidebar-footer">
+             <a href="Logout.aspx" class="sidebar-link">
+                 <i class="lni lni-exit"></i>
+                 <span>Cerrar sesión</span>
+             </a>
+         </div>
+     </aside>
+
+     <!-- Main Content -->
+     <div class="main p-3">
+         <div class="text-center">
+             <h1>Bienvenido al Consultorio Odontologico
+             </h1>
+         </div>
+                 <%-- Aqui va los elementos de los demas formularios --%>
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder2" runat="server">
+        </asp:ContentPlaceHolder>
+    </div>
+</div>
+    
         <div>
             <a id="linkInicio" runat="server" href="Index.aspx">Inicio</a>
             <a id="linkAuxiliaries" runat="server" href="WFAuxiliaries.aspx">Auxiliares</a>
@@ -27,10 +159,10 @@
             <a id="linkRoles" runat="server" href="WFRoles.aspx">Roles</a>
             <a id="linkPermission" runat="server" href="WFPermissions.aspx">Permisos</a>
             <a id="linkPermissionRol" runat="server" href="WFRolesPermissions.aspx">Permisos Roles</a>
-            <a id="linkLogOut" runat="server" href="#">Cerrar sesión</a>
+            <a id="linkLogOut" runat="server" href="LogOut.aspx">Cerrar sesión</a>
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
             </asp:ContentPlaceHolder>
         </div>
-    </form>
+    
 </body>
 </html>

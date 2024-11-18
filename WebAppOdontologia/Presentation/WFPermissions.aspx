@@ -5,21 +5,41 @@
     <link href="resources/css/datatables.min.css" rel="stylesheet" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <br />
+
+    <form id="FrmPermission" runat="server">
 
         <%--ID--%>
         <asp:HiddenField ID="HFPermissionID" runat="server" />
+        <%--Nombre--%>
+        <asp:Label ID="Label3" runat="server" Text="">Permiso</asp:Label>
+        <asp:DropDownList ID="DDLNombrePer" runat="server">
+            <asp:ListItem Value="0">Seleccione</asp:ListItem>
+            <asp:ListItem Value="CREAR">Crear</asp:ListItem>
+            <asp:ListItem Value="ACTUALIZAR">Actualizar</asp:ListItem>
+            <asp:ListItem Value="MOSTRAR">Mostrar</asp:ListItem>
+            <asp:ListItem Value="ELIMINAR">Eliminar</asp:ListItem>
+        </asp:DropDownList>
+        <%--Valida que el DropDownList este seleccionado con algun valor--%>
+        <asp:RequiredFieldValidator ID="RFVNombrePer" runat="server"
+            ControlToValidate="DDLNombrePer"
+            InitialValue="0"
+            ErrorMessage="Debes seleccionar un Permiso."
+            ForeColor="Red">
+        </asp:RequiredFieldValidator>
         <br />
-        <%-- Nombre Permiso--%>
-        <asp:Label ID="Label1" runat="server" Text="Ingrese Nombre de Permiso"></asp:Label>
-        <asp:TextBox ID="TBName" runat="server"></asp:TextBox>
-        <br />
-
         <%-- Descripción Permiso--%>
         <asp:Label ID="Label2" runat="server" Text="Ingrese la descripcion"></asp:Label>
         <asp:TextBox ID="TBDescription" runat="server"></asp:TextBox>
         <br />
-
+        <%--Valida que el TextBox este lleno--%>
+        <asp:RequiredFieldValidator ID="RFVDescripcion"
+            runat="server"
+            ControlToValidate="TBDescripcion"
+            ForeColor="Red"
+            Display="Dynamic"
+            ErrorMessage="Este campo es obligatorio">
+        </asp:RequiredFieldValidator>
+        <br />
         <%-- Botones Guardar y actualizar --%>
         <div>
             <asp:Button ID="BtnSave" runat="server" Text="Guardar" OnClick="BtnSave_Click" />
@@ -28,8 +48,9 @@
         </div>
 
     <br />
+   </form>
     <%--Lista de Permisos --%>
-
+     <asp:Panel ID="PanelAdmin" runat="server">
     <h2>Lista de Permisos </h2>
     <table id="permissionTable" class="display" style="width: 100%">
         <thead>
@@ -42,7 +63,7 @@
         <tbody>
         </tbody>
     </table>
-
+     </asp:Panel>
     <script src="resources/js/datatables.min.js" type="text/javascript"></script>
 
     <%--Roles--%>
@@ -112,7 +133,7 @@
         // Cargar los datos en los TextBox 
         function loadPermissionData(rowData) {
             $('#<%= HFPermissionID.ClientID %>').val(rowData.PermissionID);
-            $('#<%= TBName.ClientID %>').val(rowData.Name);
+            $('#<%= DDLNombrePer.ClientID %>').val(rowData.Name);
             $('#<%= TBDescription.ClientID %>').val(rowData.Description);
 
         }
