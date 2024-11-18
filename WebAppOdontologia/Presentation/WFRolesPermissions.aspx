@@ -3,42 +3,67 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+   <div class="card m-1">
+    <div class="card-header">
+        Gestion de Permisos Roles
+    </div>
+    <div class="card-body">
+        <form id="FrmPermissionRol" runat="server">
+            <%--Id--%>
+            <asp:HiddenField ID="HFRolPermisoID" runat="server" />
+            <div class="row m-1">
+                <div class="col">
+                    <%--Roles--%>
+                    <asp:Label ID="Label1" CssClass="form-label" runat="server" Text="Roles"></asp:Label>
+                    <asp:DropDownList ID="DDLRoles" CssClass="form-select" runat="server"></asp:DropDownList>
+                </div>
+                <div class="col">
+                    <%--Permisos--%>
+                    <asp:Label ID="Label2" CssClass="form-label" runat="server" Text="Permisos"></asp:Label>
+                    <asp:DropDownList ID="DDLPermisos" CssClass="form-select" runat="server"></asp:DropDownList>
+                </div>
+                <div class="col-3">
+                    <%-- Fecha--%>
+                    <asp:Label ID="Label4" CssClass="form-label" runat="server" Text="Fecha de Asignación"></asp:Label>
+                    <asp:TextBox ID="TBDate" CssClass="form-control" runat="server" TextMode="Date"></asp:TextBox>
+                </div>
+            </div>
+            <div class="row m-2">
+                <div class="col">
+                    <%--Botones Guardar y Actualizar--%>
+                    <asp:Button ID="BtnGuardar" CssClass="btn btn-success" runat="server" Text="Guardar" OnClick="BtnGuardar_Click" />
+                    <asp:Button ID="BtnActualizar" CssClass="btn btn-primary" runat="server" Text="Actualizar" OnClick="BtnActualizar_Click" />
+                    <asp:Label ID="LblMsg" CssClass="form-label" runat="server" Text=""></asp:Label>
+                </div>
+            </div>
+        </form>
+    </div>
+   </div>
 
-        <%--Id--%>
-        <asp:HiddenField ID="HFRolPermisoID" runat="server" />
-        <%--Roles--%>
-        <asp:Label ID="Label1" runat="server" Text="Roles"></asp:Label>
-        <asp:DropDownList ID="DDLRoles" runat="server"></asp:DropDownList>
-        <br />
-        <%--Permisos--%>
-        <asp:Label ID="Label2" runat="server" Text="Permisos"></asp:Label>
-        <asp:DropDownList ID="DDLPermisos" runat="server"></asp:DropDownList>
-        <br />
-        <%-- Fecha--%>
-        <asp:Label ID="Label4" runat="server" Text="Fecha de Asignación"></asp:Label>
-        <asp:TextBox ID="TBDate" runat="server" TextMode="Date"></asp:TextBox>
-        <br />
-        <%--Botones Guardar y Actualizar--%>
-        <asp:Button ID="BtnGuardar" runat="server" Text="Guardar" OnClick="BtnGuardar_Click" />
-        <asp:Button ID="BtnActualizar" runat="server" Text="Actualizar" OnClick="BtnActualizar_Click" />
-        <asp:Label ID="LblMsg" runat="server" Text=""></asp:Label>
-
-    <%--Lista de Productos--%>
-    <h2>Lista de Permisos Roles</h2>
-    <table id="permisoRolTable" class="display" style="width: 100%">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>IdRol</th>
-                <th>Rol</th>
-                <th>IdPermiso</th>
-                <th>Permiso</th>
-                <th>Fecha de Asignación</th>
-            </tr>
-        </thead>
-        <tbody>
-        </tbody>
-    </table>
+    <div class="card m-1">
+        <asp:Panel ID="PanelAdmin" runat="server">
+            <div class="card-header">
+                Lista de Permisos Roles
+            </div>
+            <div class="card-body">
+                <%--Lista de Productos--%>
+                <table id="permisoRolTable" class="table table-hover display" style="width: 100%">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>IdRol</th>
+                            <th>Rol</th>
+                            <th>IdPermiso</th>
+                            <th>Permiso</th>
+                            <th>Fecha de Asignación</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </asp:Panel>
+    </div>
 
     <%--Datatables--%>
     <script src="resources/js/datatables.min.js" type="text/javascript"></script>
@@ -70,8 +95,8 @@
                     {
                         "data": null,
                         "render": function (row) {
-                            return `<button class="edit-btn" data-id="${row.RolPermisoID}">Editar</button>
-                             <button class="delete-btn" data-id="${row.RolPermisoID}">Eliminar</button>`;
+                            return `<button class="btn btn-info edit-btn" data-id="${row.RolPermisoID}">Editar</button>
+                             <button class="btn btn-danger delete-btn" data-id="${row.RolPermisoID}">Eliminar</button>`;
                         }
                     }
                 ],

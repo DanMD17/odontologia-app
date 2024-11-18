@@ -6,66 +6,98 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <div class="card m-1">
+    <div class="card-header">
+        Gestión de Usuarios
+    </div>
+    <div class="card-body">
+        <form runat="server">
+            <%--Id--%>
+            <asp:HiddenField ID="HFUserId" runat="server" />
+            <div class="row m-1">
+                <div class="col">
+                    <%--Correo--%>
+                    <asp:Label ID="Label1" CssClass="form-label" runat="server" Text="Ingrese el correo"></asp:Label>
+                    <asp:TextBox ID="TBMail" CssClass="form-control" runat="server" TextMode="Email"></asp:TextBox>
+                </div>
+                <div class="col-4">
+                    <%--Contraseña--%>
+                    <asp:Label ID="Label2" CssClass="form-label" runat="server" Text="Ingrese la contraseña"></asp:Label>
+                    <asp:TextBox ID="TBContrasena" CssClass="form-control" runat="server" TextMode="Password"></asp:TextBox>
+                </div>
+                <div class="col-2">
+                    <%--Estados--%>
+                    <asp:Label ID="Label3" CssClass="form-label" runat="server" Text="Estado"></asp:Label>
+                    <asp:DropDownList ID="DDLState" CssClass="form-select" runat="server">
+                        <asp:ListItem Value="0">Seleccione</asp:ListItem>
+                        <asp:ListItem Value="Activo">Activo</asp:ListItem>
+                        <asp:ListItem Value="Inactivo">Inactivo</asp:ListItem>
+                    </asp:DropDownList>
+                </div>
+            </div>
+            <div class="row m-1">
+                <div class="col-2">
+                    <%-- Fecha--%>
+                    <asp:Label ID="Label4" CssClass="form-label" runat="server" Text="Fecha de creación"></asp:Label>
+                    <asp:TextBox ID="TBDate" CssClass="form-control" runat="server" TextMode="Date"></asp:TextBox>
+                </div>
+                <div class="col-4">
+                    <%--Rol--%>
+                    <asp:Label ID="Label5" CssClass="form-label" runat="server" Text="Rol"></asp:Label>
+                    <asp:DropDownList ID="DDLRol" CssClass="form-select" runat="server"></asp:DropDownList>
+                </div>
+                <div class="col">
+                    <%--Empleado--%>
+                    <asp:Label ID="Label6" CssClass="form-label" runat="server" Text="Empleado"></asp:Label>
+                    <asp:DropDownList ID="DDLEmployees" CssClass="form-select" runat="server"></asp:DropDownList>
+                </div>
+            </div>
+            <div class="row m-1">
+                <div class="col">
+                    <%--Botones--%>
+                    <asp:Button ID="BtnSave" CssClass="btn btn-success" runat="server" Text="Guardar" OnClick="BtnSave_Click" />
+                    <asp:Button ID="BtnUpdate" CssClass="btn btn-primary" runat="server" Text="Actualizar" OnClick="BtnUpdate_Click" />
+                    <asp:Label ID="Label7" CssClass="form-label" runat="server" Text=""></asp:Label>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+    <asp:Label ID="LblMsg" runat="server" Text=""></asp:Label>
 
-        <%--Id--%>
-        <asp:HiddenField ID="HFUserId" runat="server" />
-
-        <%--Correo--%>
-        <asp:Label ID="Label1" runat="server" Text="Ingrese el correo"></asp:Label>
-        <asp:TextBox ID="TBMail" runat="server" TextMode="Email"></asp:TextBox><br />
-
-        <%--Contraseña--%>
-        <asp:Label ID="Label2" runat="server" Text="Ingrese la contraseña"></asp:Label>
-        <asp:TextBox ID="TBContrasena" runat="server" TextMode="Password"></asp:TextBox><br />
-
-        <%--Estado--%>
-        <asp:Label ID="Label3" runat="server" Text="Estado"></asp:Label>
-        <asp:DropDownList ID="DDLState" runat="server">
-            <asp:ListItem Value="0">Seleccione</asp:ListItem>
-            <asp:ListItem Value="Activo">Activo</asp:ListItem>
-            <asp:ListItem Value="Inactivo">Inactivo</asp:ListItem>
-        </asp:DropDownList><br />
-
-        <%--Fecha de creación--%>
-        <asp:Label ID="Label4" runat="server" Text="Fecha de creación"></asp:Label>
-        <asp:TextBox ID="TBDate" runat="server" TextMode="Date"></asp:TextBox><br />
-
-        <%--Rol--%>
-        <asp:Label ID="Label5" runat="server" Text="Rol"></asp:Label>
-        <asp:DropDownList ID="DDLRol" runat="server"></asp:DropDownList><br />
-
-        <%--Empleado--%>
-        <asp:Label ID="Label6" runat="server" Text="Empleado"></asp:Label>
-        <asp:DropDownList ID="DDLEmployees" runat="server"></asp:DropDownList><br />
-
-        <%--Botones--%>
-        <asp:Button ID="BtnSave" runat="server" Text="Guardar" OnClick="BtnSave_Click" />
-        <asp:Button ID="BtnUpdate" runat="server" Text="Actualizar" OnClick="BtnUpdate_Click" /><br />
-
-        <asp:Label ID="LblMsg" runat="server" Text=""></asp:Label>
-
-
-    <%--Lista de Usuarios--%>
-    <h2>Lista de Usuarios</h2>
-    <table id="usersTable" class="display" style="width: 100%">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Correo</th>
-                <th>Contraseña</th>
-                <th>Salt</th>
-                <th>Estado</th>
-                <th>Fecha de Creación</th>
-                <th>FkRol</th>
-                <th>Rol</th>
-                <th>FkEmpleado</th>
-                <th>Empleado</th>
-                <th>Acciones</th> <!-- Columna para los botones de acción -->
-            </tr>
-        </thead>
-        <tbody>
-        </tbody>
-    </table>
+    <div class="card m-1">
+        <%--Panel para la gestion del Administrador--%>
+        <asp:Panel ID="PanelAdmin" runat="server">
+            <div class="card-header">
+                Lista de Usuarios
+            </div>
+            <div class="card-body">
+                <%--Lista de Usuarios--%>
+                <div class="table-responsive">
+                    <table id="usersTable" class="display" style="width: 100%">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Correo</th>
+                                <th>Contraseña</th>
+                                <th>Salt</th>
+                                <th>Estado</th>
+                                <th>Fecha de Creación</th>
+                                <th>FkRol</th>
+                                <th>Rol</th>
+                                <th>FkEmpleado</th>
+                                <th>Empleado</th>
+                                <th>Acciones</th>
+                                <!-- Columna para los botones de acción -->
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </asp:Panel>
+    </div>
     <script src="resources/js/datatables.min.js" type="text/javascript"></script>
 
     <%--Usuarios--%>
@@ -89,7 +121,7 @@
                     { "data": "UserID" },
                     { "data": "Mail" },
                     { "data": "Password" },
-                    { "data": "Salt" },
+                    { "data": "Salt", "visible": false },
                     { "data": "State" },
                     { "data": "Date" },
                     { "data": "FkRol", "visible": false },
@@ -99,7 +131,9 @@
                     {
                         "data": null,
                         "render": function (row) {
-                            return `<button class="edit-btn" data-id="${row.UserID}">Editar</button>`;
+                            //alert(JSON.stringify(row, null, 2));
+                            return `<button class="btn btn-info edit-btn" data-id="${row.UserID}">Editar</button>`;
+                            
                         }
                     }
                 ],
