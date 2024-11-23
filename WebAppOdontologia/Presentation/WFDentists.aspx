@@ -6,47 +6,72 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-
-    <%--ID--%>
-    <asp:HiddenField ID="HFDentistID" runat="server" />
-
-    <%--Formulario de Odontólogos--%>
-    <asp:Label ID="Label1" runat="server" Text="Ingrese la especialidad"></asp:Label>
-    <asp:TextBox ID="TBSpecialty" runat="server"></asp:TextBox>
-    <br />
-
-    <%--Seleccionar empleado--%>
-    <asp:Label ID="Label2" runat="server" Text="Seleccione un empleado"></asp:Label>
-    <asp:DropDownList ID="DDLEmployee" runat="server" CssClass="form-select"></asp:DropDownList>
-
-    <%--Botones guardar--%>
-    <div>
-        <asp:Button ID="BtnSave" runat="server" Text="Guardar" OnClick="BtnSave_Click" />
-        <asp:Button ID="BtnUpdate" runat="server" Text="Actualizar" OnClick="BtnUpdate_Click" />
-        <asp:Label ID="LblMsg" runat="server" Text=""></asp:Label>
+    <div class="card m-1">
+        <div class="card-header">
+            Gestión de Odontologos
+        </div>
+        <div class="card-body">
+            <form id="FrmDentists" runat="server">
+                <%--Id--%>
+                <asp:HiddenField ID="HFDentistID" runat="server" />
+                <div class="row m-1">
+                    <div class="col">
+                        <%--Formulario de Odontólogos--%>
+                        <asp:Label ID="Label1" CssClass="form-label" runat="server" Text="Ingrese la especialidad"></asp:Label>
+                        <asp:TextBox ID="TBSpecialty" CssClass="form-control" runat="server"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="RFVSpecialty" runat="server" ControlToValidate="TBSpecialty"
+                            CssClass="text-danger" ErrorMessage="Este campo es obligatorio."></asp:RequiredFieldValidator>
+                    </div>
+                    <div class="col-2">
+                        <%--Seleccionar empleado--%>
+                        <asp:Label ID="Label2" CssClass="form-label" runat="server" Text="Seleccione un empleado"></asp:Label>
+                        <asp:DropDownList ID="DDLEmployee" CssClass="form-select" runat="server"></asp:DropDownList>
+                    </div>
+                </div>
+                <div class="row m-1">
+                    <div class="col">
+                        <asp:Button ID="BtnSave" runat="server" Text="Guardar" OnClick="BtnSave_Click" />
+                        <asp:Button ID="BtnUpdate" runat="server" Text="Actualizar" OnClick="BtnUpdate_Click" />
+                        <asp:Label ID="LblMsg" runat="server" Text=""></asp:Label>
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
-    <br />
 
-    <%--Lista de Dentistas--%>
-    <h2>Lista de Dentistas</h2>
-    <table id="DentistsTable" class="display" style="width: 100%">
-        <thead>
-            <tr>
-                <th>DentistaID</th>
-                <th>Especialidad</th>
-                <th>FkEmpleado</th>
-                <th>Empleado</th>
-            </tr>
-        </thead>
-        <tbody>
-        </tbody>
-    </table>
+    <div class="card m-1">
+        <%--Panel para la gestion del Administrador--%>
+        <asp:Panel ID="PanelAdmin" runat="server">
+            <div class="card-header">
+                Lista de odontologos
+            </div>
+            <div class="card-body">
+                <%--Lista de Dentistas--%>
+                <div class="table-responsive">
+                    <%--Tabla de Dentistas--%>
+                    <table id="DentistsTable" class="display" style="width: 100%">
+                        <thead>
+                            <tr>
+                                <th>DentistaID</th>
+                                <th>Especialidad</th>
+                                <th>FkEmpleado</th>
+                                <th>Empleado</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+        </asp:Panel>
+    </div>
 
     <script src="resources/js/datatables.min.js" type="text/javascript"></script>
 
     <%--Dentistas--%>
     <script type="text/javascript">
         $(document).ready(function () {
+            const showEditButton = '<%= _showEditButton %>' === 'True';
+            const showDeleteButton = '<%= _showDeleteButton %>' === 'True';
             $('#DentistsTable').DataTable({
                 "processing": true,
                 "serverSide": false,
@@ -69,8 +94,14 @@
                     {
                         "data": null,
                         "render": function (data, type, row) {
-                            return `<button class="edit-btn" data-id="${row.DentistID}">Editar</button>
-                             <button class="delete-btn" data-id="${row.DentistID}">Eliminar</button>`;
+                            let buttons = '';
+                            if (showEditButton) {
+                                buttons += `<button class="btn btn-info edit-btn" data-id="${row.DentistID}">Editar</button>`;
+                            }
+                            if (showDeleteButton) {
+                                buttons += `<button class="btn btn-danger delete-btn" data-id="${row.DentistID}">Eliminar</button>`;
+                            }
+                            return buttons;
                         }
                     }
                 ],

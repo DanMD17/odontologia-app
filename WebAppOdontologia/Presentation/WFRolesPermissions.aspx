@@ -3,42 +3,42 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-   <div class="card m-1">
-    <div class="card-header">
-        Gestion de Permisos Roles
+    <div class="card m-1">
+        <div class="card-header">
+            Gestion de Permisos Roles
+        </div>
+        <div class="card-body">
+            <form id="FrmPermissionRol" runat="server">
+                <%--Id--%>
+                <asp:HiddenField ID="HFRolPermisoID" runat="server" />
+                <div class="row m-1">
+                    <div class="col">
+                        <%--Roles--%>
+                        <asp:Label ID="Label1" CssClass="form-label" runat="server" Text="Roles"></asp:Label>
+                        <asp:DropDownList ID="DDLRoles" CssClass="form-select" runat="server"></asp:DropDownList>
+                    </div>
+                    <div class="col">
+                        <%--Permisos--%>
+                        <asp:Label ID="Label2" CssClass="form-label" runat="server" Text="Permisos"></asp:Label>
+                        <asp:DropDownList ID="DDLPermisos" CssClass="form-select" runat="server"></asp:DropDownList>
+                    </div>
+                    <div class="col-3">
+                        <%-- Fecha--%>
+                        <asp:Label ID="Label4" CssClass="form-label" runat="server" Text="Fecha de Asignación"></asp:Label>
+                        <asp:TextBox ID="TBDate" CssClass="form-select" runat="server" TextMode="Date"></asp:TextBox>
+                    </div>
+                </div>
+                <div class="row m-2">
+                    <div class="col">
+                        <%--Botones Guardar y Actualizar--%>
+                        <asp:Button ID="BtnGuardar" CssClass="btn btn-success" runat="server" Text="Guardar" OnClick="BtnGuardar_Click" />
+                        <asp:Button ID="BtnActualizar" CssClass="btn btn-primary" runat="server" Text="Actualizar" OnClick="BtnActualizar_Click" />
+                        <asp:Label ID="LblMsg" CssClass="form-label" runat="server" Text=""></asp:Label>
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
-    <div class="card-body">
-        <form id="FrmPermissionRol" runat="server">
-            <%--Id--%>
-            <asp:HiddenField ID="HFRolPermisoID" runat="server" />
-            <div class="row m-1">
-                <div class="col">
-                    <%--Roles--%>
-                    <asp:Label ID="Label1" CssClass="form-label" runat="server" Text="Roles"></asp:Label>
-                    <asp:DropDownList ID="DDLRoles" CssClass="form-select" runat="server"></asp:DropDownList>
-                </div>
-                <div class="col">
-                    <%--Permisos--%>
-                    <asp:Label ID="Label2" CssClass="form-label" runat="server" Text="Permisos"></asp:Label>
-                    <asp:DropDownList ID="DDLPermisos" CssClass="form-select" runat="server"></asp:DropDownList>
-                </div>
-                <div class="col-3">
-                    <%-- Fecha--%>
-                    <asp:Label ID="Label4" CssClass="form-label" runat="server" Text="Fecha de Asignación"></asp:Label>
-                    <asp:TextBox ID="TBDate" CssClass="form-control" runat="server" TextMode="Date"></asp:TextBox>
-                </div>
-            </div>
-            <div class="row m-2">
-                <div class="col">
-                    <%--Botones Guardar y Actualizar--%>
-                    <asp:Button ID="BtnGuardar" CssClass="btn btn-success" runat="server" Text="Guardar" OnClick="BtnGuardar_Click" />
-                    <asp:Button ID="BtnActualizar" CssClass="btn btn-primary" runat="server" Text="Actualizar" OnClick="BtnActualizar_Click" />
-                    <asp:Label ID="LblMsg" CssClass="form-label" runat="server" Text=""></asp:Label>
-                </div>
-            </div>
-        </form>
-    </div>
-   </div>
 
     <div class="card m-1">
         <asp:Panel ID="PanelAdmin" runat="server">
@@ -46,21 +46,23 @@
                 Lista de Permisos Roles
             </div>
             <div class="card-body">
-                <%--Lista de Productos--%>
-                <table id="permisoRolTable" class="table table-hover display" style="width: 100%">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>IdRol</th>
-                            <th>Rol</th>
-                            <th>IdPermiso</th>
-                            <th>Permiso</th>
-                            <th>Fecha de Asignación</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    </tbody>
-                </table>
+                <%--Lista de Permisos--%>
+                <div class="table-responsive">
+                    <%--Tabla de Permisos--%>
+                    <table id="permisoRolTable" class="table table-hover display" style="width: 100%">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>IdRol</th>
+                                <th>Rol</th>
+                                <th>IdPermiso</th>
+                                <th>Permiso</th>
+                                <th>Fecha de Asignación</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
             </div>
         </asp:Panel>
     </div>

@@ -4,57 +4,86 @@
 
     <%--Estilos--%>
     <link href="resources/css/datatables.min.css" rel="stylesheet" />
-
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-
-        <%--Formulario de Historial Clínico--%>
-        <asp:HiddenField ID="HFClinicalHistoryID" runat="server" />
-
-        <%--Fecha de creación--%>
-        <asp:Label ID="Label1" runat="server" Text="Ingrese la fecha de creación"></asp:Label>
-        <asp:TextBox ID="TBCreacionDate" runat="server"></asp:TextBox>
-        <br />
-
-        <%--Descripción general--%>
-        <asp:Label ID="Label2" runat="server" Text="Ingrese la descripción general"></asp:Label>
-        <asp:TextBox ID="TBOverview" runat="server" TextMode="MultiLine" Rows="4"></asp:TextBox>
-        <br />
-
-        <%--Seleccionar paciente--%>
-        <asp:Label ID="Label3" runat="server" Text="Seleccione un paciente"></asp:Label>
-        <asp:DropDownList ID="DDLPatient" runat="server" CssClass="form-select"></asp:DropDownList>
-
-        <%--Botones guardar y actualizar--%>
-        <div>
-            <asp:Button ID="BtnSave" runat="server" Text="Guardar" OnClick="BtnSave_Click" />
-            <asp:Button ID="BtnUpdate" runat="server" Text="Actualizar" OnClick="BtnUpdate_Click" />
-            <asp:Label ID="LblMsg" runat="server" Text=""></asp:Label>
+    <div class="card m-1">
+        <div class="card-header">
+            Gestión de Historial clinico
         </div>
-        <br />
+        <div class="card-body">
+            <form id="FrmClinicalHistory" runat="server">
+                <%--Formulario de Historial Clínico--%>
+                <%-- ID --%>
+                <asp:HiddenField ID="HFClinicalHistoryID" runat="server" />
+                <div class="row m-1">
+                    <div class="col-2">
+                        <%--Fecha de creación--%>
+                        <asp:Label ID="Label1" CssClass="form-label" runat="server" Text="Ingrese la fecha de creación"></asp:Label>
+                        <asp:TextBox ID="TBCreacionDate" CssClass="form-control" runat="server"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="RFVDate" runat="server" ControlToValidate="TBCreacionDate"
+                            CssClass="text-danger" ErrorMessage="Este campo es obligatorio."></asp:RequiredFieldValidator>
+                    </div>
+                    <div class="col">
+                        <%--Descripción general--%>
+                        <asp:Label ID="Label2" CssClass="form-label" runat="server" Text="Ingrese la descripción general"></asp:Label>
+                        <asp:TextBox ID="TBOverview" CssClass="form-control" runat="server" TextMode="MultiLine" Rows="4"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="RFVOverview" runat="server" ControlToValidate="TBOverview"
+                            CssClass="text-danger" ErrorMessage="Este campo es obligatorio."></asp:RequiredFieldValidator>
+                    </div>
+                    <div class="col-2">
+                        <%--Seleccionar paciente--%>
+                        <asp:Label ID="Label3" CssClass="form-label" runat="server" Text="Seleccione un paciente"></asp:Label>
+                        <asp:DropDownList ID="DDLPatient" CssClass="form-select" runat="server"></asp:DropDownList>
+                    </div>
+                </div>
+                <%--Botones guardar y actualizar--%>
+                <div class="row m-1">
+                    <div class="col">
+                        <asp:Button ID="BtnSave" runat="server" Text="Guardar" OnClick="BtnSave_Click" />
+                        <asp:Button ID="BtnUpdate" runat="server" Text="Actualizar" OnClick="BtnUpdate_Click" />
+                        <asp:Label ID="LblMsg" runat="server" Text=""></asp:Label>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
 
-    <%--Lista de Historiales Clinicos--%>
-    <h2>Lista de Historias Clinicas</h2>
-    <table id="ClinicalHistoryTable" class="display" style="width: 100%">
-        <thead>
-            <tr>
-                <th>HistorialID</th>
-                <th>FechaDeCreacion</th>
-                <th>DescripcionGeneral</th>
-                <th>FkPaciente</th>
-                <th>Paciente</th>
-            </tr>
-        </thead>
-        <tbody>
-        </tbody>
-    </table>
+    <div class="card m-1">
+        <%--Panel para la gestion del Administrador--%>
+        <asp:Panel ID="PanelAdmin" runat="server">
+            <div class="card-header">
+                Lista de Historiales clinicos
+            </div>
+            <div class="card-body">
+                <%--Lista de Historiales Clinico--%>
+                <div class="table-responsive">
+                    <%--Tabla de Historiales Clinicos--%>
+                    <table id="ClinicalHistoryTable" class="display" style="width: 100%">
+                        <thead>
+                            <tr>
+                                <th>HistorialID</th>
+                                <th>FechaDeCreacion</th>
+                                <th>DescripcionGeneral</th>
+                                <th>FkPaciente</th>
+                                <th>Paciente</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+        </asp:Panel>
+    </div>
+
 
     <script src="resources/js/datatables.min.js" type="text/javascript"></script>
 
     <%--Historiales Clinicos--%>
     <script type="text/javascript">
         $(document).ready(function () {
+            const showEditButton = '<%= _showEditButton %>' === 'True';
+            const showDeleteButton = '<%= _showDeleteButton %>' === 'True';
             $('#ClinicalHistoryTable').DataTable({
                 "processing": true,
                 "serverSide": false,
@@ -78,8 +107,14 @@
                     {
                         "data": null,
                         "render": function (data, type, row) {
-                            return `<button class="edit-btn" data-id="${row.ClinicalHistoryID}">Editar</button>
-                             <button class="delete-btn" data-id="${row.ClinicalHistoryID}">Eliminar</button>`;
+                            let buttons = '';
+                            if (showEditButton) {
+                                buttons += `<button class="btn btn-info edit-btn" data-id="${row.ClinicalHistoryID}">Editar</button>`;
+                            }
+                            if (showDeleteButton) {
+                                buttons += `<button class="btn btn-danger delete-btn" data-id="${row.ClinicalHistoryID}">Eliminar</button>`;
+                            }
+                            return buttons;
                         }
                     }
                 ],

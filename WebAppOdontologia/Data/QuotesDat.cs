@@ -107,7 +107,7 @@ namespace Data
             int row;
             MySqlCommand objDeleteCmd = new MySqlCommand();
             objDeleteCmd.Connection = objPer.openConnection();
-            objDeleteCmd.CommandText = "spDeleteCita"; // Nombre del procedimiento almacenado
+            objDeleteCmd.CommandText = "spDeleteQuote"; // Nombre del procedimiento almacenado
             objDeleteCmd.CommandType = CommandType.StoredProcedure;
 
             objDeleteCmd.Parameters.Add("p_cita_id", MySqlDbType.Int32).Value = _citaId;

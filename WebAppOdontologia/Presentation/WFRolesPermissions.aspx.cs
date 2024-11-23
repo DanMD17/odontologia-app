@@ -84,7 +84,7 @@ namespace Presentation
             if (objUser == null)
             {
                 // Redirige a la página de inicio de sesión si el usuario no está autenticado
-                Response.Redirect("WFDefault.aspx");
+                Response.Redirect("Default.aspx");
                 return;
             }
             // Obtener el rol del usuario
@@ -119,12 +119,12 @@ namespace Presentation
             }
             else if (userRole == "Odontologo")
             {
-                //LblMsg.Text = "Bienvenido, Gerente!";
+                masterPage.SecurityMenu.Visible = false; // Ocultar el menú Seguridad
 
-                masterPage.linkUsers.Visible = false;// Se oculta el enlace de Usuario
-                masterPage.linkPermission.Visible = false;
-                masterPage.linkPermissionRol.Visible = false;// Se oculta el enlace de Permiso Rol
-                masterPage.linkRoles.Visible = false;
+                //masterPage.linkUsers.Visible = false;// Se oculta el enlace de Usuario
+                //masterPage.linkPermission.Visible = false;
+                //masterPage.linkPermissionRol.Visible = false;// Se oculta el enlace de Permiso Rol
+                //masterPage.linkRoles.Visible = false;
 
                 foreach (var permiso in objUser.Permisos)
                 {
@@ -152,11 +152,12 @@ namespace Presentation
             }
             else if (userRole == "Secretaria")
             {
-                //LblMsg.Text = "Bienvenido, Secretaria!";
-                masterPage.linkUsers.Visible = false;
-                masterPage.linkPermission.Visible = false;
-                masterPage.linkPermissionRol.Visible = false;
-                masterPage.linkRoles.Visible = false;
+                masterPage.SecurityMenu.Visible = false; // Ocultar el menú Seguridad
+
+                //masterPage.linkUsers.Visible = false;
+                //masterPage.linkPermission.Visible = false;
+                //masterPage.linkPermissionRol.Visible = false;
+                //masterPage.linkRoles.Visible = false;
 
                 foreach (var permiso in objUser.Permisos)
                 {
@@ -183,11 +184,13 @@ namespace Presentation
             }
             else if (userRole == "Auxiliar")
             {
-                //LblMsg.Text = "Bienvenido, Secretaria!";
-                masterPage.linkUsers.Visible = false;
-                masterPage.linkPermission.Visible = false;
-                masterPage.linkPermissionRol.Visible = false;
-                masterPage.linkRoles.Visible = false;
+                
+                masterPage.SecurityMenu.Visible = false; // Ocultar el menú Seguridad
+                
+                //masterPage.linkUsers.Visible = false;
+                //masterPage.linkPermission.Visible = false;
+                //masterPage.linkPermissionRol.Visible = false;
+                //masterPage.linkRoles.Visible = false;
 
                 foreach (var permiso in objUser.Permisos)
                 {

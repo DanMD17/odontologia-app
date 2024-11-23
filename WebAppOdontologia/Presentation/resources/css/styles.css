@@ -1,0 +1,39 @@
+﻿/* Estilos para texto-slides */
+.texto-slides {
+    font-size: 2rem; /* Tamaño de fuente grande pero razonable je */
+    font-weight: bold; /* Negrita para mayor legibilidad */
+    color: white; /* Color blanco para destacar sobre la mayoría de fondos */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8); /* Sombra oscura para destacar tambien */
+    line-height: 1.5; /* Espaciado adecuado entre lineas */
+    margin: 0; /* Sin margenes extra */
+}
+
+.carousel-inner img {
+    max-height: 500px; /* Ajusta este valor según lo necesario */
+    object-fit: cover; /* Mantiene la proporción de la imagen mientras la recorta */
+    width: 100%; /* Asegura que ocupe todo el ancho del carrusel */
+}
+
+.carousel {
+    height: 500px; /* Ajusta la altura del carrusel */
+}
+
+.carousel-inner img {
+    height: 100%; /* La imagen toma toda la altura del carrusel */
+    object-fit: cover; /* Mantiene proporción mientras recorta los bordes */
+}
+
+.contenedor-acercade {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+    color: #333;
+    line-height: 1.6;
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
