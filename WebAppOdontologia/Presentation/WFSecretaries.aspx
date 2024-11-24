@@ -5,47 +5,82 @@
     <link href="resources/css/datatables.min.css" rel="stylesheet" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <div class="card m-1">
+        <div class="card-header">
+            Gestión de Secretarias
+        </div>
+        <div class="card-body">
+            <form id="FrmSecretaries" runat="server">
+                <%--Id--%>
+                <asp:HiddenField ID="HFSecretariesID" runat="server" />
+                <div class="row m-1">
+                    <div class="col">
+                        <%--Funcion secretaria--%>
+                        <asp:Label ID="Label1" CssClass="form-label" runat="server" Text="Ingrese la funcion de la secretaria"></asp:Label>
+                        <asp:TextBox ID="TBFunction" CssClass="form-control" runat="server"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="RFVFunction" runat="server" ControlToValidate="TBFunction"
+                            CssClass="text-danger" ErrorMessage="Este campo es obligatorio."></asp:RequiredFieldValidator>
+                    </div>
+                    <div class="col-4">
+                        <%--Años de experiencia secretaria--%>
+                        <asp:Label ID="Label2" CssClass="form-label" runat="server" Text="Ingrese los anios de experiencia"></asp:Label>
+                        <asp:TextBox ID="TBYearsExp" CssClass="form-control" runat="server"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="RFVYearsExp" runat="server" ControlToValidate="TBYearsExp"
+                            CssClass="text-danger" ErrorMessage="Este campo es obligatorio."></asp:RequiredFieldValidator>
+                    </div>
+                    <div class="col-2">
+                        <%--DDL para seleccionar empleado--%>
+                        <asp:Label ID="Label3" CssClass="form-label" runat="server" Text="Seleccione un empleado"></asp:Label>
+                        <asp:DropDownList ID="DDLEmployee" CssClass="form-select" runat="server"></asp:DropDownList>
+                    </div>
+                </div>
+                <div class="row m-1">
+                    <div class="col">
+                        <asp:Button ID="BtnSave" runat="server" Text="Guardar" OnClick="BtnSave_Click" />
+                        <asp:Button ID="BtnUpdate" runat="server" Text="Actualizar" OnClick="BtnUpdate_Click" />
+                        <asp:Label ID="LblMsg" runat="server" Text=""></asp:Label>
+                        <br />
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
 
-    <%--Id--%>
-    <asp:HiddenField ID="HFSecretariesID" runat="server" />
-    <%--Funcion secretaria--%>
-    <asp:Label ID="Label1" runat="server" Text="Ingrese la funcion de la secretaria"></asp:Label>
-    <asp:TextBox ID="TBFunction" runat="server"></asp:TextBox>
-    <br />
-    <%--Años de experiencia secretaria--%>
-    <asp:Label ID="Label2" runat="server" Text="Ingrese los anios de experiencia"></asp:Label>
-    <asp:TextBox ID="TBYearsExp" runat="server"></asp:TextBox>
-    <br />
-    <%--DDL para seleccionar empleado--%>
-    <asp:Label ID="Label3" runat="server" Text="Seleccione un empleado"></asp:Label>
-    <asp:DropDownList ID="DDLEmployee" runat="server" CssClass="fromn-select"></asp:DropDownList>
-    <br />
-    <asp:Button ID="BtnSave" runat="server" Text="Guardar" OnClick="BtnSave_Click" />
-    <asp:Button ID="BtnUpdate" runat="server" Text="Actualizar" OnClick="BtnUpdate_Click" />
-    <asp:Label ID="LblMsg" runat="server" Text=""></asp:Label>
-    <br />
-
-    <%--Lista de Secretarias--%>
-    <h2>Lista de Secretarias</h2>
-    <table id="secretariesTable" class="display" style="width: 100%">
-        <thead>
-            <tr>
-                <th>SecretariaID</th>
-                <th>Funcion</th>
-                <th>AniosExperiencia</th>
-                <th>FkEmpleado</th>
-                <th>Empleado</th>
-            </tr>
-        </thead>
-        <tbody>
-        </tbody>
-    </table>
+    <div class="card m-1">
+        <%--Panel para la gestion del Administrador--%>
+        <asp:Panel ID="PanelAdmin" runat="server">
+            <div class="card-header">
+                Lista de Secretarias
+            </div>
+            <div class="card-body">
+                <%--Lista de Secretarias--%>
+                <div class="table-responsive">
+                    <%--Tabla de Secretarias--%>
+                    <h2>Lista de Secretarias</h2>
+                    <table id="secretariesTable" class="display" style="width: 100%">
+                        <thead>
+                            <tr>
+                                <th>SecretariaID</th>
+                                <th>Funcion</th>
+                                <th>AniosExperiencia</th>
+                                <th>FkEmpleado</th>
+                                <th>Empleado</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+        </asp:Panel>
+    </div>
 
     <script src="resources/js/datatables.min.js" type="text/javascript"></script>
 
-        <%--Secretaries--%>
+    <%--Secretaries--%>
     <script type="text/javascript">
         $(document).ready(function () {
+            const showEditButton = '<%= _showEditButton %>' === 'True';
+            const showDeleteButton = '<%= _showDeleteButton %>' === 'True';
             $('#secretariesTable').DataTable({
                 "processing": true,
                 "serverSide": false,
@@ -69,8 +104,14 @@
                     {
                         "data": null,
                         "render": function (data, type, row) {
-                            return `<button class="edit-btn" data-id="${row.SecretariatID}">Editar</button>
-                               <button class="delete-btn" data-id="${row.SecretariatID}">Eliminar</button>`;
+                            let buttons = '';
+                            if (showEditButton) {
+                                buttons += `<button class="btn btn-info edit-btn" data-id="${row.SecretariatID}">Editar</button>`;
+                            }
+                            if (showDeleteButton) {
+                                buttons += `<button class="btn btn-danger delete-btn" data-id="${row.SecretariatID}">Eliminar</button>`;
+                            }
+                            return buttons;
                         }
                     }
                 ],

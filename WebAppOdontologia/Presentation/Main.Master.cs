@@ -28,5 +28,10 @@ namespace Presentation
         {
 
         }
+        public HtmlGenericControl SecurityMenu
+        {
+            get { return securityMenu; }
+        }
+
     }
 }
