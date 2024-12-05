@@ -15,8 +15,9 @@ namespace Presentation
     {
         ClinicalHistoryLog objCliH = new ClinicalHistoryLog();
         PatientsLog objPati = new PatientsLog();
+        DentistsLog objDent = new DentistsLog();
 
-        private int _id, _fkPatient;
+        private int _id, _fkPatient, _fkDentist;
         private DateTime _pCreacionDate;
         private string _pOverview;
         private bool executed;
@@ -40,6 +41,7 @@ namespace Presentation
                 //Se asigna la fecha actual al TextBox en formato "yyyy-MM-dd".
                 TBCreacionDate.Text = DateTime.Now.ToString("yyyy-MM-dd");
                 showPatientsDDL();
+                showDentistsDDL();
             }
             validatePermissionRol();
         }
@@ -66,7 +68,9 @@ namespace Presentation
                     CreacionDate = Convert.ToDateTime(row["hist_fecha_creacion"]).ToString("yyyy-MM-dd"), // Formato de fecha específico.
                     Overview = row["hist_descripcion_general"],
                     FkPatient = row["tbl_pacientes_paci_id"],
-                    NamePatient = row["paci_nombre"]
+                    NamePatient = row["paci_nombre"],
+                    FkDentist = row["tbl_odontologos_odo_id"],
+                    OdoName = row["odontologo_nombre"]
 
                 });
             }
@@ -272,6 +276,16 @@ namespace Presentation
             DDLPatient.DataBind();
             DDLPatient.Items.Insert(0, "Seleccione");
         }
+
+        private void showDentistsDDL()
+        {
+            DDLDentist.DataSource = objDent.showDentistsDDL();
+            DDLDentist.DataValueField = "odo_id"; // Nombre de la llave primaria de la tabla de odontólogos
+            DDLDentist.DataTextField = "emp_nombre";
+            DDLDentist.DataBind();
+            DDLDentist.Items.Insert(0, "Seleccione");
+        }
+        
         //Metodo para limpiar los TextBox y los DDL
         private void clear()
         {
@@ -279,7 +293,9 @@ namespace Presentation
             TBCreacionDate.Text = DateTime.Now.ToString("yyyy-MM-dd");
             TBOverview.Text = "";
             DDLPatient.SelectedIndex = 0;
-
+            DDLDentist.SelectedIndex = 0;
+            LblMsgPac.Text = "";
+            LblMsgDen.Text = "";
         }
 
         //Boton de guardar un historial clinico
@@ -287,14 +303,30 @@ namespace Presentation
         {
             _pCreacionDate = DateTime.Parse(TBCreacionDate.Text);
             _pOverview = TBOverview.Text;
-            _fkPatient = Convert.ToInt32(DDLPatient.SelectedValue);
+            // _fkPatient = Convert.ToInt32(DDLPatient.SelectedValue);
+            // _fkDentist = Convert.ToInt32(DDLDentist.SelectedValue);
 
-            executed = objCliH.saveClinicalHistory(_fkPatient, _pCreacionDate, _pOverview);
+            if (!int.TryParse(DDLPatient.SelectedValue, out _fkPatient) || _fkPatient == 0)
+            {
+                LblMsgPac.Text = "Este campo es obligatorio";
+                return;
+
+            }
+
+            // Try parsing the Dentist ID
+            if (!int.TryParse(DDLDentist.SelectedValue, out _fkDentist) || _fkDentist == 0)
+            {
+                LblMsgDen.Text = "Este campo es obligatorio";
+                return;
+
+            }
+
+            executed = objCliH.saveClinicalHistory(_fkPatient, _fkDentist, _pCreacionDate, _pOverview);
 
             if (executed)
             {
                 LblMsg.Text = "El Historial Clinico se guardo exitosamente!";
-
+                clear(); //Se invoca el metodo para limpiar los campos 
             }
             else
             {
@@ -314,10 +346,25 @@ namespace Presentation
             _id = Convert.ToInt32(HFClinicalHistoryID.Value);
             _pCreacionDate = DateTime.Parse(TBCreacionDate.Text);
             _pOverview = TBOverview.Text;
-            _fkPatient = Convert.ToInt32(DDLPatient.SelectedValue);
+            //_fkPatient = Convert.ToInt32(DDLPatient.SelectedValue);
+            //_fkDentist = Convert.ToInt32(DDLDentist.SelectedValue);
+            if (!int.TryParse(DDLPatient.SelectedValue, out _fkPatient) || _fkPatient == 0)
+            {
+                LblMsgPac.Text = "Este campo es obligatorio";
+                return;
+
+            }
+
+            // Try parsing the Dentist ID
+            if (!int.TryParse(DDLDentist.SelectedValue, out _fkDentist) || _fkDentist == 0)
+            {
+                LblMsgDen.Text = "Este campo es obligatorio";
+                return;
+
+            }
 
 
-            executed = objCliH.updateClinicalHistory(_id, _pCreacionDate, _pOverview, _fkPatient);
+            executed = objCliH.updateClinicalHistory(_id, _pCreacionDate, _pOverview, _fkPatient, _fkDentist);
 
             if (executed)
             {

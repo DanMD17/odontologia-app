@@ -43,7 +43,7 @@ namespace Data
         }
 
         // Método para guardar un nuevo historial clínico
-        public bool saveClinicalHistory(int _fkPacId, DateTime _pFechaCreacion, string _pDescripcionGeneral)
+        public bool saveClinicalHistory(int _fkPacId, int _fkDentist, DateTime _pFechaCreacion, string _pDescripcionGeneral)
         {
             bool executed = false;
             int row;
@@ -54,6 +54,7 @@ namespace Data
             objSelectCmd.CommandType = CommandType.StoredProcedure;
 
             objSelectCmd.Parameters.Add("p_hist_pac_id", MySqlDbType.Int32).Value = _fkPacId;
+            objSelectCmd.Parameters.Add("p_hist_odo_id", MySqlDbType.Int32).Value = _fkDentist;
             objSelectCmd.Parameters.Add("p_hist_fecha_creacion", MySqlDbType.DateTime).Value = _pFechaCreacion;
             objSelectCmd.Parameters.Add("p_hist_descripcion_general", MySqlDbType.Text).Value = _pDescripcionGeneral;
 
@@ -74,7 +75,7 @@ namespace Data
         }
 
         // Método para actualizar un historial clínico
-        public bool updateClinicalHistory(int _pHistorialId, DateTime _pFechaCreacion, string _pDescripcionGeneral, int _fkPacId)
+        public bool updateClinicalHistory(int _pHistorialId, DateTime _pFechaCreacion, string _pDescripcionGeneral, int _fkPacId, int _fkDentist)
         {
             bool executed = false;
             int row;
@@ -88,6 +89,7 @@ namespace Data
             objSelectCmd.Parameters.Add("p_hist_fecha_creacion", MySqlDbType.DateTime).Value = _pFechaCreacion;
             objSelectCmd.Parameters.Add("p_hist_descripcion_general", MySqlDbType.Text).Value = _pDescripcionGeneral;
             objSelectCmd.Parameters.Add("p_hist_pac_id", MySqlDbType.Int32).Value = _fkPacId;
+            objSelectCmd.Parameters.Add("p_hist_odo_id", MySqlDbType.Int32).Value = _fkDentist;
 
             try
             {

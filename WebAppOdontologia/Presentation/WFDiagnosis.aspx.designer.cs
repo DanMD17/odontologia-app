@@ -105,6 +105,33 @@ namespace Presentation
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RFVObservations;
 
         /// <summary>
+        /// Control Label5.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label5;
+
+        /// <summary>
+        /// Control DDLClinicalHistory.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList DDLClinicalHistory;
+
+        /// <summary>
+        /// Control LblMsgCH.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LblMsgCH;
+
+        /// <summary>
         /// Control Label4.
         /// </summary>
         /// <remarks>
@@ -123,22 +150,13 @@ namespace Presentation
         protected global::System.Web.UI.WebControls.DropDownList DDLQuotes;
 
         /// <summary>
-        /// Control Label5.
+        /// Control LblMsgQuo.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label5;
-
-        /// <summary>
-        /// Control DDLClinicalHistory.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DDLClinicalHistory;
+        protected global::System.Web.UI.WebControls.Label LblMsgQuo;
 
         /// <summary>
         /// Control BtnSave.

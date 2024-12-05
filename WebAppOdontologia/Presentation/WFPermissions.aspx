@@ -43,8 +43,8 @@
         <%-- Botones Guardar y actualizar --%>
         <div class="row m-1">
             <div class="col">
-                <asp:Button ID="BtnSave" runat="server" Text="Guardar" OnClick="BtnSave_Click" />
-                <asp:Button ID="BtnUpdate" runat="server" Text="Actualizar" OnClick="BtnUpdate_Click" />
+                <asp:Button ID="BtnSave" CssClass="btn btn-success" runat="server" Text="Guardar" OnClick="BtnSave_Click" />
+                <asp:Button ID="BtnUpdate" CssClass="btn btn-primary" runat="server" Text="Actualizar" OnClick="BtnUpdate_Click" />
                 <asp:Label ID="LblMsg" runat="server" Text=""></asp:Label>
             </div>
         </div>
@@ -57,13 +57,12 @@
         <asp:Panel ID="PanelAdmin" runat="server">
             <div class="card-header">
                 Lista de Empleados
+           
             </div>
             <div class="card-body">
                 <%--Lista de empleados--%>
                 <div class="table-responsive">
                     <%--Lista de Permisos --%>
-
-                    <h2>Lista de Permisos </h2>
                     <table id="permissionTable" class="display" style="width: 100%">
                         <thead>
                             <tr>
@@ -106,15 +105,15 @@
                     {
                         "data": null,
                         "render": function (data, type, row) {
-                            return `<button class="edit-btn" data-id="${row.PermissionID}">Editar</button>
-                             <button class="delete-btn" data-id="${row.PermissionID}">Eliminar</button>`;
+                            return `<button class=" btn btn-info edit-btn" data-id="${row.PermissionID}">Editar</button>
+                             <button class="btn btn-danger delete-btn" data-id="${row.PermissionID}">Eliminar</button>`;
                         }
                     }
                 ],
                 "language": {
-                    "lengthMenu": "Mostrar MENU registros por página",
+                    "lengthMenu": "Mostrar _MENU_ registros por página",
                     "zeroRecords": "No se encontraron resultados",
-                    "info": "Mostrando página PAGE de PAGES",
+                    "info": "Mostrando página _PAGE_ de _PAGES_",
                     "infoEmpty": "No hay registros disponibles",
                     "infoFiltered": "(filtrado de MAX registros totales)",
                     "search": "Buscar:",

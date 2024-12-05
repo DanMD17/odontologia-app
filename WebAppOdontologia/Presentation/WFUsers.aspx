@@ -49,11 +49,13 @@
                         <%--Rol--%>
                         <asp:Label ID="Label5" CssClass="form-label" runat="server" Text="Rol"></asp:Label>
                         <asp:DropDownList ID="DDLRol" CssClass="form-select" runat="server"></asp:DropDownList>
+                         <asp:Label ID="LblMsgRol" runat="server" Text="" CssClass="text-danger"></asp:Label>
                     </div>
                     <div class="col">
                         <%--Empleado--%>
                         <asp:Label ID="Label6" CssClass="form-label" runat="server" Text="Empleado"></asp:Label>
                         <asp:DropDownList ID="DDLEmployees" CssClass="form-select" runat="server"></asp:DropDownList>
+                        <asp:Label ID="LblMsgEmp" runat="server" Text="" CssClass="text-danger"></asp:Label>
                     </div>
                 </div>
                 <div class="row m-1">
@@ -61,13 +63,14 @@
                         <%--Botones--%>
                         <asp:Button ID="BtnSave" CssClass="btn btn-success" runat="server" Text="Guardar" OnClick="BtnSave_Click" />
                         <asp:Button ID="BtnUpdate" CssClass="btn btn-primary" runat="server" Text="Actualizar" OnClick="BtnUpdate_Click" />
-                        <asp:Label ID="Label7" CssClass="form-label" runat="server" Text=""></asp:Label>
+                        <asp:Label ID="LblMsg" runat="server" Text=""></asp:Label> 
                     </div>
                 </div>
             </form>
         </div>
     </div>
-    <asp:Label ID="LblMsg" runat="server" Text=""></asp:Label>
+   
+    
 
     <div class="card m-1">
         <%--Panel para la gestion del Administrador--%>
@@ -142,9 +145,9 @@
                     }
                 ],
                 "language": {
-                    "lengthMenu": "Mostrar MENU registros por página",
+                    "lengthMenu": "Mostrar _MENU_ registros por página",
                     "zeroRecords": "No se encontraron resultados",
-                    "info": "Mostrando página PAGE de PAGES",
+                    "info": "Mostrando página _PAGE_ de _PAGES_",
                     "infoEmpty": "No hay registros disponibles",
                     "infoFiltered": "(filtrado de MAX registros totales)",
                     "search": "Buscar:",
@@ -161,6 +164,8 @@
             $('#usersTable').on('click', '.edit-btn', function () {
                 const rowData = $('#usersTable').DataTable().row($(this).parents('tr')).data();
                 loadUsersData(rowData);
+                $('#<%= BtnSave.ClientID %>').hide();
+                $('#<%= BtnUpdate.ClientID %>').show();
             });
 
             // Eliminar un usuario

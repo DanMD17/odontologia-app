@@ -274,19 +274,29 @@ namespace Presentation
             HFDentistID.Value = "";
             TBSpecialty.Text = "";
             DDLEmployee.SelectedIndex = 0;
+            LblMsgEmp.Text = "";
+
         }
 
         //Boton de guardar un dentista
         protected void BtnSave_Click(object sender, EventArgs e)
         {
             _specialty = TBSpecialty.Text;
-            _fkEmployee = Convert.ToInt32(DDLEmployee.SelectedValue);
+            // _fkEmployee = Convert.ToInt32(DDLEmployee.SelectedValue);
+
+            if (!int.TryParse(DDLEmployee.SelectedValue, out _fkEmployee) || _fkEmployee == 0)
+            {
+                LblMsgEmp.Text = "Este campo es obligatorio";
+                return;
+
+            }
 
             executed = objDen.saveDentist( _specialty, _fkEmployee);
 
             if (executed)
             {
                 LblMsg.Text = "El Dentista se guardó exitosamente!";
+                clear();
             }
             else
             {
@@ -305,7 +315,14 @@ namespace Presentation
             }
             _idDen = Convert.ToInt32(HFDentistID.Value);
             _specialty = TBSpecialty.Text;
-            _fkEmployee = Convert.ToInt32(DDLEmployee.SelectedValue);
+            //_fkEmployee = Convert.ToInt32(DDLEmployee.SelectedValue);
+
+            if (!int.TryParse(DDLEmployee.SelectedValue, out _fkEmployee) || _fkEmployee == 0)
+            {
+                LblMsgEmp.Text = "Este campo es obligatorio";
+                return;
+
+            }
 
             executed = objDen.updateDentist(_idDen, _specialty, _fkEmployee);
 

@@ -78,6 +78,15 @@ namespace Presentation
         protected global::System.Web.UI.WebControls.DropDownList DDLEmployee;
 
         /// <summary>
+        /// Control LblMsgEmp.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LblMsgEmp;
+
+        /// <summary>
         /// Control BtnSave.
         /// </summary>
         /// <remarks>

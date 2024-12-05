@@ -51,6 +51,15 @@ namespace Presentation
         protected global::System.Web.UI.WebControls.TextBox TBDate;
 
         /// <summary>
+        /// Control RFVDate.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RFVDate;
+
+        /// <summary>
         /// Control Label2.
         /// </summary>
         /// <remarks>
@@ -69,6 +78,15 @@ namespace Presentation
         protected global::System.Web.UI.WebControls.TextBox TBTime;
 
         /// <summary>
+        /// Control RFVTime.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RFVTime;
+
+        /// <summary>
         /// Control Label3.
         /// </summary>
         /// <remarks>
@@ -78,22 +96,22 @@ namespace Presentation
         protected global::System.Web.UI.WebControls.Label Label3;
 
         /// <summary>
-        /// Control TBStatus.
+        /// Control DDLState.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TBStatus;
+        protected global::System.Web.UI.WebControls.DropDownList DDLState;
 
         /// <summary>
-        /// Control RFVStatus.
+        /// Control RFVState.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RFVStatus;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RFVState;
 
         /// <summary>
         /// Control Label4.
@@ -114,6 +132,15 @@ namespace Presentation
         protected global::System.Web.UI.WebControls.DropDownList DDLPatient;
 
         /// <summary>
+        /// Control LblMsgPac.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LblMsgPac;
+
+        /// <summary>
         /// Control Label5.
         /// </summary>
         /// <remarks>
@@ -130,6 +157,15 @@ namespace Presentation
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList DDLDentist;
+
+        /// <summary>
+        /// Control LblMsgOdo.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LblMsgOdo;
 
         /// <summary>
         /// Control BtnSave.

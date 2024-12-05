@@ -283,6 +283,7 @@ namespace Presentation
             if (executed)
             {
                 LblMsg.Text = "El paciente se guardó exitosamente!";
+                clear();
             }
             else
             {

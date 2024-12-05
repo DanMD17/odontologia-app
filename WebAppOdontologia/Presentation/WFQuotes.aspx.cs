@@ -70,7 +70,9 @@ namespace Presentation
                     FkPatientId = row["tbl_pacientes_paci_id"],
                     NamePatient = row["paci_nombre"],
                     FkDentistId = row["tbl_odontologos_odo_id"],
-                    SpecialtyDentist = row["odo_especialidad"]
+                    SpecialtyDentist = row["odo_especialidad"],
+                    NameDentist = row["nombre_odo"]
+
                 });
             }
 
@@ -183,7 +185,7 @@ namespace Presentation
             else if (userRole == "Secretaria")
             {
                 masterPage.SecurityMenu.Visible = false; // Ocultar el menú Seguridad
-                
+
                 //masterPage.linkUsers.Visible = false;
                 //masterPage.linkPermission.Visible = false;
                 //masterPage.linkPermissionRol.Visible = false;
@@ -222,7 +224,7 @@ namespace Presentation
             else if (userRole == "Auxiliar")
             {
                 masterPage.SecurityMenu.Visible = false; // Ocultar el menú Seguridad
-                
+
                 //masterPage.linkUsers.Visible = false;
                 //masterPage.linkPermission.Visible = false;
                 //masterPage.linkPermissionRol.Visible = false;
@@ -279,7 +281,7 @@ namespace Presentation
         {
             DDLDentist.DataSource = objDent.showDentistsDDL();
             DDLDentist.DataValueField = "odo_id"; // Nombre de la llave primaria de la tabla de odontólogos
-            DDLDentist.DataTextField = "odo_especialidad";
+            DDLDentist.DataTextField = "emp_nombre";
             DDLDentist.DataBind();
             DDLDentist.Items.Insert(0, "Seleccione");
         }
@@ -290,9 +292,11 @@ namespace Presentation
             HFQuoteID.Value = "";
             TBDate.Text = DateTime.Now.ToString("yyyy-MM-dd");
             TBTime.Text = "";
-            TBStatus.Text = "";
+            DDLState.Text = "";
             DDLPatient.SelectedIndex = 0;
             DDLDentist.SelectedIndex = 0;
+            LblMsgPac.Text = "";
+            LblMsgOdo.Text = "";
         }
 
         // Evento que se ejecuta cuando se da clic en el botón guardar
@@ -300,9 +304,23 @@ namespace Presentation
         {
             _date = DateTime.Parse(TBDate.Text);
             _time = TimeSpan.Parse(TBTime.Text);
-            _status = TBStatus.Text;
-            _fkPatientId = Convert.ToInt32(DDLPatient.SelectedValue);
-            _fkDentistId = Convert.ToInt32(DDLDentist.SelectedValue);
+            _status = DDLState.Text;
+
+            // Try parsing the Patient ID
+            if (!int.TryParse(DDLPatient.SelectedValue, out _fkPatientId) || _fkPatientId == 0)
+            {
+                LblMsgPac.Text = "Este campo es obligatorio";
+                return;
+
+            }
+
+            // Try parsing the Dentist ID
+            if (!int.TryParse(DDLDentist.SelectedValue, out _fkDentistId) || _fkDentistId == 0)
+            {
+                LblMsgOdo.Text = "Este campo es obligatorio";
+                return;
+
+            }
 
             executed = objQuotesLog.saveQuote(_date, _time, _status, _fkPatientId, _fkDentistId);
 
@@ -315,11 +333,13 @@ namespace Presentation
             {
                 LblMsg.Text = "Error al guardar :(";
             }
+
+
         }
 
         // Evento del botón actualizar
         protected void BtnUpdate_Click(object sender, EventArgs e)
-        {            
+        {
             if (string.IsNullOrEmpty(HFQuoteID.Value))
             {
                 LblMsg.Text = "No se ha seleccionado una cita para actualizar.";
@@ -329,9 +349,21 @@ namespace Presentation
             _quoteId = Convert.ToInt32(HFQuoteID.Value);
             _date = DateTime.Parse(TBDate.Text);
             _time = TimeSpan.Parse(TBTime.Text);
-            _status = TBStatus.Text;
-            _fkPatientId = Convert.ToInt32(DDLPatient.SelectedValue);
-            _fkDentistId = Convert.ToInt32(DDLDentist.SelectedValue);
+            _status = DDLState.Text;
+            if (!int.TryParse(DDLPatient.SelectedValue, out _fkPatientId) || _fkPatientId == 0)
+            {
+                LblMsgPac.Text = "Este campo es obligatorio";
+                return;
+
+            }
+
+            // Try parsing the Dentist ID
+            if (!int.TryParse(DDLDentist.SelectedValue, out _fkDentistId) || _fkDentistId == 0)
+            {
+                LblMsgOdo.Text = "Este campo es obligatorio";
+                return;
+
+            }
 
             executed = objQuotesLog.updateQuote(_quoteId, _date, _time, _status, _fkPatientId, _fkDentistId);
 

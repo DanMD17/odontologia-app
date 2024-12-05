@@ -48,7 +48,7 @@ namespace Presentation
             }
             validatePermissionRol();
         }
-        
+
 
         // Método para listar los tratamientos
         [WebMethod]
@@ -56,13 +56,13 @@ namespace Presentation
         {
             TreatmentsLog objTreatments = new TreatmentsLog();
 
-            // Se obtiene un DataSet que contiene la lista de tratamientos desde la base de datos.
+            // Obtén el DataSet que contiene la lista de tratamientos desde la base de datos.
             var dataSet = objTreatments.showTreatments();
 
-            // Se crea una lista para almacenar los tratamientos que se van a devolver.
+            // Lista para almacenar los tratamientos que se devolverán.
             var treatmentsList = new List<object>();
 
-            // Se itera sobre cada fila del DataSet (que representa un tratamiento).
+            // Itera sobre cada fila del DataSet.
             foreach (DataRow row in dataSet.Tables[0].Rows)
             {
                 treatmentsList.Add(new
@@ -77,13 +77,15 @@ namespace Presentation
                     FkHistId = row["tbl_historialclinico_hist_id"],
                     DescriptionHistory = row["hist_descripcion_general"],
                     FkAuxId = row["tbl_auxiliares_aux_id"],
-                    FunctionAuxiliaries = row["aux_funcion"],
+                    AuxName = row["auxiliar_nombre"],
+                    PatientName = row["paciente_nombre"],
                 });
             }
 
-            // Devuelve un objeto en formato JSON que contiene la lista de tratamientos.
+            // Devuelve un objeto JSON con la lista de tratamientos.
             return new { data = treatmentsList };
         }
+
 
         // Eliminar un tratamiento
         [WebMethod]
@@ -271,12 +273,12 @@ namespace Presentation
                 Response.Redirect("Index.aspx");
             }
         }
-        // Método para mostrar las citas en el DDL
+        //Metodo para mostrar las citas en el DDL
         private void showQuotesDDL()
         {
             DDLQuotes.DataSource = objQuotes.showQuotesDDL();
-            DDLQuotes.DataValueField = "cita_id"; // Nombre de la llave primaria de la tabla de citas
-            DDLQuotes.DataTextField = "cita_estado";
+            DDLQuotes.DataValueField = "cita_id";//Nombre de la llave primaria
+            DDLQuotes.DataTextField = "nombre_y_fecha"; // Enlazamos al nuevo campo
             DDLQuotes.DataBind();
             DDLQuotes.Items.Insert(0, "Seleccione");
         }
@@ -286,7 +288,7 @@ namespace Presentation
         {
             DDLHistory.DataSource = objHistory.showClinicalHistoriesDDL();
             DDLHistory.DataValueField = "hist_id"; // Nombre de la llave primaria de la tabla de historia clínica
-            DDLHistory.DataTextField = "hist_descripcion_general";
+            DDLHistory.DataTextField = "hist_info";
             DDLHistory.DataBind();
             DDLHistory.Items.Insert(0, "Seleccione");
         }
@@ -296,7 +298,7 @@ namespace Presentation
         {
             DDLAux.DataSource = objAux.showAssistantsDDL();
             DDLAux.DataValueField = "aux_id"; // Nombre de la llave primaria de la tabla de auxiliares
-            DDLAux.DataTextField = "aux_funcion";
+            DDLAux.DataTextField = "emp_nombre";
             DDLAux.DataBind();
             DDLAux.Items.Insert(0, "Seleccione");
         }
@@ -312,6 +314,9 @@ namespace Presentation
             DDLQuotes.SelectedIndex = 0;
             DDLHistory.SelectedIndex = 0;
             DDLAux.SelectedIndex = 0;
+            LblMsgQuo.Text = "";
+            LblMsgHis.Text = "";
+            LblMsgAux.Text = "";
         }
 
         // Evento que se ejecuta cuando se da clic en el botón guardar
@@ -321,9 +326,29 @@ namespace Presentation
             _description = TBDescription.Text;
             _observations = TBObservations.Text;
             _date = DateTime.Parse(TBDate.Text);
-            _fkCitaId = Convert.ToInt32(DDLQuotes.SelectedValue);
-            _fkHistId = Convert.ToInt32(DDLHistory.SelectedValue);
-            _fkAuxId = Convert.ToInt32(DDLAux.SelectedValue);
+            // _fkCitaId = Convert.ToInt32(DDLQuotes.SelectedValue);
+            // _fkHistId = Convert.ToInt32(DDLHistory.SelectedValue);
+            //  _fkAuxId = Convert.ToInt32(DDLAux.SelectedValue);
+
+            if (!int.TryParse(DDLQuotes.SelectedValue, out _fkCitaId) || _fkCitaId == 0)
+            {
+                LblMsgQuo.Text = "Este campo es obligatorio";
+                return;
+
+            }
+
+            if (!int.TryParse(DDLHistory.SelectedValue, out _fkHistId) || _fkHistId == 0)
+            {
+                LblMsgHis.Text = "Este campo es obligatorio";
+                return;
+
+            }
+            if (!int.TryParse(DDLAux.SelectedValue, out _fkAuxId) || _fkAuxId == 0)
+            {
+                LblMsgAux.Text = "Este campo es obligatorio";
+                return;
+
+            }
 
             executed = objTreatments.saveTreatment(_name, _description, _date, _observations, _fkCitaId, _fkHistId, _fkAuxId);
 
@@ -352,9 +377,30 @@ namespace Presentation
             _description = TBDescription.Text;
             _observations = TBObservations.Text;
             _date = DateTime.Parse(TBDate.Text);
-            _fkCitaId = Convert.ToInt32(DDLQuotes.SelectedValue);
-            _fkHistId = Convert.ToInt32(DDLHistory.SelectedValue);
-            _fkAuxId = Convert.ToInt32(DDLAux.SelectedValue);
+            //_fkCitaId = Convert.ToInt32(DDLQuotes.SelectedValue);
+            //_fkHistId = Convert.ToInt32(DDLHistory.SelectedValue);
+            //_fkAuxId = Convert.ToInt32(DDLAux.SelectedValue);
+
+
+            if (!int.TryParse(DDLQuotes.SelectedValue, out _fkCitaId) || _fkCitaId == 0)
+            {
+                LblMsgQuo.Text = "Este campo es obligatorio";
+                return;
+
+            }
+
+            if (!int.TryParse(DDLHistory.SelectedValue, out _fkHistId) || _fkHistId == 0)
+            {
+                LblMsgHis.Text = "Este campo es obligatorio";
+                return;
+
+            }
+            if (!int.TryParse(DDLAux.SelectedValue, out _fkAuxId) || _fkAuxId == 0)
+            {
+                LblMsgAux.Text = "Este campo es obligatorio";
+                return;
+
+            }
 
             executed = objTreatments.updateTreatment(_treatmentId, _name, _description, _date, _observations, _fkCitaId, _fkHistId, _fkAuxId);
 

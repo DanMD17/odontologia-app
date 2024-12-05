@@ -10,6 +10,7 @@
     <div class="card m-1">
         <div class="card-header">
             Gestión de Historial clinico
+       
         </div>
         <div class="card-body">
             <form id="FrmClinicalHistory" runat="server">
@@ -17,10 +18,10 @@
                 <%-- ID --%>
                 <asp:HiddenField ID="HFClinicalHistoryID" runat="server" />
                 <div class="row m-1">
-                    <div class="col-2">
+                    <div class="col-3">
                         <%--Fecha de creación--%>
                         <asp:Label ID="Label1" CssClass="form-label" runat="server" Text="Ingrese la fecha de creación"></asp:Label>
-                        <asp:TextBox ID="TBCreacionDate" CssClass="form-control" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="TBCreacionDate" CssClass="form-control" runat="server" TextMode="Date"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="RFVDate" runat="server" ControlToValidate="TBCreacionDate"
                             CssClass="text-danger" ErrorMessage="Este campo es obligatorio."></asp:RequiredFieldValidator>
                     </div>
@@ -31,17 +32,26 @@
                         <asp:RequiredFieldValidator ID="RFVOverview" runat="server" ControlToValidate="TBOverview"
                             CssClass="text-danger" ErrorMessage="Este campo es obligatorio."></asp:RequiredFieldValidator>
                     </div>
-                    <div class="col-2">
+                </div>
+                <div class="row m-1">
+                    <div class="col-3">
                         <%--Seleccionar paciente--%>
                         <asp:Label ID="Label3" CssClass="form-label" runat="server" Text="Seleccione un paciente"></asp:Label>
                         <asp:DropDownList ID="DDLPatient" CssClass="form-select" runat="server"></asp:DropDownList>
+                        <asp:Label ID="LblMsgPac" runat="server" Text="" CssClass="text-danger"></asp:Label>
+                    </div>
+                    <div class="col-3">
+                        <%--Seleccionar odontologo--%>
+                        <asp:Label ID="Label4" CssClass="form-label" runat="server" Text="Seleccione un odontologo"></asp:Label>
+                        <asp:DropDownList ID="DDLDentist" CssClass="form-select" runat="server"></asp:DropDownList>
+                        <asp:Label ID="LblMsgDen" runat="server" Text="" CssClass="text-danger"></asp:Label>
                     </div>
                 </div>
                 <%--Botones guardar y actualizar--%>
                 <div class="row m-1">
                     <div class="col">
-                        <asp:Button ID="BtnSave" runat="server" Text="Guardar" OnClick="BtnSave_Click" />
-                        <asp:Button ID="BtnUpdate" runat="server" Text="Actualizar" OnClick="BtnUpdate_Click" />
+                        <asp:Button ID="BtnSave" CssClass="btn btn-success" runat="server" Text="Guardar" OnClick="BtnSave_Click" />
+                        <asp:Button ID="BtnUpdate"  CssClass="btn btn-primary"  runat="server" Text="Actualizar" OnClick="BtnUpdate_Click" />
                         <asp:Label ID="LblMsg" runat="server" Text=""></asp:Label>
                     </div>
                 </div>
@@ -54,6 +64,7 @@
         <asp:Panel ID="PanelAdmin" runat="server">
             <div class="card-header">
                 Lista de Historiales clinicos
+           
             </div>
             <div class="card-body">
                 <%--Lista de Historiales Clinico--%>
@@ -62,11 +73,13 @@
                     <table id="ClinicalHistoryTable" class="display" style="width: 100%">
                         <thead>
                             <tr>
-                                <th>HistorialID</th>
-                                <th>FechaDeCreacion</th>
-                                <th>DescripcionGeneral</th>
+                                <th>Historial n.º</th>
+                                <th>Fecha de creacion</th>
+                                <th>Descripcion General</th>
                                 <th>FkPaciente</th>
                                 <th>Paciente</th>
+                                <th>FkOdontologo</th>
+                                <th>Odontologo</th>
                             </tr>
                         </thead>
                         <tbody></tbody>
@@ -104,6 +117,8 @@
                     { "data": "Overview" },
                     { "data": "FkPatient", "visible": false },
                     { "data": "NamePatient" },
+                    { "data": "FkDentist", "visible": false },
+                    { "data": "OdoName" },
                     {
                         "data": null,
                         "render": function (data, type, row) {
@@ -141,6 +156,8 @@
                 const rowData = $('#ClinicalHistoryTable').DataTable().row($(this).parents('tr')).data();
                 //alert(JSON.stringify(rowData, null, 2));
                 loadClinicalHistoryData(rowData);
+                $('#<%= BtnSave.ClientID %>').hide();
+                $('#<%= BtnUpdate.ClientID %>').show();
             });
 
             // Eliminar un historial clinico
@@ -158,6 +175,7 @@
             $('#<%= TBCreacionDate.ClientID %>').val(rowData.CreacionDate);
             $('#<%= TBOverview.ClientID %>').val(rowData.Overview);
             $('#<%= DDLPatient.ClientID %>').val(rowData.FkPatient);
+            $('#<%= DDLDentist.ClientID %>').val(rowData.FkDentist);
         }
 
         // Función para eliminar un historial clinico 
