@@ -7,6 +7,7 @@
     <div class="card m-1">
         <div class="card-header">
             Gestión de Citas
+       
         </div>
         <div class="card-body">
             <form id="FrmQuotes" runat="server">
@@ -16,34 +17,51 @@
                     <div class="col-4">
                         <asp:Label ID="Label1" CssClass="form-label" runat="server" Text="Ingrese la fecha de la cita"></asp:Label>
                         <asp:TextBox ID="TBDate" CssClass="form-select" runat="server" TextMode="Date"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="RFVDate" runat="server" ControlToValidate="TBDate"
+                            ErrorMessage="Este campo es obligatorio" Display="Dynamic" CssClass="text-danger">
+                        </asp:RequiredFieldValidator>
                     </div>
                     <div class="col-4">
                         <asp:Label ID="Label2" CssClass="form-label" runat="server" Text="Ingrese la hora de la cita"></asp:Label>
                         <asp:TextBox ID="TBTime" CssClass="form-select" runat="server" TextMode="Time"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="RFVTime" runat="server" ControlToValidate="TBTime"
+                            ErrorMessage="Este campo es obligatorio" Display="Dynamic" CssClass="text-danger">
+                        </asp:RequiredFieldValidator>
                     </div>
                     <div class="col-4">
                         <asp:Label ID="Label3" CssClass="form-label" runat="server" Text="Especifique el estado de la cita"></asp:Label>
-                        <asp:TextBox ID="TBStatus" CssClass="form-control" runat="server"></asp:TextBox>
-                        <asp:RequiredFieldValidator ID="RFVStatus" runat="server" ControlToValidate="TBStatus"
-                            CssClass="text-danger" ErrorMessage="Este campo es obligatorio."></asp:RequiredFieldValidator>
+                        <asp:DropDownList ID="DDLState" CssClass="form-select" runat="server">
+                            <asp:ListItem Value="0">Seleccione</asp:ListItem>
+                            <asp:ListItem Value="Activo">Activo</asp:ListItem>
+                            <asp:ListItem Value="Inactivo">Inactivo</asp:ListItem>
+                        </asp:DropDownList>
+                        <asp:RequiredFieldValidator ID="RFVState" runat="server" ControlToValidate="DDLState"
+                            ErrorMessage="Este campo es obligatorio" InitialValue="0" Display="Dynamic" CssClass="text-danger">
+                        </asp:RequiredFieldValidator>
                     </div>
                 </div>
                 <div class="row m-1">
-                    <div class="col-2">
+                    <div class="col-3">
                         <asp:Label ID="Label4" CssClass="form-label" runat="server" Text="Seleccione un paciente"></asp:Label>
-                        <asp:DropDownList ID="DDLPatient" CssClass="form-select" runat="server"></asp:DropDownList>
+                        <asp:DropDownList ID="DDLPatient" CssClass="form-select" runat="server">
+                            <asp:ListItem Value="0">Seleccione</asp:ListItem>
+                        </asp:DropDownList>
+                        <asp:Label ID="LblMsgPac" runat="server" Text="" CssClass="text-danger"></asp:Label>
+
                     </div>
-                    <div class="col-4">
-                        <asp:Label ID="Label5" CssClass="form-label" runat="server" Text="Seleccione la especialidad adecuada 
-                        del Odontologo para la cita"></asp:Label>
-                        <asp:DropDownList ID="DDLDentist" CssClass="form-select" runat="server"></asp:DropDownList>
+                    <div class="col-3">
+                        <asp:Label ID="Label5" CssClass="form-label" runat="server" Text="Seleccione un odontologo"></asp:Label>
+                        <asp:DropDownList ID="DDLDentist" CssClass="form-select" runat="server">
+                            <asp:ListItem Value="0">Seleccione</asp:ListItem>
+                        </asp:DropDownList>
+                        <asp:Label ID="LblMsgOdo" runat="server" Text="" CssClass="text-danger"></asp:Label>
                     </div>
                 </div>
                 <div class="row m-1">
                     <div class="col">
                         <%--Botones guardar y actualizar--%>
-                        <asp:Button ID="BtnSave" runat="server" Text="Guardar" OnClick="BtnSave_Click" />
-                        <asp:Button ID="BtnUpdate" runat="server" Text="Actualizar" OnClick="BtnUpdate_Click" />
+                        <asp:Button ID="BtnSave" CssClass="btn btn-success" runat="server" Text="Guardar" OnClick="BtnSave_Click" />
+                        <asp:Button ID="BtnUpdate" CssClass="btn btn-primary" runat="server" Text="Actualizar" OnClick="BtnUpdate_Click" />
                         <asp:Label ID="LblMsg" runat="server" Text=""></asp:Label>
                     </div>
                 </div>
@@ -56,6 +74,7 @@
         <asp:Panel ID="PanelAdmin" runat="server">
             <div class="card-header">
                 Lista de citas
+           
             </div>
             <div class="card-body">
                 <%--Lista de Citas--%>
@@ -72,6 +91,7 @@
                                 <th>Paciente</th>
                                 <th>FkOdontologo</th>
                                 <th>Especialidad del odontologo</th>
+                                 <th>Nombre del odontologo</th>
                             </tr>
                         </thead>
                         <tbody></tbody>
@@ -110,6 +130,7 @@
                     { "data": "NamePatient" },
                     { "data": "FkDentistId", "visible": false },
                     { "data": "SpecialtyDentist" },
+                    { "data": "NameDentist" },
 
                     {
                         "data": null,
@@ -145,6 +166,8 @@
             $('#quotesTable').on('click', '.edit-btn', function () {
                 const rowData = $('#quotesTable').DataTable().row($(this).parents('tr')).data();
                 loadQuoteData(rowData);
+                $('#<%= BtnSave.ClientID %>').hide();
+                $('#<%= BtnUpdate.ClientID %>').show();
             });
 
             // Evento para eliminar una cita
@@ -161,7 +184,7 @@
             $('#<%= HFQuoteID.ClientID %>').val(rowData.QuoteID);
             $('#<%= TBDate.ClientID %>').val(rowData.Date);
             $('#<%= TBTime.ClientID %>').val(rowData.Time);
-            $('#<%= TBStatus.ClientID %>').val(rowData.Status);
+            $('#<%= DDLState.ClientID %>').val(rowData.Status);
             $('#<%= DDLPatient.ClientID %>').val(rowData.FkPatientId);
             $('#<%= DDLDentist.ClientID %>').val(rowData.FkDentistId);
         }

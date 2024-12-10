@@ -67,9 +67,11 @@ namespace Presentation
                     Date = Convert.ToDateTime(row["diag_fecha"]).ToString("yyyy-MM-dd"),
                     Observations = row["diag_observaciones"],
                     FkQuotes = row["tbl_citas_cita_id"],
-                    Status = row["cita_estado"],
+                    QuoteDate = Convert.ToDateTime(row["cita_fecha"]).ToString("yyyy-MM-dd"),
                     FkClinicalHistory = row["tbl_historialclinico_hist_id"],
-                    DescriptionCH = row["hist_descripcion_general"]
+                    DescriptionCH = row["hist_descripcion_general"],
+                    FkPatients = row["tbl_citas_cita_id"],
+                    NamePatient = row["paciente_nombre"]
                 });
             }
 
@@ -271,7 +273,7 @@ namespace Presentation
         {
             DDLClinicalHistory.DataSource = objCliniH.showClinicalHistoriesDDL();
             DDLClinicalHistory.DataValueField = "hist_id";//Nombre de la llave primaria
-            DDLClinicalHistory.DataTextField = "hist_descripcion_general";
+            DDLClinicalHistory.DataTextField = "hist_info";
             DDLClinicalHistory.DataBind();
             DDLClinicalHistory.Items.Insert(0, "Seleccione");
         }
@@ -280,7 +282,7 @@ namespace Presentation
         {
             DDLQuotes.DataSource = objQuo.showQuotesDDL();
             DDLQuotes.DataValueField = "cita_id";//Nombre de la llave primaria
-            DDLQuotes.DataTextField = "cita_estado";
+            DDLQuotes.DataTextField = "nombre_y_fecha"; // Enlazamos al nuevo campo
             DDLQuotes.DataBind();
             DDLQuotes.Items.Insert(0, "Seleccione");
         }
@@ -293,6 +295,8 @@ namespace Presentation
             TBObservations.Text = "";
             DDLClinicalHistory.SelectedIndex = 0;
             DDLQuotes.SelectedIndex = 0;
+            LblMsgCH.Text = "";
+            LblMsgQuo.Text = "";
         }
         //Eventos que se ejecutan cuando se da clic en los botones
         protected void BtnSave_Click(object sender, EventArgs e)
@@ -300,14 +304,28 @@ namespace Presentation
             _description = TBDescription.Text;
             _date = DateTime.Parse(TBDate.Text);
             _observations = TBObservations.Text;
-            _fkClinicalHistory = Convert.ToInt32(DDLClinicalHistory.SelectedValue);
-            _fkQuotes = Convert.ToInt32(DDLQuotes.SelectedValue);
+            //_fkClinicalHistory = Convert.ToInt32(DDLClinicalHistory.SelectedValue);
+            //  _fkQuotes = Convert.ToInt32(DDLQuotes.SelectedValue);
+            if (!int.TryParse(DDLClinicalHistory.SelectedValue, out _fkClinicalHistory) || _fkClinicalHistory == 0)
+            {
+                LblMsgCH.Text = "Este campo es obligatorio";
+                return;
 
+            }
+
+            // Try parsing the Dentist ID
+            if (!int.TryParse(DDLQuotes.SelectedValue, out _fkQuotes) || _fkQuotes == 0)
+            {
+                LblMsgQuo.Text = "Este campo es obligatorio";
+                return;
+
+            }
             executed = objDiag.saveDiagnosis(_fkQuotes, _description, _date, _observations, _fkClinicalHistory);
 
             if (executed)
             {
                 LblMsg.Text = "El Diagnostico se guardo exitosamente!";
+                clear(); //Se invoca el metodo para limpiar los campos 
             }
             else
             {
@@ -327,8 +345,23 @@ namespace Presentation
             _description = TBDescription.Text;
             _date = DateTime.Parse(TBDate.Text);
             _observations = TBObservations.Text;
-            _fkClinicalHistory = Convert.ToInt32(DDLClinicalHistory.SelectedValue);
-            _fkQuotes = Convert.ToInt32(DDLQuotes.SelectedValue);
+            //_fkClinicalHistory = Convert.ToInt32(DDLClinicalHistory.SelectedValue);
+            //_fkQuotes = Convert.ToInt32(DDLQuotes.SelectedValue);
+
+            if (!int.TryParse(DDLClinicalHistory.SelectedValue, out _fkClinicalHistory) || _fkClinicalHistory == 0)
+            {
+                LblMsgCH.Text = "Este campo es obligatorio";
+                return;
+
+            }
+
+            // Try parsing the Dentist ID
+            if (!int.TryParse(DDLQuotes.SelectedValue, out _fkQuotes) || _fkQuotes == 0)
+            {
+                LblMsgQuo.Text = "Este campo es obligatorio";
+                return;
+
+            }
 
             executed = objDiag.updateDiagnosis(_idDiag, _fkQuotes, _description, _date, _observations, _fkClinicalHistory);
 

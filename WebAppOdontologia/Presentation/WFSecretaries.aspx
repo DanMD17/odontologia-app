@@ -23,7 +23,7 @@
                     </div>
                     <div class="col-4">
                         <%--Años de experiencia secretaria--%>
-                        <asp:Label ID="Label2" CssClass="form-label" runat="server" Text="Ingrese los anios de experiencia"></asp:Label>
+                        <asp:Label ID="Label2" CssClass="form-label" runat="server" Text="Ingrese los años de experiencia"></asp:Label>
                         <asp:TextBox ID="TBYearsExp" CssClass="form-control" runat="server"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="RFVYearsExp" runat="server" ControlToValidate="TBYearsExp"
                             CssClass="text-danger" ErrorMessage="Este campo es obligatorio."></asp:RequiredFieldValidator>
@@ -32,12 +32,13 @@
                         <%--DDL para seleccionar empleado--%>
                         <asp:Label ID="Label3" CssClass="form-label" runat="server" Text="Seleccione un empleado"></asp:Label>
                         <asp:DropDownList ID="DDLEmployee" CssClass="form-select" runat="server"></asp:DropDownList>
+                        <asp:Label ID="LblMsgEmp" runat="server" CssClass="text-danger" Text=""></asp:Label>
                     </div>
                 </div>
                 <div class="row m-1">
                     <div class="col">
-                        <asp:Button ID="BtnSave" runat="server" Text="Guardar" OnClick="BtnSave_Click" />
-                        <asp:Button ID="BtnUpdate" runat="server" Text="Actualizar" OnClick="BtnUpdate_Click" />
+                        <asp:Button ID="BtnSave" CssClass="btn btn-success" runat="server" Text="Guardar" OnClick="BtnSave_Click" />
+                        <asp:Button ID="BtnUpdate" CssClass="btn btn-primary" runat="server" Text="Actualizar" OnClick="BtnUpdate_Click" />
                         <asp:Label ID="LblMsg" runat="server" Text=""></asp:Label>
                         <br />
                     </div>
@@ -56,13 +57,12 @@
                 <%--Lista de Secretarias--%>
                 <div class="table-responsive">
                     <%--Tabla de Secretarias--%>
-                    <h2>Lista de Secretarias</h2>
                     <table id="secretariesTable" class="display" style="width: 100%">
                         <thead>
                             <tr>
-                                <th>SecretariaID</th>
+                                <th>Secretaria ID</th>
                                 <th>Funcion</th>
-                                <th>AniosExperiencia</th>
+                                <th>Años de experiencia</th>
                                 <th>FkEmpleado</th>
                                 <th>Empleado</th>
                             </tr>
@@ -134,10 +134,10 @@
 
             // Editar una secretaria
             $('#secretariesTable').on('click', '.edit-btn', function () {
-                //const id = $(this).data('id');
                 const rowData = $('#secretariesTable').DataTable().row($(this).parents('tr')).data();
-                //alert(JSON.stringify(rowData, null, 2));
                 loadSecretariatData(rowData);
+                $('#<%= BtnSave.ClientID %>').hide();
+                $('#<%= BtnUpdate.ClientID %>').show();
             });
 
             // Eliminar una secretaria

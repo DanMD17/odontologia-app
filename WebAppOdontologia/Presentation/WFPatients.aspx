@@ -8,6 +8,7 @@
     <div class="card m-1">
         <div class="card-header">
             Gestión de Pacientes
+       
         </div>
         <div class="card-body">
             <form id="FrmPatients" runat="server">
@@ -28,10 +29,13 @@
                         <asp:RequiredFieldValidator ID="RFVLastName" runat="server" ControlToValidate="TBLastName"
                             CssClass="text-danger" ErrorMessage="Este campo es obligatorio."></asp:RequiredFieldValidator>
                     </div>
-                    <div class="col-2">
+                    <div class="col-3">
                         <%--Fecha de Nacimiento--%>
                         <asp:Label ID="Label3" CssClass="form-label" runat="server" Text="Ingrese la fecha de nacimiento"></asp:Label>
                         <asp:TextBox ID="TBDateOfBirth" CssClass="form-select" runat="server" TextMode="Date"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="RFVDate" runat="server" ControlToValidate="TBDateOfBirth"
+                            ErrorMessage="Este campo es obligatorio" Display="Dynamic" CssClass="text-danger">
+                        </asp:RequiredFieldValidator>
                     </div>
                 </div>
                 <div class="row m-1">
@@ -60,8 +64,8 @@
                 <div class="row m-1">
                     <div class="col">
                         <%--Botones guardar y eliminar--%>
-                        <asp:Button ID="BtnSave" runat="server" Text="Guardar" OnClick="BtnSave_Click" />
-                        <asp:Button ID="BtnUpdate" runat="server" Text="Actualizar" OnClick="BtnUpdate_Click" />
+                        <asp:Button ID="BtnSave" CssClass="btn btn-success" runat="server" Text="Guardar" OnClick="BtnSave_Click" />
+                        <asp:Button ID="BtnUpdate" CssClass="btn btn-primary" runat="server" Text="Actualizar" OnClick="BtnUpdate_Click" />
                         <asp:Label ID="LblMsg" runat="server" Text=""></asp:Label>
                     </div>
                 </div>
@@ -74,6 +78,7 @@
         <asp:Panel ID="PanelAdmin" runat="server">
             <div class="card-header">
                 Lista de Pacientes
+           
             </div>
             <div class="card-body">
                 <%--Lista de Pacientes--%>
@@ -160,6 +165,8 @@
             $('#patientsTable').on('click', '.edit-btn', function () {
                 const rowData = $('#patientsTable').DataTable().row($(this).parents('tr')).data();
                 loadPatientData(rowData);
+                $('#<%= BtnSave.ClientID %>').hide();
+                $('#<%= BtnUpdate.ClientID %>').show();
             });
 
             // Evento para eliminar un paciente

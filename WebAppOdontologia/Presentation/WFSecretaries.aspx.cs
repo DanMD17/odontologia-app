@@ -277,6 +277,7 @@ namespace Presentation
             TBFunction.Text = "";
             TBYearsExp.Text = "";
             DDLEmployee.SelectedIndex = 0;
+            LblMsgEmp.Text = "";
         }
 
         //Evento que se ejecuta cuando se da clic en el boton guardar
@@ -284,13 +285,21 @@ namespace Presentation
         {
             _yearsExp = TBYearsExp.Text;
             _function = TBFunction.Text;
-            _fkEmployee = Convert.ToInt32(DDLEmployee.SelectedValue);
+            //_fkEmployee = Convert.ToInt32(DDLEmployee.SelectedValue);
+
+            if (!int.TryParse(DDLEmployee.SelectedValue, out _fkEmployee) || _fkEmployee == 0)
+            {
+                LblMsgEmp.Text = "Este campo es obligatorio";
+                return;
+
+            }
 
             executed = objSec.saveSecretary(_fkEmployee, _function, _yearsExp);
 
             if (executed)
             {
                 LblMsg.Text = "La secretaria se guardó exitosamente!";
+                clear();
             }
             else
             {
@@ -310,7 +319,13 @@ namespace Presentation
             _idSec = Convert.ToInt32(HFSecretariesID.Value);
             _function = TBFunction.Text;
             _yearsExp = TBYearsExp.Text;
-            _fkEmployee = Convert.ToInt32(DDLEmployee.SelectedValue);
+            //_fkEmployee = Convert.ToInt32(DDLEmployee.SelectedValue);
+            if (!int.TryParse(DDLEmployee.SelectedValue, out _fkEmployee) || _fkEmployee == 0)
+            {
+                LblMsgEmp.Text = "Este campo es obligatorio";
+                return;
+
+            }
 
             executed = objSec.updateSecretaria(_idSec, _fkEmployee, _function, _yearsExp);
 

@@ -42,7 +42,7 @@
         <aside id="sidebar">
             <div class="d-flex">
                 <button class="toggle-btn" type="button">
-                    <i class="lni lni-heart"></i>
+                    <i class="lni lni-menu-cheesburger"></i>
                 </button>
                 <div class="sidebar-logo">
                     <a href="Index.aspx">Inicio</a>
@@ -50,48 +50,6 @@
             </div>
             <ul class="sidebar-nav">
                 <%--Elementos en la barra lateral--%>
-                <%--Auxiliares--%>
-                <li class="sidebar-item">
-                    <a href="WFAuxiliaries.aspx" class="sidebar-link">
-                        <i class="lni lni-hierarchy-1"></i>
-                        <span>Auxiliares</span>
-                    </a>
-                </li>
-                <%--Historial clinico--%>
-                <li class="sidebar-item">
-                    <a href="WFClinicalHistory.aspx" class="sidebar-link">
-                        <i class="lni lni-agenda"></i>
-                        <span>Historial Clinico</span>
-                    </a>
-                </li>
-                <%--Odontologos--%>
-                <li class="sidebar-item">
-                    <a href="WFDentists.aspx" class="sidebar-link">
-                        <i class="lni lni-briefcase-plus-1"></i>
-                        <span>Dentistas</span>
-                    </a>
-                </li>
-                <%--Diagnosticos--%>
-                <li class="sidebar-item">
-                    <a href="WFDiagnosis.aspx" class="sidebar-link">
-                        <i class="lni lni-pen-to-square"></i>
-                        <span>Diagnosticos</span>
-                    </a>
-                </li>
-                <%--Empleados--%>
-                <li class="sidebar-item">
-                    <a href="WFEmployees.aspx" class="sidebar-link">
-                        <i class="lni lni-user-multiple-4"></i>
-                        <span>Empleados</span>
-                    </a>
-                </li>
-                <%--Materiales--%>
-                <li class="sidebar-item">
-                    <a href="WFMaterials.aspx" class="sidebar-link">
-                        <i class="lni lni-scissors-1-vertical"></i>
-                        <span>Materiales</span>
-                    </a>
-                </li>
                 <%--Pacientes--%>
                 <li class="sidebar-item">
                     <a href="WFPatients.aspx" class="sidebar-link">
@@ -106,28 +64,66 @@
                         <span>Citas</span>
                     </a>
                 </li>
-                <%--Secretarias--%>
+                <%--Historial clinico--%>
                 <li class="sidebar-item">
-                    <a href="WFSecretaries.aspx" class="sidebar-link">
-                        <i class="lni lni-briefcase-1"></i>
-                        <span>Secretarias</span>
+                    <a href="WFClinicalHistory.aspx" class="sidebar-link">
+                        <i class="lni lni-agenda"></i>
+                        <span>Historial Clinico</span>
+                    </a>
+                </li>
+                <%--Diagnosticos--%>
+                <li class="sidebar-item">
+                    <a href="WFDiagnosis.aspx" class="sidebar-link">
+                        <i class="lni lni-pen-to-square"></i>
+                        <span>Diagnósticos</span>
                     </a>
                 </li>
                 <%--Tratamietntos--%>
                 <li class="sidebar-item">
                     <a href="WFTreatments.aspx" class="sidebar-link">
                         <i class="lni lni-capsule-1"></i>
-                        <span>Tratamietntos</span>
+                        <span>Tratamientos</span>
                     </a>
                 </li>
-                <%--Desplegable de seguridad--%>
+                <%--Materiales--%>
+                <li class="sidebar-item">
+                    <a href="WFMaterials.aspx" class="sidebar-link">
+                        <i class="lni lni-scissors-1-vertical"></i>
+                        <span>Materiales</span>
+                    </a>
+                </li>
+                
+                <!-- Desplegable del personal -->
+                <li id="personalMenu" class="sidebar-item" runat="server">
+                    <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse"
+                        data-bs-target="#auth-personal" aria-expanded="false" aria-controls="auth-personal">
+                        <i class="lni lni-user-multiple-4"></i>
+                        <span>Personal</span>
+                    </a>
+                    <ul id="auth-personal" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+                        <li class="sidebar-item">
+                            <a href="WFEmployees.aspx" class="sidebar-link">Empleados</a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a href="WFDentists.aspx" class="sidebar-link">Odontólogos</a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a href="WFAuxiliaries.aspx" class="sidebar-link">Auxiliares</a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a href="WFSecretaries.aspx" class="sidebar-link">Secretarias</a>
+                        </li>
+                    </ul>
+                </li>
+
+                <!-- Desplegable de seguridad -->
                 <li id="securityMenu" class="sidebar-item" runat="server">
                     <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse"
-                        data-bs-target="#auth" aria-expanded="false" aria-controls="auth">
+                        data-bs-target="#auth-security" aria-expanded="false" aria-controls="auth-security">
                         <i class="lni lni-shield-2-check"></i>
                         <span>Seguridad</span>
                     </a>
-                    <ul id="auth" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+                    <ul id="auth-security" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
                         <li class="sidebar-item">
                             <a href="WFUsers.aspx" class="sidebar-link">Usuarios</a>
                         </li>
@@ -142,6 +138,7 @@
                         </li>
                     </ul>
                 </li>
+
             </ul>
             <div class="sidebar-footer">
                 <a href="Logout.aspx" class="sidebar-link">
@@ -163,27 +160,6 @@
         </div>
     </div>
 
-    <div>
-        <%--Aqui va lo que se repite en los otros WebForms--%>
-
-        <%--<a id="linkInicio" runat="server" href="Index.aspx">Inicio</a>
-        <a id="linkAuxiliaries" runat="server" href="WFAuxiliaries.aspx">Auxiliares</a>
-        <a id="linkClinicalHistory" runat="server" href="WFClinicalHistory.aspx">Historial clínico</a>
-        <a id="linkDentists" runat="server" href="WFDentists.aspx">Odontólogos</a>
-        <a id="linkDiagnosis" runat="server" href="WFDiagnosis.aspx">Diagnósticos</a>
-        <a id="linkEmployees" runat="server" href="WFEmployees.aspx">Empleados</a>
-        <a id="linkMaterials" runat="server" href="WFMaterials.aspx">Materiales</a>
-        <a id="linkPatients" runat="server" href="WFPatients.aspx">Pacientes</a>
-        <a id="linkQuotes" runat="server" href="WFQuotes.aspx">Citas</a>
-        <a id="linkSecretaries" runat="server" href="WFSecretaries.aspx">Secretarias</a>
-        <a id="linkTreatments" runat="server" href="WFTreatments.aspx">Tratamientos realizados</a>
-        <a id="linkUsers" runat="server" href="WFUsers.aspx">Usuarios</a>
-        <a id="linkRoles" runat="server" href="WFRoles.aspx">Roles</a>
-        <a id="linkPermission" runat="server" href="WFPermissions.aspx">Permisos</a>
-        <a id="linkPermissionRol" runat="server" href="WFRolesPermissions.aspx">Permisos Roles</a>
-        <a id="linkLogOut" runat="server" href="LogOut.aspx">Cerrar sesión</a>--%>
-      
-    </div>
     <%--JS Bootstrap--%>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <%--JS Sidebar--%>

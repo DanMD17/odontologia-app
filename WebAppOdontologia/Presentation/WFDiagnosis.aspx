@@ -9,6 +9,7 @@
     <div class="card m-1">
         <div class="card-header">
             Gestión de Diagnosticos
+       
         </div>
         <div class="card-body">
             <form id="FrmDiagnosis" runat="server">
@@ -26,7 +27,7 @@
                     <div class="col-2">
                         <%-- Fecha --%>
                         <asp:Label ID="Label2" CssClass="form-label" runat="server" Text="Ingrese la fecha"></asp:Label>
-                        <asp:TextBox ID="TBDate" CssClass="form-control" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="TBDate" CssClass="form-control" runat="server" TextMode="Date"></asp:TextBox>
                     </div>
                 </div>
                 <div class="row m-1">
@@ -39,22 +40,24 @@
                     </div>
                 </div>
                 <div class="row m-1">
-                    <div class="col-4">
+                    <div class="col-3">
+                        <%-- Seleccionar Historial Clínico --%>
+                        <asp:Label ID="Label5" CssClass="form-label" runat="server" Text="Historial clínico"></asp:Label>
+                        <asp:DropDownList ID="DDLClinicalHistory" CssClass="form-select" runat="server"></asp:DropDownList>
+                        <asp:Label ID="LblMsgCH" runat="server" Text="" CssClass="text-danger"></asp:Label>
+                    </div>
+                    <div class="col-3">
                         <%-- Seleccionar Cita --%>
                         <asp:Label ID="Label4" CssClass="form-label" runat="server" Text="Cita"></asp:Label>
                         <asp:DropDownList ID="DDLQuotes" CssClass="form-select" runat="server"></asp:DropDownList>
-                    </div>
-                    <div class="col">
-                        <%-- Seleccionar Historial Clínico --%>
-                        <asp:Label ID="Label5" CssClass="form-label" runat="server" Text="Historial clínico"></asp:Label>
-                        <asp:DropDownList ID="DDLClinicalHistory" CssClass="form-control" runat="server"></asp:DropDownList>
+                        <asp:Label ID="LblMsgQuo" runat="server" Text="" CssClass="text-danger"></asp:Label>
                     </div>
                 </div>
                 <%-- Botón guardar --%>
                 <div class="row m-1">
                     <div class="col">
-                        <asp:Button ID="BtnSave" runat="server" Text="Guardar" OnClick="BtnSave_Click" />
-                        <asp:Button ID="BtnUpdate" runat="server" Text="Actualizar" OnClick="BtnUpdate_Click" />
+                        <asp:Button ID="BtnSave" CssClass="btn btn-success" runat="server" Text="Guardar" OnClick="BtnSave_Click" />
+                        <asp:Button ID="BtnUpdate" CssClass="btn btn-primary"  runat="server" Text="Actualizar" OnClick="BtnUpdate_Click" />
                         <asp:Label ID="LblMsg" runat="server" Text=""></asp:Label>
                     </div>
                 </div>
@@ -68,6 +71,7 @@
         <asp:Panel ID="PanelAdmin" runat="server">
             <div class="card-header">
                 Lista de diagnosticos
+           
             </div>
             <div class="card-body">
                 <%--Lista de Diagnosticos--%>
@@ -83,7 +87,9 @@
                                 <th>FkCitas</th>
                                 <th>Citas</th>
                                 <th>FkHistorialClinico</th>
-                                <th>HistorialClinico</th>
+                                <th>Historial Clinico</th>
+                                <th>FkPatients</th>
+                                <th>Paciente</th>
                             </tr>
                         </thead>
                         <tbody></tbody>
@@ -120,9 +126,11 @@
                     { "data": "Date" },
                     { "data": "Observations" },
                     { "data": "FkQuotes", "visible": false },
-                    { "data": "Status" },
+                    { "data": "QuoteDate" },
                     { "data": "FkClinicalHistory", "visible": false },
                     { "data": "DescriptionCH" },
+                    { "data": "FkPatients", "visible": false },
+                    { "data": "NamePatient" },
 
                     {
                         "data": null,
@@ -157,10 +165,11 @@
 
             // Editar un diagnostico
             $('#diagnosisTable').on('click', '.edit-btn', function () {
-                //const id = $(this).data('id');
                 const rowData = $('#diagnosisTable').DataTable().row($(this).parents('tr')).data();
-                //alert(JSON.stringify(rowData, null, 2));
                 loadDiagnosisData(rowData);
+                $('#<%= BtnSave.ClientID %>').hide();
+                $('#<%= BtnUpdate.ClientID %>').show();
+
             });
 
             // Eliminar un producto

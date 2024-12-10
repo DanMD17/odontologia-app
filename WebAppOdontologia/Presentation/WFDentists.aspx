@@ -15,23 +15,24 @@
                 <%--Id--%>
                 <asp:HiddenField ID="HFDentistID" runat="server" />
                 <div class="row m-1">
-                    <div class="col">
+                    <div class="col-4">
                         <%--Formulario de Odontólogos--%>
                         <asp:Label ID="Label1" CssClass="form-label" runat="server" Text="Ingrese la especialidad"></asp:Label>
                         <asp:TextBox ID="TBSpecialty" CssClass="form-control" runat="server"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="RFVSpecialty" runat="server" ControlToValidate="TBSpecialty"
                             CssClass="text-danger" ErrorMessage="Este campo es obligatorio."></asp:RequiredFieldValidator>
                     </div>
-                    <div class="col-2">
+                    <div class="col-3">
                         <%--Seleccionar empleado--%>
                         <asp:Label ID="Label2" CssClass="form-label" runat="server" Text="Seleccione un empleado"></asp:Label>
                         <asp:DropDownList ID="DDLEmployee" CssClass="form-select" runat="server"></asp:DropDownList>
+                        <asp:Label ID="LblMsgEmp" runat="server" Text="" CssClass="text-danger"></asp:Label>
                     </div>
                 </div>
                 <div class="row m-1">
                     <div class="col">
-                        <asp:Button ID="BtnSave" runat="server" Text="Guardar" OnClick="BtnSave_Click" />
-                        <asp:Button ID="BtnUpdate" runat="server" Text="Actualizar" OnClick="BtnUpdate_Click" />
+                        <asp:Button ID="BtnSave" CssClass="btn btn-success" runat="server" Text="Guardar" OnClick="BtnSave_Click" />
+                        <asp:Button ID="BtnUpdate"  CssClass="btn btn-primary"  runat="server" Text="Actualizar" OnClick="BtnUpdate_Click" />
                         <asp:Label ID="LblMsg" runat="server" Text=""></asp:Label>
                     </div>
                 </div>
@@ -128,6 +129,8 @@
                 const rowData = $('#DentistsTable').DataTable().row($(this).parents('tr')).data();
                 //alert(JSON.stringify(rowData, null, 2));
                 loadDentistsData(rowData);
+                $('#<%= BtnSave.ClientID %>').hide();
+                $('#<%= BtnUpdate.ClientID %>').show();
             });
 
             // Eliminar un dentista

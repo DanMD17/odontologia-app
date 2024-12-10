@@ -159,13 +159,13 @@ namespace Presentation
         protected global::System.Web.UI.WebControls.DropDownList DDLQuotes;
 
         /// <summary>
-        /// Control RFVQuotes.
+        /// Control LblMsgQuo.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RFVQuotes;
+        protected global::System.Web.UI.WebControls.Label LblMsgQuo;
 
         /// <summary>
         /// Control Label6.
@@ -186,13 +186,13 @@ namespace Presentation
         protected global::System.Web.UI.WebControls.DropDownList DDLHistory;
 
         /// <summary>
-        /// Control RFVHistory.
+        /// Control LblMsgHis.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RFVHistory;
+        protected global::System.Web.UI.WebControls.Label LblMsgHis;
 
         /// <summary>
         /// Control Label7.
@@ -213,13 +213,13 @@ namespace Presentation
         protected global::System.Web.UI.WebControls.DropDownList DDLAux;
 
         /// <summary>
-        /// Control RFVAuxiliar.
+        /// Control LblMsgAux.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RFVAuxiliar;
+        protected global::System.Web.UI.WebControls.Label LblMsgAux;
 
         /// <summary>
         /// Control BtnSave.

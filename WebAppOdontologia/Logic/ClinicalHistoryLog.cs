@@ -26,16 +26,16 @@ namespace Logic
 
 
         // Método para guardar un nuevo historial clínico
-        public bool saveClinicalHistory(int _fkPacId, DateTime _pFechaCreacion, string _pDescripcionGeneral)
+        public bool saveClinicalHistory(int _fkPacId, int _fkDentist, DateTime _pFechaCreacion, string _pDescripcionGeneral)
 
         {
-            return objHist.saveClinicalHistory(_fkPacId, _pFechaCreacion, _pDescripcionGeneral);
+            return objHist.saveClinicalHistory(_fkPacId, _fkDentist, _pFechaCreacion, _pDescripcionGeneral);
         }
 
         // Método para actualizar un historial clínico
-        public bool updateClinicalHistory(int _pHistorialId, DateTime _pFechaCreacion, string _pDescripcionGeneral, int _fkPacId)
+        public bool updateClinicalHistory(int _pHistorialId, DateTime _pFechaCreacion, string _pDescripcionGeneral, int _fkPacId, int _fkDentist)
         {
-            return objHist.updateClinicalHistory(_pHistorialId, _pFechaCreacion, _pDescripcionGeneral, _fkPacId);
+            return objHist.updateClinicalHistory(_pHistorialId, _pFechaCreacion, _pDescripcionGeneral, _fkPacId, _fkDentist);
         }
 
         // Método para borrar un historial clínico

@@ -96,6 +96,8 @@ namespace Presentation
             TBDate.Text = DateTime.Now.ToString("yyyy-MM-dd");
             DDLRol.SelectedIndex = 0;
             DDLEmployees.SelectedIndex = 0;
+            LblMsgRol.Text = "";
+            LblMsgEmp.Text = "";
         }
         // Evento que se ejecuta cuando se da clic en el boton guardar
         protected void BtnSave_Click(object sender, EventArgs e)
@@ -113,8 +115,22 @@ namespace Presentation
 
             _state = DDLState.SelectedValue;
             _date = DateTime.Parse(TBDate.Text);
-            _fkrol = Convert.ToInt32(DDLRol.SelectedValue);
-            _fkemployee = Convert.ToInt32(DDLEmployees.SelectedValue);
+            //_fkrol = Convert.ToInt32(DDLRol.SelectedValue);
+            //_fkemployee = Convert.ToInt32(DDLEmployees.SelectedValue);
+            if (!int.TryParse(DDLRol.SelectedValue, out _fkrol) || _fkrol == 0)
+            {
+                LblMsgRol.Text = "Este campo es obligatorio";
+                return;
+
+            }
+
+            // Try parsing the Dentist ID
+            if (!int.TryParse(DDLEmployees.SelectedValue, out _fkemployee) || _fkemployee == 0)
+            {
+                LblMsgEmp.Text = "Este campo es obligatorio";
+                return;
+
+            }
 
             executed = objUse.saveUser(_mail, _encryptedPassword, _salt, _state, _date, _fkemployee, _fkrol);
 
@@ -149,8 +165,22 @@ namespace Presentation
 
             _state = DDLState.SelectedValue;
             _date = DateTime.Parse(TBDate.Text);
-            _fkrol = Convert.ToInt32(DDLRol.SelectedValue);
-            _fkemployee = Convert.ToInt32(DDLEmployees.SelectedValue);
+            //_fkrol = Convert.ToInt32(DDLRol.SelectedValue);
+            //_fkemployee = Convert.ToInt32(DDLEmployees.SelectedValue);
+            if (!int.TryParse(DDLRol.SelectedValue, out _fkrol) || _fkrol == 0)
+            {
+                LblMsgRol.Text = "Este campo es obligatorio";
+                return;
+
+            }
+
+            // Try parsing the Dentist ID
+            if (!int.TryParse(DDLEmployees.SelectedValue, out _fkemployee) || _fkemployee == 0)
+            {
+                LblMsgEmp.Text = "Este campo es obligatorio";
+                return;
+
+            }
 
             executed = objUse.updateUser(_id, _mail, _encryptedPassword, _salt, _state, _date, _fkemployee, _fkrol);
 

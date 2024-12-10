@@ -280,6 +280,7 @@ namespace Presentation
             TBFunction.Text = "";
             TBEducationalLevel.Text = "";
             DDLEmployee.SelectedIndex = 0;
+            LblMsgAux.Text = "";
         }
 
         //Boton de guardar un auxiliar
@@ -287,13 +288,21 @@ namespace Presentation
         {
             _educationalLevel = TBEducationalLevel.Text;
             _function = TBFunction.Text;
-            _fkEmployee = Convert.ToInt32(DDLEmployee.SelectedValue);
+            // Try parsing the Patient ID
+            if (!int.TryParse(DDLEmployee.SelectedValue, out _fkEmployee) || _fkEmployee == 0)
+            {
+                LblMsgAux.Text = "Este campo es obligatorio";
+                return;
+
+            }
+          //  _fkEmployee = Convert.ToInt32(DDLEmployee.SelectedValue);
 
             executed = objAux.saveAssistant(_fkEmployee, _function, _educationalLevel);
 
             if (executed)
             {
                 LblMsg.Text = "El auxiliar se guardó exitosamente!";
+                clear();
             }
             else
             {
@@ -313,7 +322,14 @@ namespace Presentation
             _idAux = Convert.ToInt32(HFAssistantID.Value);
             _function = TBFunction.Text;
             _educationalLevel = TBEducationalLevel.Text;
-            _fkEmployee = Convert.ToInt32(DDLEmployee.SelectedValue);
+            // _fkEmployee = Convert.ToInt32(DDLEmployee.SelectedValue);
+
+            if (!int.TryParse(DDLEmployee.SelectedValue, out _fkEmployee) || _fkEmployee == 0)
+            {
+                LblMsgAux.Text = "Este campo es obligatorio";
+                return;
+
+            }
 
             executed = objAux.updateAssistant(_idAux, _fkEmployee, _function, _educationalLevel);
 

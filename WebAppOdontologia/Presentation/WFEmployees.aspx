@@ -62,8 +62,8 @@
                 <%--Botones guardar y actualizar--%>
                 <div class="row m-1">
                     <div class="col">
-                        <asp:Button ID="BtnSave" runat="server" Text="Guardar" OnClick="BtnSave_Click" />
-                        <asp:Button ID="BtnUpdate" runat="server" Text="Actualizar" OnClick="BtnUpdate_Click" />
+                        <asp:Button ID="BtnSave" CssClass="btn btn-success" runat="server" Text="Guardar" OnClick="BtnSave_Click" />
+                        <asp:Button ID="BtnUpdate" CssClass="btn btn-primary"  runat="server" Text="Actualizar" OnClick="BtnUpdate_Click" />
                         <asp:Label ID="LblMsg" runat="server" Text=""></asp:Label>
                     </div>
                 </div>
@@ -163,10 +163,10 @@
 
             // Editar un empleado
             $('#employeesTable').on('click', '.edit-btn', function () {
-                //const id = $(this).data('id');
                 const rowData = $('#employeesTable').DataTable().row($(this).parents('tr')).data();
-                //alert(JSON.stringify(rowData, null, 2));
                 loadEmployeesData(rowData);
+                $('#<%= BtnSave.ClientID %>').hide();
+                $('#<%= BtnUpdate.ClientID %>').show();
             });
 
             // Eliminar un empleado

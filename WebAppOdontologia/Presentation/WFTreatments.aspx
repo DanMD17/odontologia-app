@@ -9,13 +9,14 @@
     <div class="card m-1">
         <div class="card-header">
             Gestión de Tratamientos
+       
         </div>
         <div class="card-body">
             <form id="FrmTreatments" runat="server">
                 <%--Id--%>
                 <asp:HiddenField ID="HFTreatmentID" runat="server"></asp:HiddenField>
                 <div class="row m-1">
-                    <div class="co-2">
+                    <div class="col-4">
                         <%--Nombre--%>
                         <asp:Label ID="Label1" CssClass="form-label" runat="server" Text="Ingrese el nombre del tratamiento"></asp:Label>
                         <asp:TextBox ID="TBName" CssClass="form-control" runat="server"></asp:TextBox>
@@ -23,14 +24,16 @@
                         <asp:RequiredFieldValidator ID="RFVName" runat="server" ControlToValidate="TBName"
                             CssClass="text-danger" ErrorMessage="Este campo es obligatorio."></asp:RequiredFieldValidator>
                     </div>
-                    <div class="col-4">
+                </div>
+                <div class="row m-1">
+                    <div class="col-6">
                         <%--Descripción--%>
                         <asp:Label ID="Label2" runat="server" Text="Ingrese la descripción"></asp:Label>
                         <asp:TextBox ID="TBDescription" CssClass="form-control" runat="server"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="RFVDescription" runat="server" ControlToValidate="TBDescription"
                             CssClass="text-danger" ErrorMessage="Este campo es obligatorio."></asp:RequiredFieldValidator>
                     </div>
-                    <div class="col-4">
+                    <div class="col-6">
                         <%--Observaciones--%>
                         <asp:Label ID="Label4" runat="server" Text="Ingrese las observaciones"></asp:Label>
                         <asp:TextBox ID="TBObservations" CssClass="form-control" runat="server"></asp:TextBox>
@@ -39,50 +42,39 @@
                     </div>
                 </div>
                 <div class="row m-1">
-                    <div class="col-2">
+                    <div class="col-3">
                         <%--Fecha--%>
                         <asp:Label ID="Label3" CssClass="form-label" runat="server" Text="Ingrese la fecha"></asp:Label>
                         <asp:TextBox ID="TBDate" CssClass="form-control" runat="server" TextMode="Date"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="RFVDate" runat="server" ControlToValidate="TBDate"
                             CssClass="text-danger" ErrorMessage="Este campo es obligatorio."></asp:RequiredFieldValidator>
                     </div>
-                    <div class="col-2">
+                    <div class="col-3">
                         <%--FK Cita ID--%>
                         <asp:Label ID="Label5" CssClass="form-label" runat="server" Text="Seleccione una cita"></asp:Label>
                         <asp:DropDownList ID="DDLQuotes" CssClass="form-select" runat="server"></asp:DropDownList>
                         <%--Valida que el DropDownList este seleccionado con algun valor--%>
-                        <asp:RequiredFieldValidator ID="RFVQuotes" runat="server"
-                            ControlToValidate="DDLQuotes"
-                            InitialValue=""
-                            ErrorMessage="Debes seleccionar una Cita Activa o Inactiva."
-                            ForeColor="Red">
-                        </asp:RequiredFieldValidator>
+                        <asp:Label ID="LblMsgQuo" runat="server" Text="" CssClass="text-danger"></asp:Label>
                     </div>
-                    <div class="col-2">
+                    <div class="col-3">
                         <%--DDL Historial--%>
                         <asp:Label ID="Label6" CssClass="form-label" runat="server" Text="Seleccione un historial"></asp:Label>
                         <asp:DropDownList ID="DDLHistory" CssClass="form-select" runat="server" AutoPostBack="true">
                         </asp:DropDownList>
-                        <asp:RequiredFieldValidator ID="RFVHistory" runat="server" ControlToValidate="DDLHistory"
-                            CssClass="text-danger" ErrorMessage="Este campo es obligatorio."></asp:RequiredFieldValidator>
+                        <asp:Label ID="LblMsgHis" runat="server" Text="" CssClass="text-danger"></asp:Label>
                     </div>
-                    <div class="col-2">
+                    <div class="col-3">
                         <%--DDL Auxiliar ID--%>
                         <asp:Label ID="Label7" CssClass="form-label" runat="server" Text="Seleccione un auxiliar"></asp:Label>
                         <asp:DropDownList ID="DDLAux" CssClass="form-select" runat="server"></asp:DropDownList>
-                        <asp:RequiredFieldValidator ID="RFVAuxiliar" runat="server"
-                            ControlToValidate="DDLAux"
-                            InitialValue=""
-                            ErrorMessage="Debes seleccionar un Auxiliar adecuado"
-                            ForeColor="Red">
-                        </asp:RequiredFieldValidator>
+                        <asp:Label ID="LblMsgAux" runat="server" Text="" CssClass="text-danger"></asp:Label>
                     </div>
                 </div>
                 <div class="row m-1">
                     <div class="col">
                         <%--Botones--%>
-                        <asp:Button ID="BtnSave" runat="server" Text="Guardar" OnClick="BtnSave_Click" />
-                        <asp:Button ID="BtnUpdate" runat="server" Text="Actualizar" OnClick="BtnUpdate_Click" />
+                        <asp:Button ID="BtnSave" CssClass="btn btn-success" runat="server" Text="Guardar" OnClick="BtnSave_Click" />
+                        <asp:Button ID="BtnUpdate" CssClass="btn btn-primary" runat="server" Text="Actualizar" OnClick="BtnUpdate_Click" />
                         <asp:Label ID="LblMsg" runat="server" Text=""></asp:Label>
                     </div>
                 </div>
@@ -95,6 +87,7 @@
         <asp:Panel ID="PanelAdmin" runat="server">
             <div class="card-header">
                 Lista de Tratamientos
+           
             </div>
             <div class="card-body">
                 <%--Lista de tratamientos--%>
@@ -114,6 +107,7 @@
                                 <th>Historial</th>
                                 <th>Fk Aux</th>
                                 <th>Auxiliar</th>
+                                <th>Paciente</th>
                             </tr>
                         </thead>
                         <tbody></tbody>
@@ -154,7 +148,8 @@
                     { "data": "FkHistId", "visible": false },
                     { "data": "DescriptionHistory" },
                     { "data": "FkAuxId", "visible": false },
-                    { "data": "FunctionAuxiliaries" },
+                    { "data": "AuxName" },
+                    { "data": "PatientName" },
                     {
                         "data": null,
                         "render": function (data, type, row) {
@@ -189,6 +184,8 @@
             $('#treatmentsTable').on('click', '.edit-btn', function () {
                 const rowData = $('#treatmentsTable').DataTable().row($(this).parents('tr')).data();
                 loadTreatmentData(rowData);
+                $('#<%= BtnSave.ClientID %>').hide();
+                $('#<%= BtnUpdate.ClientID %>').show();
             });
 
             // Evento para eliminar un tratamiento

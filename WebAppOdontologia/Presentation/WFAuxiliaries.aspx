@@ -32,23 +32,18 @@
                     <div class="col-2">
                         <%--Empleo--%>
                         <asp:Label ID="Label6" runat="server" Text="Seleccione un empleado:"></asp:Label>
-                        <asp:DropDownList ID="DDLEmployee" runat="server" CssClass="form-control" required="required"></asp:DropDownList>
-
-                        <%--Valida que el DropDownList este seleccionado con algun valor--%>
-                        <asp:RequiredFieldValidator ID="RFVEmployee" runat="server"
-                            ControlToValidate="DDLEmployee"
-                            InitialValue="1"
-                            ErrorMessage="Este campo es obligatorio"
-                            ForeColor="Red">
-                        </asp:RequiredFieldValidator>
+                        <asp:DropDownList ID="DDLEmployee" runat="server" CssClass="form-select" required="required">
+                            <asp:ListItem Value="0">Seleccione</asp:ListItem>
+                        </asp:DropDownList>
+                        <asp:Label ID="LblMsgAux" runat="server" Text="" CssClass="text-danger"></asp:Label>
                         <br />
                     </div>
                 </div>
                 <div class="row m-1">
                     <div class="col">
                         <%--Botones de Guardar y Actualizar--%>
-                        <asp:Button ID="BtnSave" runat="server" Text="Guardar" OnClick="BtnSave_Click" CssClass="btn btn-primary" />
-                        <asp:Button ID="BtnUpdate" runat="server" Text="Actualizar" OnClick="BtnUpdate_Click" CssClass="btn btn-secondary" />
+                        <asp:Button ID="BtnSave" runat="server" Text="Guardar" OnClick="BtnSave_Click" CssClass="btn btn-success" />
+                        <asp:Button ID="BtnUpdate" CssClass="btn btn-primary" runat="server" Text="Actualizar" OnClick="BtnUpdate_Click"  />
                         <asp:Label ID="LblMsg" runat="server" Text="" CssClass="msg-label"></asp:Label>
                     </div>
                 </div>
@@ -120,7 +115,18 @@
                     }
                 ],
                 "language": {
-                    // Traducciones
+                    "lengthMenu": "Mostrar _MENU_ registros por página",
+                    "zeroRecords": "No se encontraron resultados",
+                    "info": "Mostrando página _PAGE_ de _PAGES_",
+                    "infoEmpty": "No hay registros disponibles",
+                    "infoFiltered": "(filtrado de MAX registros totales)",
+                    "search": "Buscar:",
+                    "paginate": {
+                        "first": "Primero",
+                        "last": "Último",
+                        "next": "Siguiente",
+                        "previous": "Anterior"
+                    }
                 }
             });
 
@@ -134,7 +140,7 @@
 
             // Eliminar auxiliar
             $('#assistantsTable').on('click', '.delete-btn', function () {
-                const id = $(this).data('id');
+                  const id = $(this).data('id');
                 if (confirm("¿Deseas eliminar este auxiliar?")) {
                     deleteAssistant(id);
                 }

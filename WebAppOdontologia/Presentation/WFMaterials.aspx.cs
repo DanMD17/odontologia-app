@@ -266,7 +266,13 @@ namespace Presentation
             _materialDescription = TBmaterialDescription.Text;
             _materialName = TBmaterialName.Text;
             _materialQuantity = Convert.ToInt32(TBmaterialQuantity.Text);
-            _fkTrataId = Convert.ToInt32(DDLTreatments.SelectedValue);
+            //_fkTrataId = Convert.ToInt32(DDLTreatments.SelectedValue);
+            if (!int.TryParse(DDLTreatments.SelectedValue, out _fkTrataId) || _fkTrataId == 0)
+            {
+                LblMsgtre.Text = "Este campo es obligatorio";
+                return;
+
+            }
 
             executed = objMat.saveMaterial(_materialName, _materialDescription, _materialQuantity, _fkTrataId);
 
@@ -294,7 +300,13 @@ namespace Presentation
             _materialDescription = TBmaterialDescription.Text;
             _materialName = TBmaterialName.Text;
             _materialQuantity = Convert.ToInt32(TBmaterialQuantity.Text);
-            _fkTrataId = Convert.ToInt32(DDLTreatments.SelectedValue);
+            //_fkTrataId = Convert.ToInt32(DDLTreatments.SelectedValue);
+            if (!int.TryParse(DDLTreatments.SelectedValue, out _fkTrataId) || _fkTrataId == 0)
+            {
+                LblMsgtre.Text = "Este campo es obligatorio";
+                return;
+
+            }
 
             executed = objMat.updateMaterial(_IdMat, _materialName, _materialDescription, _materialQuantity, _fkTrataId);
 
@@ -329,6 +341,7 @@ namespace Presentation
             TBmaterialDescription.Text = "";
             TBmaterialQuantity.Text = "";
             DDLTreatments.SelectedIndex = 0;
+            LblMsgtre.Text = "";
         }
     }
 }
