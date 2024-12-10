@@ -42,13 +42,13 @@ namespace Presentation
         protected global::System.Web.UI.WebControls.Label Label1;
 
         /// <summary>
-        /// Control TBNombreRol.
+        /// Control DDLRol.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TBNombreRol;
+        protected global::System.Web.UI.WebControls.DropDownList DDLRol;
 
         /// <summary>
         /// Control RFVNombreRol.

@@ -264,7 +264,7 @@ namespace Presentation
         protected void BtnSave_Click(object sender, EventArgs e)
         {
             _materialDescription = TBmaterialDescription.Text;
-            _materialName = TBmaterialName.Text;
+            _materialName = DDLMate.Text;
             _materialQuantity = Convert.ToInt32(TBmaterialQuantity.Text);
             //_fkTrataId = Convert.ToInt32(DDLTreatments.SelectedValue);
             if (!int.TryParse(DDLTreatments.SelectedValue, out _fkTrataId) || _fkTrataId == 0)
@@ -298,7 +298,7 @@ namespace Presentation
             }
             _IdMat = Convert.ToInt32(HFMaterialsID.Value);
             _materialDescription = TBmaterialDescription.Text;
-            _materialName = TBmaterialName.Text;
+            _materialName = DDLMate.Text;
             _materialQuantity = Convert.ToInt32(TBmaterialQuantity.Text);
             //_fkTrataId = Convert.ToInt32(DDLTreatments.SelectedValue);
             if (!int.TryParse(DDLTreatments.SelectedValue, out _fkTrataId) || _fkTrataId == 0)
@@ -337,7 +337,7 @@ namespace Presentation
         private void clear()
         {
             HFMaterialsID.Value = "";
-            TBmaterialName.Text = "";
+            DDLMate.SelectedIndex = 0;
             TBmaterialDescription.Text = "";
             TBmaterialQuantity.Text = "";
             DDLTreatments.SelectedIndex = 0;

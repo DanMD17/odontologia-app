@@ -10,6 +10,7 @@
     <div class="card m-1">
         <div class="card-header">
             Gestión de Roles
+       
         </div>
         <div class="card-body">
             <form id="FrmRoles" runat="server">
@@ -19,9 +20,15 @@
                     <div class="col-2">
                         <%--Nombre del Rol--%>
                         <asp:Label ID="Label1" CssClass="form-label" runat="server" Text="Ingrese el nombre del rol"></asp:Label>
-                        <asp:TextBox ID="TBNombreRol" CssClass="form-control" runat="server"></asp:TextBox>
-                        <asp:RequiredFieldValidator ID="RFVNombreRol" runat="server" ControlToValidate="TBNombreRol"
-                            CssClass="text-danger" ErrorMessage="Este campo es obligatorio."></asp:RequiredFieldValidator>
+                        <asp:DropDownList ID="DDLRol" CssClass="form-select" runat="server">
+                            <asp:ListItem Value="0">Seleccione</asp:ListItem>
+                            <asp:ListItem Value="Administrador">Administrador</asp:ListItem>
+                            <asp:ListItem Value="Odontologo">Odontologo</asp:ListItem>
+                            <asp:ListItem Value="Secretaria">Secretaria</asp:ListItem>
+                            <asp:ListItem Value="Auxiliar">Auxiliar</asp:ListItem>
+                        </asp:DropDownList>
+                        <asp:RequiredFieldValidator ID="RFVNombreRol" runat="server" ControlToValidate="DDLRol"
+                            CssClass="text-danger" InitialValue="0" Display="Dynamic" ErrorMessage="Este campo es obligatorio."></asp:RequiredFieldValidator>
                     </div>
                     <div class="col">
                         <%--Descripción del Rol--%>
@@ -49,6 +56,7 @@
         <asp:Panel ID="PanelAdmin" runat="server">
             <div class="card-header">
                 Lista de Roles
+           
             </div>
             <div class="card-body">
                 <%--Lista de Roles--%>
@@ -144,7 +152,7 @@
         // Función para cargar datos del rol en los campos de edición y actualizar 
         function loadRoleData(rowData) {
             $('#<%= HFRolID.ClientID %>').val(rowData.RolID);
-            $('#<%= TBNombreRol.ClientID %>').val(rowData.Name);
+            $('#<%= DDLRol.ClientID %>').val(rowData.Name);
             $('#<%= TBDescripcionRol.ClientID %>').val(rowData.Description);
         }
 
