@@ -10,6 +10,7 @@
         <div class="card-header">
             Gestión de Materiales
        
+       
         </div>
         <div class="card-body">
             <form id="FrmMaterials" runat="server">
@@ -19,9 +20,65 @@
                     <div class="col-3">
                         <%--Nombre del material--%>
                         <asp:Label ID="Label1" CssClass="form-label" runat="server" Text="Ingrese el nombre del material"></asp:Label>
-                        <asp:TextBox ID="TBmaterialName" CssClass="form-control" runat="server"></asp:TextBox>
-                        <asp:RequiredFieldValidator ID="RFVName" runat="server" ControlToValidate="TBmaterialName"
-                            CssClass="text-danger" ErrorMessage="Este campo es obligatorio."></asp:RequiredFieldValidator>
+                        <asp:DropDownList ID="DDLMate" CssClass="form-select" runat="server">
+                            <asp:ListItem Value="0">Seleccione</asp:ListItem>
+                            <asp:ListItem Value="Pasta profiláctica">Pasta profiláctica</asp:ListItem>
+                            <asp:ListItem Value="Cepillos profilácticos">Cepillos profilácticos</asp:ListItem>
+                            <asp:ListItem Value="Puntas de ultrasonido">Puntas de ultrasonido</asp:ListItem>
+                            <asp:ListItem Value="Hilo dental">Hilo dental</asp:ListItem>
+                            <asp:ListItem Value="Enjuague bucal antiséptico">Enjuague bucal antiséptico</asp:ListItem>
+                            <asp:ListItem Value="Irrigadores o jeringas de agua">Irrigadores o jeringas de agua</asp:ListItem>
+                            <asp:ListItem Value="Amalgama dental">Amalgama dental</asp:ListItem>
+                            <asp:ListItem Value="Resinas compuestas">Resinas compuestas</asp:ListItem>
+                            <asp:ListItem Value="Adhesivos dentales">Adhesivos dentales</asp:ListItem>
+                            <asp:ListItem Value="Ácido grabador">Ácido grabador</asp:ListItem>
+                            <asp:ListItem Value="Aplicadores de resina y adhesivo">Aplicadores de resina y adhesivo</asp:ListItem>
+                            <asp:ListItem Value="Matrices dentales">Matrices dentales</asp:ListItem>
+                            <asp:ListItem Value="Porta amalgamas o porta composite">Porta amalgamas o porta composite</asp:ListItem>
+                            <asp:ListItem Value="Espátulas y cucharillas de dentina">Espátulas y cucharillas de dentina</asp:ListItem>
+                            <asp:ListItem Value="Limas de endodoncia">Limas de endodoncia</asp:ListItem>
+                            <asp:ListItem Value="Selladores de conductos">Selladores de conductos</asp:ListItem>
+                            <asp:ListItem Value="Jeringas de irrigación">Jeringas de irrigación</asp:ListItem>
+                            <asp:ListItem Value="Hipoclorito de sodio">Hipoclorito de sodio</asp:ListItem>
+                            <asp:ListItem Value="Hidróxido de calcio">Hidróxido de calcio</asp:ListItem>
+                            <asp:ListItem Value="Localizadores de ápice">Localizadores de ápice</asp:ListItem>
+                            <asp:ListItem Value="Micromotor endodóntico">Micromotor endodóntico</asp:ListItem>
+                            <asp:ListItem Value="Forceps dentales">Forceps dentales</asp:ListItem>
+                            <asp:ListItem Value="Elevadores o botadores">Elevadores o botadores</asp:ListItem>
+                            <asp:ListItem Value="Cucharillas de alveolo">Cucharillas de alveolo</asp:ListItem>
+                            <asp:ListItem Value="Pinzas hemostáticas">Pinzas hemostáticas</asp:ListItem>
+                            <asp:ListItem Value="Suturas">Suturas</asp:ListItem>
+                            <asp:ListItem Value="Porta agujas">Porta agujas</asp:ListItem>
+                            <asp:ListItem Value="Gasas estériles">Gasas estériles</asp:ListItem>
+                            <asp:ListItem Value="Brackets">Brackets</asp:ListItem>
+                            <asp:ListItem Value="Arcos metálicos">Arcos metálicos</asp:ListItem>
+                            <asp:ListItem Value="Bandas y ligaduras elásticas">Bandas y ligaduras elásticas</asp:ListItem>
+                            <asp:ListItem Value="Alicates de ortodoncia">Alicates de ortodoncia</asp:ListItem>
+                            <asp:ListItem Value="Separadores interdentales">Separadores interdentales</asp:ListItem>
+                            <asp:ListItem Value="Gel de blanqueamiento">Gel de blanqueamiento</asp:ListItem>
+                            <asp:ListItem Value="Protector gingival">Protector gingival</asp:ListItem>
+                            <asp:ListItem Value="Lámpara de luz LED o láser">Lámpara de luz LED o láser</asp:ListItem>
+                            <asp:ListItem Value="Cubetas para blanqueamiento">Cubetas para blanqueamiento</asp:ListItem>
+                            <asp:ListItem Value="Bisturíes y hojas de bisturí">Bisturíes y hojas de bisturí</asp:ListItem>
+                            <asp:ListItem Value="Pinzas quirúrgicas">Pinzas quirúrgicas</asp:ListItem>
+                            <asp:ListItem Value="Curetas quirúrgicas">Curetas quirúrgicas</asp:ListItem>
+                            <asp:ListItem Value="Separadores">Separadores</asp:ListItem>
+                            <asp:ListItem Value="Agujas de sutura">Agujas de sutura</asp:ListItem>
+                            <asp:ListItem Value="Clorhexidina o solución salina">Clorhexidina o solución salina</asp:ListItem>
+                            <asp:ListItem Value="Material de impresión">Material de impresión</asp:ListItem>
+                            <asp:ListItem Value="Cubetas de impresión">Cubetas de impresión</asp:ListItem>
+                            <asp:ListItem Value="Ceras dentales">Ceras dentales</asp:ListItem>
+                            <asp:ListItem Value="Acrílico dental">Acrílico dental</asp:ListItem>
+                            <asp:ListItem Value="Fresones de desgaste y ajuste">Fresones de desgaste y ajuste</asp:ListItem>
+                            <asp:ListItem Value="Guantes estériles y no estériles">Guantes estériles y no estériles</asp:ListItem>
+                            <asp:ListItem Value="Mascarillas quirúrgicas">Mascarillas quirúrgicas</asp:ListItem>
+                            <asp:ListItem Value="Gorro y protector facial">Gorro y protector facial</asp:ListItem>
+                            <asp:ListItem Value="Material para esterilización">Material para esterilización</asp:ListItem>
+                            <asp:ListItem Value="Desinfectantes de superficies">Desinfectantes de superficies</asp:ListItem>
+                            <asp:ListItem Value="Otro">Otro</asp:ListItem>
+                        </asp:DropDownList>
+                        <asp:RequiredFieldValidator ID="RFVName" runat="server" ControlToValidate="DDLMate"
+                            CssClass="text-danger" InitialValue="0" Display="Dynamic" ErrorMessage="Este campo es obligatorio."></asp:RequiredFieldValidator>
                     </div>
                     <div class="col">
                         <%--Descripcion del material--%>
@@ -64,6 +121,7 @@
         <asp:Panel ID="PanelAdmin" runat="server">
             <div class="card-header">
                 Lista de materiales
+           
            
             </div>
             <div class="card-body">
@@ -169,7 +227,7 @@
         // Función para cargar los datos del material en los TextBox y DDL para actualizar
         function loadMaterialData(rowData) {
             $('#<%= HFMaterialsID.ClientID %>').val(rowData.MaterialID);
-            $('#<%= TBmaterialName.ClientID %>').val(rowData.Nombre);
+            $('#<%= DDLMate.ClientID %>').val(rowData.Nombre);
             $('#<%= TBmaterialDescription.ClientID %>').val(rowData.Descripcion);
             $('#<%= TBmaterialQuantity.ClientID %>').val(rowData.Cantidad);
             $('#<%= DDLTreatments.ClientID %>').val(rowData.FkTratamiento);

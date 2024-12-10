@@ -25,9 +25,18 @@
                     <div class="col-4">
                         <%--Educacion--%>
                         <asp:Label ID="Label5" runat="server" Text="Nivel educativo:"></asp:Label>
-                        <asp:TextBox ID="TBEducationalLevel" runat="server" CssClass="form-control" required="required"></asp:TextBox>
-                        <asp:RequiredFieldValidator ID="RFVEducationalLevel" runat="server" ControlToValidate="TBEducationalLevel"
-                            CssClass="text-danger" ErrorMessage="Este campo es obligatorio."></asp:RequiredFieldValidator>
+                        <asp:DropDownList ID="DDLAux" CssClass="form-select" runat="server">
+                            <asp:ListItem Value="0">Seleccione</asp:ListItem>
+                            <asp:ListItem Value="Educación básica secundaria">Educación básica secundaria</asp:ListItem>
+                            <asp:ListItem Value="Educación media vocacional">Educación media vocacional</asp:ListItem>
+                            <asp:ListItem Value="Técnico en salud oral">Técnico en salud oral</asp:ListItem>
+                            <asp:ListItem Value="Técnico en asistencia odontológica">Técnico en asistencia odontológica</asp:ListItem>
+                            <asp:ListItem Value="Tecnólogo en salud oral">Tecnólogo en salud oral</asp:ListItem>
+                            <asp:ListItem Value="Pregrado en odontología">Pregrado en odontología</asp:ListItem>
+                            <asp:ListItem Value="Otro">Otro</asp:ListItem>
+                        </asp:DropDownList>
+                        <asp:RequiredFieldValidator ID="RFVEducationalLevel" runat="server" ControlToValidate="DDLAux"
+                            CssClass="text-danger" InitialValue="0" Display="Dynamic" ErrorMessage="Este campo es obligatorio."></asp:RequiredFieldValidator>
                     </div>
                     <div class="col-2">
                         <%--Empleo--%>
@@ -43,14 +52,14 @@
                     <div class="col">
                         <%--Botones de Guardar y Actualizar--%>
                         <asp:Button ID="BtnSave" runat="server" Text="Guardar" OnClick="BtnSave_Click" CssClass="btn btn-success" />
-                        <asp:Button ID="BtnUpdate" CssClass="btn btn-primary" runat="server" Text="Actualizar" OnClick="BtnUpdate_Click"  />
+                        <asp:Button ID="BtnUpdate" CssClass="btn btn-primary" runat="server" Text="Actualizar" OnClick="BtnUpdate_Click" />
                         <asp:Label ID="LblMsg" runat="server" Text="" CssClass="msg-label"></asp:Label>
                     </div>
                 </div>
             </form>
         </div>
     </div>
-       
+
     <div class="card m-1">
         <%--Panel para la gestion del Administrador--%>
         <asp:Panel ID="PanelAdmin" runat="server">
@@ -140,7 +149,7 @@
 
             // Eliminar auxiliar
             $('#assistantsTable').on('click', '.delete-btn', function () {
-                  const id = $(this).data('id');
+                const id = $(this).data('id');
                 if (confirm("¿Deseas eliminar este auxiliar?")) {
                     deleteAssistant(id);
                 }
@@ -151,7 +160,7 @@
         function loadAssistantData(rowData) {
             $('#<%= HFAssistantID.ClientID %>').val(rowData.AssistantID);
             $('#<%= TBFunction.ClientID %>').val(rowData.Function);
-            $('#<%= TBEducationalLevel.ClientID %>').val(rowData.EducationalLevel);
+            $('#<%= DDLAux.ClientID %>').val(rowData.EducationalLevel);
             $('#<%= DDLEmployee.ClientID %>').val(rowData.FkEmployee);
         }
 

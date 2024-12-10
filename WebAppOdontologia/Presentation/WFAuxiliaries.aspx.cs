@@ -278,7 +278,7 @@ namespace Presentation
         {
             HFAssistantID.Value = "";
             TBFunction.Text = "";
-            TBEducationalLevel.Text = "";
+            DDLAux.SelectedIndex = 0;
             DDLEmployee.SelectedIndex = 0;
             LblMsgAux.Text = "";
         }
@@ -286,7 +286,7 @@ namespace Presentation
         //Boton de guardar un auxiliar
         protected void BtnSave_Click(object sender, EventArgs e)
         {
-            _educationalLevel = TBEducationalLevel.Text;
+            _educationalLevel = DDLAux.Text;
             _function = TBFunction.Text;
             // Try parsing the Patient ID
             if (!int.TryParse(DDLEmployee.SelectedValue, out _fkEmployee) || _fkEmployee == 0)
@@ -321,7 +321,7 @@ namespace Presentation
             }
             _idAux = Convert.ToInt32(HFAssistantID.Value);
             _function = TBFunction.Text;
-            _educationalLevel = TBEducationalLevel.Text;
+            _educationalLevel = DDLAux.Text;
             // _fkEmployee = Convert.ToInt32(DDLEmployee.SelectedValue);
 
             if (!int.TryParse(DDLEmployee.SelectedValue, out _fkEmployee) || _fkEmployee == 0)

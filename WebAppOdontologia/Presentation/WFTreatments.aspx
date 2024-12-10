@@ -10,6 +10,7 @@
         <div class="card-header">
             Gestión de Tratamientos
        
+       
         </div>
         <div class="card-body">
             <form id="FrmTreatments" runat="server">
@@ -19,10 +20,33 @@
                     <div class="col-4">
                         <%--Nombre--%>
                         <asp:Label ID="Label1" CssClass="form-label" runat="server" Text="Ingrese el nombre del tratamiento"></asp:Label>
-                        <asp:TextBox ID="TBName" CssClass="form-control" runat="server"></asp:TextBox>
+                        <asp:DropDownList ID="DDLTreat" CssClass="form-select" runat="server">
+                            <asp:ListItem Value="0">Seleccione</asp:ListItem>
+                            <asp:ListItem Value="Limpieza dental">Limpieza dental</asp:ListItem>
+                            <asp:ListItem Value="Profilaxis">Profilaxis</asp:ListItem>
+                            <asp:ListItem Value="Fluorización">Fluorización</asp:ListItem>
+                            <asp:ListItem Value="Sellantes dentales">Sellantes dentales</asp:ListItem>
+                            <asp:ListItem Value="Empastes dentales">Empastes dentales</asp:ListItem>
+                            <asp:ListItem Value="Restauración estética">Restauración estética</asp:ListItem>
+                            <asp:ListItem Value="Tratamiento de caries">Tratamiento de caries</asp:ListItem>
+                            <asp:ListItem Value="Blanqueamiento dental">Blanqueamiento dental</asp:ListItem>
+                            <asp:ListItem Value="Extracción dental">Extracción dental</asp:ListItem>
+                            <asp:ListItem Value="Endodoncia">Endodoncia</asp:ListItem>
+                            <asp:ListItem Value="Colocación de coronas">Colocación de coronas</asp:ListItem>
+                            <asp:ListItem Value="Colocación de puentes">Colocación de puentes</asp:ListItem>
+                            <asp:ListItem Value="Prótesis dentales removibles">Prótesis dentales removibles</asp:ListItem>
+                            <asp:ListItem Value="Prótesis dentales fijas">Prótesis dentales fijas</asp:ListItem>
+                            <asp:ListItem Value="Ortodoncia con brackets">Ortodoncia con brackets</asp:ListItem>
+                            <asp:ListItem Value="Ortodoncia invisible">Ortodoncia invisible</asp:ListItem>
+                            <asp:ListItem Value="Cirugía de cordales">Cirugía de cordales</asp:ListItem>
+                            <asp:ListItem Value="Implantes dentales">Implantes dentales</asp:ListItem>
+                            <asp:ListItem Value="Tratamiento periodontal">Tratamiento periodontal</asp:ListItem>
+                            <asp:ListItem Value="Control de infecciones bucales">Control de infecciones bucales</asp:ListItem>
+                            <asp:ListItem Value="Otro">Otro</asp:ListItem>
+                        </asp:DropDownList>
                         <%--Valida que se coloque un nombre--%>
-                        <asp:RequiredFieldValidator ID="RFVName" runat="server" ControlToValidate="TBName"
-                            CssClass="text-danger" ErrorMessage="Este campo es obligatorio."></asp:RequiredFieldValidator>
+                        <asp:RequiredFieldValidator ID="RFVName" runat="server" ControlToValidate="DDLTreat"
+                            CssClass="text-danger" InitialValue="0" Display="Dynamic" ErrorMessage="Este campo es obligatorio."></asp:RequiredFieldValidator>
                     </div>
                 </div>
                 <div class="row m-1">
@@ -87,6 +111,7 @@
         <asp:Panel ID="PanelAdmin" runat="server">
             <div class="card-header">
                 Lista de Tratamientos
+           
            
             </div>
             <div class="card-body">
@@ -200,7 +225,7 @@
         // Función para cargar los datos del tratamiento en el formulario
         function loadTreatmentData(rowData) {
             $('#<%= HFTreatmentID.ClientID %>').val(rowData.TreatmentID);
-            $('#<%= TBName.ClientID %>').val(rowData.Name);
+            $('#<%= DDLTreat.ClientID %>').val(rowData.Name);
             $('#<%= TBDescription.ClientID %>').val(rowData.Description);
             $('#<%= TBDate.ClientID %>').val(rowData.Date);
             $('#<%= TBObservations.ClientID %>').val(rowData.Observations);

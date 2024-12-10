@@ -9,6 +9,7 @@
     <div class="card m-1">
         <div class="card-header">
             Gestión de Odontologos
+       
         </div>
         <div class="card-body">
             <form id="FrmDentists" runat="server">
@@ -18,9 +19,32 @@
                     <div class="col-4">
                         <%--Formulario de Odontólogos--%>
                         <asp:Label ID="Label1" CssClass="form-label" runat="server" Text="Ingrese la especialidad"></asp:Label>
-                        <asp:TextBox ID="TBSpecialty" CssClass="form-control" runat="server"></asp:TextBox>
-                        <asp:RequiredFieldValidator ID="RFVSpecialty" runat="server" ControlToValidate="TBSpecialty"
-                            CssClass="text-danger" ErrorMessage="Este campo es obligatorio."></asp:RequiredFieldValidator>
+                        <asp:DropDownList ID="DDLDent" CssClass="form-select" runat="server">
+                            <asp:ListItem Value="0">Seleccione</asp:ListItem>
+                            <asp:ListItem Value="Odontología general">Odontología general</asp:ListItem>
+                            <asp:ListItem Value="Ortodoncia">Ortodoncia</asp:ListItem>
+                            <asp:ListItem Value="Endodoncia">Endodoncia</asp:ListItem>
+                            <asp:ListItem Value="Periodoncia">Periodoncia</asp:ListItem>
+                            <asp:ListItem Value="Cirugía oral y maxilofacial">Cirugía oral y maxilofacial</asp:ListItem>
+                            <asp:ListItem Value="Odontopediatría">Odontopediatría</asp:ListItem>
+                            <asp:ListItem Value="Prostodoncia">Prostodoncia</asp:ListItem>
+                            <asp:ListItem Value="Odontología estética">Odontología estética</asp:ListItem>
+                            <asp:ListItem Value="Patología oral">Patología oral</asp:ListItem>
+                            <asp:ListItem Value="Radiología oral y maxilofacial">Radiología oral y maxilofacial</asp:ListItem>
+                            <asp:ListItem Value="Implantología dental">Implantología dental</asp:ListItem>
+                            <asp:ListItem Value="Rehabilitación oral">Rehabilitación oral</asp:ListItem>
+                            <asp:ListItem Value="Odontología forense">Odontología forense</asp:ListItem>
+                            <asp:ListItem Value="Odontología preventiva">Odontología preventiva</asp:ListItem>
+                            <asp:ListItem Value="Odontología comunitaria">Odontología comunitaria</asp:ListItem>
+                            <asp:ListItem Value="Gerodontología">Gerodontología</asp:ListItem>
+                            <asp:ListItem Value="Odontología del deporte">Odontología del deporte</asp:ListItem>
+                            <asp:ListItem Value="Odontología restauradora">Odontología restauradora</asp:ListItem>
+                            <asp:ListItem Value="Odontología mínimamente invasiva">Odontología mínimamente invasiva</asp:ListItem>
+                            <asp:ListItem Value="Trastornos temporomandibulares y dolor orofacial">Trastornos temporomandibulares y dolor orofacial</asp:ListItem>
+                            <asp:ListItem Value="Otro">Otro</asp:ListItem>
+                        </asp:DropDownList>
+                        <asp:RequiredFieldValidator ID="RFVSpecialty" runat="server" ControlToValidate="DDLDent"
+                            CssClass="text-danger" InitialValue="0" Display="Dynamic" ErrorMessage="Este campo es obligatorio."></asp:RequiredFieldValidator>
                     </div>
                     <div class="col-3">
                         <%--Seleccionar empleado--%>
@@ -32,7 +56,7 @@
                 <div class="row m-1">
                     <div class="col">
                         <asp:Button ID="BtnSave" CssClass="btn btn-success" runat="server" Text="Guardar" OnClick="BtnSave_Click" />
-                        <asp:Button ID="BtnUpdate"  CssClass="btn btn-primary"  runat="server" Text="Actualizar" OnClick="BtnUpdate_Click" />
+                        <asp:Button ID="BtnUpdate" CssClass="btn btn-primary" runat="server" Text="Actualizar" OnClick="BtnUpdate_Click" />
                         <asp:Label ID="LblMsg" runat="server" Text=""></asp:Label>
                     </div>
                 </div>
@@ -45,6 +69,7 @@
         <asp:Panel ID="PanelAdmin" runat="server">
             <div class="card-header">
                 Lista de odontologos
+           
             </div>
             <div class="card-body">
                 <%--Lista de Dentistas--%>
@@ -145,7 +170,7 @@
         // Función para cargar los datos en los TextBox y DDL para actualizar
         function loadDentistsData(rowData) {
             $('#<%= HFDentistID.ClientID %>').val(rowData.DentistID);
-            $('#<%= TBSpecialty.ClientID %>').val(rowData.Specialty);
+            $('#<%= DDLDent.ClientID %>').val(rowData.Specialty);
             $('#<%= DDLEmployee.ClientID %>').val(rowData.FkEmployee);
         }
 
@@ -165,9 +190,5 @@
                 }
             });
         }
-
-
-
-
     </script>
 </asp:Content>

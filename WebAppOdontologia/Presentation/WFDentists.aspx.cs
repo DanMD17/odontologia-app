@@ -272,7 +272,7 @@ namespace Presentation
         private void clear()
         {
             HFDentistID.Value = "";
-            TBSpecialty.Text = "";
+            DDLDent.SelectedIndex = 0;
             DDLEmployee.SelectedIndex = 0;
             LblMsgEmp.Text = "";
 
@@ -281,7 +281,7 @@ namespace Presentation
         //Boton de guardar un dentista
         protected void BtnSave_Click(object sender, EventArgs e)
         {
-            _specialty = TBSpecialty.Text;
+            _specialty = DDLDent.Text;
             // _fkEmployee = Convert.ToInt32(DDLEmployee.SelectedValue);
 
             if (!int.TryParse(DDLEmployee.SelectedValue, out _fkEmployee) || _fkEmployee == 0)
@@ -314,7 +314,7 @@ namespace Presentation
                 return;
             }
             _idDen = Convert.ToInt32(HFDentistID.Value);
-            _specialty = TBSpecialty.Text;
+            _specialty = DDLDent.Text;
             //_fkEmployee = Convert.ToInt32(DDLEmployee.SelectedValue);
 
             if (!int.TryParse(DDLEmployee.SelectedValue, out _fkEmployee) || _fkEmployee == 0)

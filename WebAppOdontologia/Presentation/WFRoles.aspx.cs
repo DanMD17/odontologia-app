@@ -69,7 +69,7 @@ namespace Presentation
         private void clear()
         {
             HFRolID.Value = "";
-            TBNombreRol.Text = "";
+            DDLRol.SelectedIndex = 0;
             TBDescripcionRol.Text = "";
         }
 
@@ -77,7 +77,7 @@ namespace Presentation
         protected void BtnSave_Click(object sender, EventArgs e)
         {
             // Asignar los valores de los campos a las variables
-            _nombre = TBNombreRol.Text;
+            _nombre = DDLRol.Text;
             _descripcion = TBDescripcionRol.Text;
 
             // Ejecutar el método de la lógica para guardar el rol
@@ -106,7 +106,7 @@ namespace Presentation
             }
 
             _id = Convert.ToInt32(HFRolID.Value);
-            _nombre = TBNombreRol.Text;
+            _nombre = DDLRol.Text;
             _descripcion = TBDescripcionRol.Text;
 
             executed = objRol.updateRol(_id, _nombre, _descripcion);

@@ -69,13 +69,13 @@ namespace Presentation
         protected global::System.Web.UI.WebControls.Label Label5;
 
         /// <summary>
-        /// Control TBEducationalLevel.
+        /// Control DDLAux.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TBEducationalLevel;
+        protected global::System.Web.UI.WebControls.DropDownList DDLAux;
 
         /// <summary>
         /// Control RFVEducationalLevel.

@@ -307,7 +307,7 @@ namespace Presentation
         private void clear()
         {
             HFTreatmentID.Value = "";
-            TBName.Text = "";
+            DDLTreat.SelectedIndex = 0;
             TBDescription.Text = "";
             TBObservations.Text = "";
             TBDate.Text = DateTime.Now.ToString("yyyy-MM-dd");
@@ -322,7 +322,7 @@ namespace Presentation
         // Evento que se ejecuta cuando se da clic en el botón guardar
         protected void BtnSave_Click(object sender, EventArgs e)
         {
-            _name = TBName.Text;
+            _name = DDLTreat.Text;
             _description = TBDescription.Text;
             _observations = TBObservations.Text;
             _date = DateTime.Parse(TBDate.Text);
@@ -373,7 +373,7 @@ namespace Presentation
             }
 
             _treatmentId = Convert.ToInt32(HFTreatmentID.Value);
-            _name = TBName.Text;
+            _name = DDLTreat.Text;
             _description = TBDescription.Text;
             _observations = TBObservations.Text;
             _date = DateTime.Parse(TBDate.Text);
