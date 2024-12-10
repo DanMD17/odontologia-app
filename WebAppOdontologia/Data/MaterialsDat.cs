@@ -117,5 +117,27 @@ namespace Data
             objPer.closeConnection();
             return executed;
         }
+
+        public int showCountMaterials()
+        {
+            int totalMaterials;
+
+            MySqlCommand objSelectCmd = new MySqlCommand();
+            objSelectCmd.Connection = objPer.openConnection();
+            objSelectCmd.CommandText = "spSelectCountMaterials";
+            objSelectCmd.CommandType = CommandType.StoredProcedure;
+
+            // Agregar el parámetro de salida
+            objSelectCmd.Parameters.Add(new MySqlParameter("@total_materiales", MySqlDbType.Int32));
+            objSelectCmd.Parameters["@total_materiales"].Direction = ParameterDirection.Output;
+
+            // Ejecutar el comando
+            objSelectCmd.ExecuteNonQuery();
+
+            // Obtener el valor del parámetro de salida
+            totalMaterials = Convert.ToInt32(objSelectCmd.Parameters["@total_materiales"].Value);
+
+            return totalMaterials;
+        }
     }
 }

@@ -140,7 +140,26 @@ namespace Data
             objPer.closeConnection();
             return executed;
         }
+        public int showCountPatients()
+        {
+            int totalPatients;
+
+            MySqlCommand objSelectCmd = new MySqlCommand();
+            objSelectCmd.Connection = objPer.openConnection();
+            objSelectCmd.CommandText = "spSelectCountPatients";
+            objSelectCmd.CommandType = CommandType.StoredProcedure;
+
+            // Agregar el parámetro de salida
+            objSelectCmd.Parameters.Add(new MySqlParameter("@total_pacientes", MySqlDbType.Int32));
+            objSelectCmd.Parameters["@total_pacientes"].Direction = ParameterDirection.Output;
+
+            // Ejecutar el comando
+            objSelectCmd.ExecuteNonQuery();
+
+            // Obtener el valor del parámetro de salida
+            totalPatients = Convert.ToInt32(objSelectCmd.Parameters["@total_pacientes"].Value);
+
+            return totalPatients;
+        }
     }
-
-
 }

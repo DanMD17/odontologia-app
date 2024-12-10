@@ -41,5 +41,10 @@ namespace Logic
         {
             return objPat.deletePatient(_pPacienteId);
         }
+
+        public int showCountPatients()
+        {
+            return objPat.showCountPatients();
+        }
     }
 }
