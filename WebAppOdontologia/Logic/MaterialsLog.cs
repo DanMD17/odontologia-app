@@ -36,5 +36,10 @@ namespace Logic
         {
             return objMaterial.deleteMaterial(_materialId);
         }
+
+        public int showCountMaterials()
+        {
+            return objMaterial.showCountMaterials();
+        }
     }
 }

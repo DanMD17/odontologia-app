@@ -42,5 +42,24 @@ namespace Logic
         {
             return objQuotes.deleteQuote(citaId);
         }
+
+
+        //Método para mostrar el número de citas existentes
+        public int showCountQuotes()
+        {
+            return objQuotes.showCountQuotes();
+        }
+
+        // Método para mostrar cuántas citas existen por mes
+        public DataSet showQuotesPerMonth()
+        {
+            return objQuotes.showQuotesPerMonth();
+        }
+
+        // Método para mostrar cuantos productos existen por categoria.
+        public DataSet showCountQuotesDentists()
+        {
+            return objQuotes.showCountQuotesDentists();
+        }
     }
 }

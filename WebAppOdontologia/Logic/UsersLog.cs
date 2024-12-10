@@ -40,8 +40,18 @@ namespace Logic
 
         // Método para borrar un usuario
         //public bool deleteUser(int _id)
-       // {
+        // {
         //    return objUser.deleteUser(_id);
         //}
+
+        public int showCountUsers()
+        {
+            return objUser.showCountUsers();
+        }
+
+        public DataSet showUsersPerRol()
+        {
+            return objUser.showUsersPerRol();
+        }
     }
 }
