@@ -290,6 +290,7 @@ namespace Presentation
             if (executed)
             {
                 LblMsg.Text = "El empleado se guardó exitosamente!";
+                clear(); //Se invoca el metodo para limpiar los campos 
             }
             else
             {

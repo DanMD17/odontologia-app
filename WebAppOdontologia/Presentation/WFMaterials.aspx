@@ -137,6 +137,8 @@
                                 <th>Cantidad</th>
                                 <th>FkTratamiento</th>
                                 <th>Tratamiento</th>
+                                <th>Fecha</th>
+                                <th>Paciente</th>
                                 <th>Acciones</th>
                                 <!-- Nueva columna para acciones de edición y eliminación -->
                             </tr>
@@ -176,7 +178,9 @@
                     { "data": "Descripcion" },
                     { "data": "Cantidad" },
                     { "data": "FkTratamiento", "visible": false },
-                    { "data": "Tratamiento" },
+                    { "data": "TratamientoNombre" },
+                    { "data": "TratamientoFecha" },
+                    { "data": "NombrePaciente" },
                     {
                         "data": null,
                         "render": function (data, type, row) {
