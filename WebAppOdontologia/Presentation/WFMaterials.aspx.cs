@@ -66,7 +66,9 @@ namespace Presentation
                     Descripcion = row["mate_descripcion"],
                     Cantidad = row["mate_cantidad"],
                     FkTratamiento = row["tbl_tratamientos_realizados_trata_id"],
-                    Tratamiento = row["trata_nombre"]
+                    TratamientoNombre = row["trata_nombre"],
+                    TratamientoFecha = row["trata_fecha"],
+                    NombrePaciente = row["paciente_nombre"]
                 });
             }
 
@@ -79,7 +81,7 @@ namespace Presentation
         {
             DDLTreatments.DataSource = objTreat.showTreatmentsDDL();
             DDLTreatments.DataValueField = "trata_id"; // Nombre de la llave primaria
-            DDLTreatments.DataTextField = "trata_nombre";
+            DDLTreatments.DataTextField = "trata_detalle";
             DDLTreatments.DataBind();
             DDLTreatments.Items.Insert(0, "Seleccione");
         }
